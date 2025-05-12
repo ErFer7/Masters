@@ -27,83 +27,46 @@
 
 \makeatother
 
-\Title{Proposta e avaliação de transformadas 4D direcionais para compressão de light fields}
+% TODO: Melhorar o título
+\Title{Aplicação de Aprendizado de Máquina para a Seleção de Políticas de Escalonamento em Sistemas Operacionais de
+Tempo Real}  % TODO: Proposta
 
 \begin{document}
 
-% Light fields são uma tecnologia de imagem capaz de representar de maneira realista as informações luminosas de uma
-% cena. Diferente de fotografias 2D tradicionais, que representam apenas a intensidade dos raios de luz incidentes em um
-% plano, light fields estão definidos em 4D, pois também capturam o ângulo de incidência destes raios de luz, permitindo
-% uma representação precisa de efeitos de paralax, refração, reflexão, volumétricos, dentre outros \cite{system_lf_vr}.
-% Estas propriedades permitem que light fields sejam utilizados para visualização imersiva em telas especiais (semelhante
-% ao cinema 3D, porém sem a necessidade de óculos), geração de malhas tridimensionais, inferência de mapas de
-% profundidade e edições de foco mesmo após a captura da imagem \cite{lightfields_survey, ebrahimi2016jpeg}.
+\section{Introdução}
 
-% JPEG Pleno é um comitê de projeto, iniciado em 2015, que faz parte do grupo de trabalho JPEG, sob a \ac{iso}/\ac{iec}
-% \cite{ctc_jpeg_pleno}. Este comitê se propõe a padronizar formas de codificação e representação de imagens plenópticas.
-% Dentre elas estão: Hologramas, Point Clouds e Light Fields. Um light field, de acordo com a definição adotada pelo JPEG
-% Pleno, é representado como um conjunto de vistas (imagens 2D, semelhantes a fotografias tradicionais) dispostas em duas
-% dimensões, que representam as duas componentes dos ângulos .
+Sistemas operacionais de tempo real são sistemas operacionais que levam em conta restrições temporais na execução de
+tarefas, buscando uma execução determinística. Esses sistemas são utilizados em contextos onde a conclusão de tarefas
+no tempo esperado é crítico, como por exemplo, em sistemas industriais, veículos autônomos ou sistemas de aviônica
+\cite{tanenbaum2015modern}.
 
-% As amostras de um ponto dentro deste modelo são convencionalmente denotadas por uma quádrupla $(t, s, v, u)$, onde $(v,
-%     u)$ são respectivamente as coordenadas verticais e horizontais de cada vista, e $(t, s)$ são as componentes verticais e
-% horizontais dos ângulos que esta amostras representam. Devido à alta densidade de dados necessária para representar um
-% light field, dois modos de compressão com perdas foram adotados no padrão \cite{jpeg_pleno_p2, schelkens2019jpeg}. São
-% eles:
+% Podem rodar em multicore ...
+% Possuem algoritmos de escalonamento ...
+% Podem possuir políticas de escalonamento ...
 
-% \begin{enumerate}
+\section{Motivação}
 
-%     \item \ac{4dpm}, um modelo preditivo, semelhante ao modo preditivo utilizado em em codificação de vídeos, onde certas vistas
-%           do light field são utilizadas como preditoras para as demais e os resíduos são posteriormente codificados através de um
-%           codificador de imagens tradicionais.
+% Nem sempre o escalonamento é bom para a situação ...
+% Pode ocorrer perdas de deadlines, o que é bem ruim em sistemas críticos ...
+% Alguns algoritmos de escalonamento podem apresentar um desempenho melhor para situações específicas ...
 
-%     \item \ac{4dtm}, um modelo baseado na \ac{4ddct}, em que os dados transformados são representados através de uma árvore de
-%           bitplanes.
+\section{Objetivos}
 
-% \end{enumerate}
+% A proposta é deselvolver um modelo de escalonamento com IA utilize métricas do sistema para obter um desempenho melhor ...
 
-% A utilização de dois métodos de compressão foi adotada pois cada modo se adéqua melhor a um tipo de dado. Em light
-% fields com vistas bastante semelhantes, como aqueles capturados por câmeras plenópticas, costumam ser mais
-% eficientemente comprimidos através do modo \ac{4dtm}. Já aqueles em que as vistas estão mais distantes, e portanto são
-% mais diferentes entre si, como os light fields capturados por matrizes de câmeras, são melhor representados através do
-% modo \ac{4dpm}.
+\subsection{Objetivos específicos}
 
-% Recentemente um novo modo de compressão baseado no \ac{4dtm} foi proposto \cite{slanted_4d_dct}. Este modelo, batizado
-% de \ac{s4dtm}, explora o fato de que em um plano epipolar através das posições $(v_0, t_0)$, bordas diagonais costumam
-% aparecer nos dados, o que prejudica a capacidade de concentração de energia da \ac{4ddct}. Para contornar este problema
-% é feita uma transformada \textit{slant} em cada bloco. Esta transformada distorce o bloco de modo que a disposição de
-% seus dados fique orientada na vertical, aumentando assim a eficiência de compactação da \ac{4ddct} que será aplicada em
-% seguida. Testes realizados demonstram que o \ac{s4dtm} superou os modos \ac{4dtm} e \ac{4dpm} com ganhos em BD-Rate de
-% 31.03\% and 28.30\%, respectivamente, implicando na possibilidade de que um único modo de codificação seja adotado no
-% padrão.
+\section{Estado da Arte}
 
-% Para realizar a \ac{4ddct} é necessário que os dados de entrada estejam organizados como hyper-paralelepípedos, porém o
-% resultado da transformada \textit{slant} são hyper-trapézios. Este problema exige que um passo de preenchimento de
-% áreas vazias (\textit{padding}) seja aplicado gerando hyper-paralelepípedos maiores do que os originais, porém com
-% características mais adequadas para a \ac{4ddct}, de modo que o ganho de eficiência de codificação compensa a inserção
-% extra de dados.
+% ...
 
-% Apesar dos ganhos significativos em eficiência de codificação, a necessidade de inserir dados para o \textit{padding}
-% sugere que este modelo ainda possui margem para melhorias. No caso bidimensional, o problema da eficiência da
-% \ac{2ddct} em dados dispostos na diagonal já foi tema de diversos trabalhos. Em codificadores de vídeo como o \ac{hevc}
-% e \ac{vvc} o problema é mitigado utilizando preditores diagonais no modo de predição intra quadro \cite{overview_hevc,
-% overview_vvc, non_separable_transform}. Outros trabalhos propuseram diferentes modificações na própria \ac{dct},
-% utilizando transformadas similares ou modificando a disposição da imagem e forma de percorrer as amostras
-% \cite{directional_dct, diagonal_dct, sparse_ddct, diagonally_oriented_dct, fracastoro2016_steerable_dct,
-% peloso2020_steerable_dct, lima2021_steerable_dct_3d}.
+\section{Contribuições}
 
-% Este projeto de mestrado tem como objetivo propor novas transformadas direcionais, bem como estender para 4 dimensões
-% transformadas direcionais em 2 ou 3 dimensões já existentes, a fim de melhorar a eficiência de codificação em light
-% fields. As transformadas serão inicialmente avaliadas isoladamente em termos de \textit{coding gain}, a fim de avaliar
-% sua performance teórica. Em seguida, as propostas mais eficientes serão implementadas dentro do software de referência
-% \ac{jplm} \cite{jplm, jpeg_pleno_p4}, onde outras características poderão ser avaliadas.
+% Um novo modelo e uma análise comparativa ...
 
-% Dentro do \ac{jplm} será possível avaliar erros introduzidos pela quantização em termos de \ac{mse}, \ac{psnr} e
-% \ac{ssim}. Também serão avaliados os ganhos reais de codificação, em termos de \ac{bpp}, já considerando os custos de
-% sinalização necessários para a transformada direcional. Através destas duas medidas cada light field disponível nas
-% \ac{ctc}~\cite{ctc_jpeg_pleno}, será codificado utilizando cada uma das transformadas para cada taxa alvo disponível.
-% As curvas de eficiência de codificação obtida com estes dados serão feitas e o BD-Rate será calculado para que os
-% ganhos possam ser efetivamente comparados.
+\section{Metologia}
+
+% Baseada na metodologia tal, será feito ...
 
 \newpage
 

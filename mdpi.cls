@@ -1051,7 +1051,7 @@ pdfauthor={\@AuthorNames}
 						Possíveis Orientadores: 
 						
 						\begin{enumeration}
-						    \item Ismael Seidel
+						    \item Antônio Augusto Fröhlich
 						\end{enumeration}
 						
 						
@@ -1111,7 +1111,6 @@ pdfauthor={\@AuthorNames}
 		\par
 		\vspace{12pt}
 		\fontsize{10}{10}\selectfont
-		\noindent\bfseries{\@Author}
 	\end{flushleft}
 		}{%
 		\begin{flushleft}
@@ -1146,7 +1145,6 @@ pdfauthor={\@AuthorNames}
    	 	\vspace{15pt}
    	 	}%2
    		{%3
-    		\boldmath\bfseries{\@Author}
     		\par
     		\vspace{-4pt}
     		}%3
@@ -1166,76 +1164,14 @@ pdfauthor={\@AuthorNames}
 	\leftskip0.2cm
 	\fontsize{9}{9}\selectfont
 	{%
-	\ifthenelse{\equal{\firstargument}{1}}{}{%
-	\hang}\@address
-	\par
-	}%
-	{%
-	\ifthenelse{\equal{\@authornum}{author}}{}{%
-	\ifthenelse{\equal{\@corres}{\@empty}}{}{%
-	\hang\textbf{*} \tabto{\dist} \@corres}
-	\par
-	}
-	}%
-	{%
-	\ifthenelse{\equal{\@conference}{\@empty}}{}{%
-	\hang$\dagger$ \tabto{\dist} This paper is an extended version of our paper published in\space \@conference.}
-	\par
-	}%
-	{%
-	\ifthenelse{\equal{\@firstnote}{\@empty}}{}{%
-	\hang\ifthenelse{\equal{\@conference}{\@empty}}{$\dagger$}{$\ddagger$} \tabto{\dist} \@firstnote}	
-	\par
-	}%
-	{%
-	\ifthenelse{\equal{\@secondnote}{\@empty}}{}{%
-	\hang \ifthenelse{\equal{\@conference}{\@empty}}{$\ddagger$}{\S} \tabto{\dist} \@secondnote}
-	\par
-	}%
-	{%
-	\ifthenelse{\equal{\@thirdnote}{\@empty}}{}{%
-	\hang \ifthenelse{\equal{\@conference}{\@empty}}{\S}{$\|$} \tabto{\dist} \@thirdnote}
-	\par
-	}%
-	{%
-	\ifthenelse{\equal{\@fourthnote}{\@empty}}{}{%
-	\hang \ifthenelse{\equal{\@conference}{\@empty}}{$\|$}{\P} \tabto{\dist} \@fourthnote}
-	\par
-	}%
-	{%
-	\ifthenelse{\equal{\@fifthnote}{\@empty}}{}{%
-	\hang \ifthenelse{\equal{\@conference}{\@empty}}{\P}{**} \tabto{\dist} \@fifthnote}
-	\par
-	}%
-	{%
-	\ifthenelse{\equal{\@sixthnote}{\@empty}}{}{%
-	\hang \ifthenelse{\equal{\@conference}{\@empty}}{**}{$\dagger\dagger$} \tabto{\dist} \@sixthnote}
-	\par
-	}%
-	{%
-	\ifthenelse{\equal{\@seventhnote}{\@empty}}{}{%
-	\hang \ifthenelse{\equal{\@conference}{\@empty}}{$\dagger\dagger$}{$\ddagger\ddagger$} \tabto{\dist} \@seventhnote}
-	\par
-	}%
-	{%
-	\ifthenelse{\equal{\@eighthnote}{\@empty}}{}{%
-	\hang \ifthenelse{\equal{\@conference}{\@empty}}{$\ddagger\ddagger$}{***} \tabto{\dist} \@eighthnote}
-	\par
-	}%
-	{%
-	\vspace{6pt}
-	\ifthenelse{\equal{\@externaleditor}{\@empty}}{}{\@externaleditor}
-	\par
-	}%
-	{%
 	\ifthenelse{\equal{\@status}{submit}}{\textbf{Linha de Pesquisa}: Sistemas Embarcados.
  
-    \textbf{Tema}:  Algoritmos e técnicas para a compressão de sinais visuais (images, vídeos, light fields e point clouds).
+    \textbf{Tema}: Processamento Paralelo Determinístico em Multicores.
 	
 		\textbf{Possíveis Orientadores}: 
 	\vspace{-0.3cm}
 	\begin{enumerate}
-	    \item Ismael Seidel
+	    \item Antônio Augusto Fröhlich
 	\end{enumerate}
 
 	    

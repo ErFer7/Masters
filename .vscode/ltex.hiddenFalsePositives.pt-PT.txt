@@ -1,0 +1,2 @@
+{"rule":"PT_PT_SIMPLE_REPLACE","sentence":"^\\QSistemas operacionais de tempo real são sistemas operacionais que levam \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"PT_PT_SIMPLE_REPLACE","sentence":"^\\QAplicação de Aprendizado de Máquina para a Seleção de Políticas de Escalonamento em Sistemas Operacionais de Tempo Real\\E$"}
