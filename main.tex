@@ -27,24 +27,39 @@
 
 \makeatother
 
-% TODO: Melhorar o título
-\Title{Aplicação de Aprendizado de Máquina para a Seleção de Políticas de Escalonamento em Sistemas Operacionais de
-Tempo Real}  % TODO: Proposta
+\Title{Proposta de um Escalonador \textit{Multicore} Adaptativo baseado em uma ANN para RTOS}
 
 \begin{document}
 
-\section{Introdução}
+\section{Introdução e Motivação}
 
-Sistemas operacionais de tempo real são sistemas operacionais que levam em conta restrições temporais na execução de
-tarefas, buscando uma execução determinística. Esses sistemas são utilizados em contextos onde a conclusão de tarefas
-no tempo esperado é crítico, como por exemplo, em sistemas industriais, veículos autônomos ou sistemas de aviônica
-\cite{tanenbaum2015modern}.
+\ac{rtos} são sistemas desenvolvidos para o processamento de tarefas com restrições temporais, onde deve-se assegurar
+que os prazos de conclusão das tarefas serão cumpridos. É possível classificar esses sistemas como críticos ou não
+críticos conforme as suas aplicações e requisitos. \ac{rtos} críticos são utilizados em contextos onde a perda de prazo
+na execução de tarefas pode ter consequências graves, o que inclui sistemas industriais, veículos autônomos, sistemas
+de navegação de aeronaves e outros. Já em \ac{rtos} não-críticos, a perda de prazos pode ser tolerada, sendo que seus
+casos de uso envolvem sistemas de multimídia e processamento de áudio \cite[13--22]{kopetz2022real}.
 
-% Podem rodar em multicore ...
-% Possuem algoritmos de escalonamento ...
-% Podem possuir políticas de escalonamento ...
+As tarefas a serem executadas podem ter tempos de execução, prazos e requisitos de recursos computacionais variados,
+sendo assim, são utilizados escalonadores que definem prioridades para cada tarefa de modo a ordená-las de uma forma em
+que todas as restrições temporais sejam satisfeitas. Os escalonadores que a definem as prioridades antes da execução do
+sistema são denominados estáticos, enquanto os que definem as prioridades durante o tempo de execução são considerados
+dinâmicos \cite[247--248]{kopetz2022real}.
 
-\section{Motivação}
+Atualmente, diversas arquiteturas de processadores são \textit{multicore}, permitindo o paralelismo na execução de
+tarefas. A complexidade dessas arquiteturas introduz novos desafios na implementação de escalonadores de tempo real. O
+compartilhamento de recursos, como a memória, \textit{cache} ou Entrada/Saída, por exemplo, pode afetar o tempo de
+execução das tarefas de forma não determinística \cite{aceituno2023optimized}. Além disso, há problemas relacionados à
+otimização e à utilização eficiente dos recursos, como o balanceamento de carga entre núcleos ou a otimização no
+consumo de energia do sistema \cite{jadon2024comprehensive, baital2024energy}.
+
+% Falar sobre IA aqui
+% Propor
+
+% ---
+
+A proposta deste trabalho é o desenvolvimento de um algoritmo adaptativo que utiliza uma \ac{ann} para escalonar as
+tarefas eficientemente com base nas métricas de desempenho do \ac{rtos}.
 
 % Nem sempre o escalonamento é bom para a situação ...
 % Pode ocorrer perdas de deadlines, o que é bem ruim em sistemas críticos ...
@@ -52,21 +67,19 @@ no tempo esperado é crítico, como por exemplo, em sistemas industriais, veícu
 
 \section{Objetivos}
 
-% A proposta é deselvolver um modelo de escalonamento com IA utilize métricas do sistema para obter um desempenho melhor ...
-
-\subsection{Objetivos específicos}
+\begin{itemize}
+    \item A;
+    \item B;
+    \item C;
+    \item D;
+    \item E.
+\end{itemize}
 
 \section{Estado da Arte}
 
-% ...
-
 \section{Contribuições}
 
-% Um novo modelo e uma análise comparativa ...
-
-\section{Metologia}
-
-% Baseada na metodologia tal, será feito ...
+\section{Metodologia}
 
 \newpage
 
