@@ -27,7 +27,8 @@
 
 \makeatother
 
-\Title{Proposta de um Escalonador \textit{Multicore} Adaptativo baseado em uma ANN para RTOS}
+\Title{Proposta de um Escalonador Adaptativo baseado em Aprendizado de Máquina para Sistemas Operacionais de Tempo Real
+\textit{Multicore}}
 
 \begin{document}
 
@@ -53,26 +54,27 @@ execução das tarefas de forma não determinística \cite{aceituno2023optimized
 otimização e à utilização eficiente dos recursos, como o balanceamento de carga entre núcleos ou a otimização no
 consumo de energia do sistema \cite{jadon2024comprehensive, baital2024energy}.
 
-% Falar sobre IA aqui
-% Propor
+Considerando este cenário, diferentes técnicas de escalonamento foram propostas nos últimos anos. Algumas técnicas
+utilizam heurísticas, como algoritmos genéticos, para otimizar o desempenho do sistema. Há também a aplicação de
+\ac{ml}, principalmente com técnicas de aprendizagem por reforço \cite{hassan2025optimizing, liang2024adaptive}.
 
-% ---
-
-A proposta deste trabalho é o desenvolvimento de um algoritmo adaptativo que utiliza uma \ac{ann} para escalonar as
-tarefas eficientemente com base nas métricas de desempenho do \ac{rtos}.
-
-% Nem sempre o escalonamento é bom para a situação ...
-% Pode ocorrer perdas de deadlines, o que é bem ruim em sistemas críticos ...
-% Alguns algoritmos de escalonamento podem apresentar um desempenho melhor para situações específicas ...
+Propõe-se então o desenvolvimento de um escalonador adaptativo que utilize técnicas de \ac{ml} otimizar o desempenho de
+\ac{rtos} \textit{multicore}. A priorização das tarefas seria feita com base nas métricas do sistema, permitindo que
+elas sejam executadas de uma forma que considere as variações de carga, perdas de prazo, e outros fatores relevantes
+que afetam o tempo de execução.
 
 \section{Objetivos}
 
+Os objetivos principais incluem:
+
 \begin{itemize}
-    \item A;
-    \item B;
-    \item C;
-    \item D;
-    \item E.
+    \item Realizar uma revisão sistemática sobre a aplicação de \ac{ml} na área de algoritmos de escalonamento para
+          \ac{rtos};
+    \item Investigar técnicas de sintetização de conjuntos de dados de treinamento no contexto de \ac{ml} para
+          algoritmos de escalonamento;
+    \item Desenvolver o escalonador proposto;
+    \item Realizar a validação do escalonador com diferentes cenários de teste;
+    \item Analisar os resultados obtidos, comparando o escalonador com outros algoritmos de escalonamento relevantes.
 \end{itemize}
 
 \section{Estado da Arte}
