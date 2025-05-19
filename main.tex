@@ -28,18 +28,18 @@
 \makeatother
 
 \Title{Proposta de um Escalonador Adaptativo baseado em Aprendizado de Máquina para Sistemas Operacionais de Tempo Real
-\textit{Multicore}}
+\textit{Multi-core}}
 
 \begin{document}
 
 \section{Introdução e Motivação}
 
-\ac{rtos} são sistemas desenvolvidos para o processamento de tarefas com restrições temporais, onde deve-se assegurar
-que os prazos de conclusão das tarefas serão cumpridos. É possível classificar esses sistemas como críticos ou não
-críticos conforme as suas aplicações e requisitos. \ac{rtos} críticos são utilizados em contextos onde a perda de prazo
-na execução de tarefas pode ter consequências graves, o que inclui sistemas industriais, veículos autônomos, sistemas
-de navegação de aeronaves e outros. Já em \ac{rtos} não-críticos, a perda de prazos pode ser tolerada, sendo que seus
-casos de uso envolvem sistemas de multimídia e processamento de áudio \cite[13--22]{kopetz2022real}.
+\gls{rtos} são sistemas desenvolvidos para o processamento de tarefas com restrições temporais, onde deve-se assegurar
+que os prazos de conclusão das tarefas sejam cumpridos. É possível classificar esses sistemas como críticos ou não
+críticos conforme as suas aplicações e requisitos. \gls{rtos} críticos são utilizados em contextos onde a perda de
+prazo na execução de tarefas pode ter consequências graves, o que inclui sistemas industriais, veículos autônomos,
+sistemas de navegação de aeronaves e outros. Já em \gls{rtos} não-críticos, a perda de prazos pode ser tolerada, sendo
+que os seus casos de uso envolvem sistemas de multimídia e processamento de áudio \cite[13--22]{kopetz2022real}.
 
 As tarefas a serem executadas podem ter tempos de execução, prazos e requisitos de recursos computacionais variados,
 sendo assim, são utilizados escalonadores que definem prioridades para cada tarefa de modo a ordená-las de uma forma em
@@ -47,41 +47,77 @@ que todas as restrições temporais sejam satisfeitas. Os escalonadores que a de
 sistema são denominados estáticos, enquanto os que definem as prioridades durante o tempo de execução são considerados
 dinâmicos \cite[247--248]{kopetz2022real}.
 
-Atualmente, diversas arquiteturas de processadores são \textit{multicore}, permitindo o paralelismo na execução de
+Atualmente, diversas arquiteturas de processadores são \textit{multi-core}, permitindo o paralelismo na execução de
 tarefas. A complexidade dessas arquiteturas introduz novos desafios na implementação de escalonadores de tempo real. O
 compartilhamento de recursos, como a memória, \textit{cache} ou Entrada/Saída, por exemplo, pode afetar o tempo de
 execução das tarefas de forma não determinística \cite{aceituno2023optimized}. Além disso, há problemas relacionados à
-otimização e à utilização eficiente dos recursos, como o balanceamento de carga entre núcleos ou a otimização no
-consumo de energia do sistema \cite{jadon2024comprehensive, baital2024energy}.
+otimização e utilização eficiente dos recursos, como o balanceamento de carga entre núcleos ou a otimização no consumo
+de energia do sistema \cite{jadon2024comprehensive, baital2024energy}.
 
 Considerando este cenário, diferentes técnicas de escalonamento foram propostas nos últimos anos. Algumas técnicas
 utilizam heurísticas, como algoritmos genéticos, para otimizar o desempenho do sistema. Há também a aplicação de
-\ac{ml}, principalmente com técnicas de aprendizagem por reforço \cite{hassan2025optimizing, liang2024adaptive}.
+\gls{ml}, principalmente com técnicas de \gls{rl} \cite{hassan2025optimizing, liang2024adaptive}.
 
-Propõe-se então o desenvolvimento de um escalonador adaptativo que utilize técnicas de \ac{ml} otimizar o desempenho de
-\ac{rtos} \textit{multicore}. A priorização das tarefas seria feita com base nas métricas do sistema, permitindo que
-elas sejam executadas de uma forma que considere as variações de carga, perdas de prazo, e outros fatores relevantes
-que afetam o tempo de execução.
+Propõe-se então o desenvolvimento de um escalonador dinâmico adaptativo para \gls{rtos} \textit{multi-core} que utilize
+técnicas de \gls{ml} para a otimização do desempenho. A priorização das tarefas seria feita com base nas métricas do
+sistema, permitindo que elas sejam executadas de uma forma que considere as variações de carga, perdas de prazo, e
+outros fatores relevantes que afetam o tempo de execução.
 
 \section{Objetivos}
 
 Os objetivos principais incluem:
 
 \begin{itemize}
-    \item Realizar uma revisão sistemática sobre a aplicação de \ac{ml} na área de algoritmos de escalonamento para
-          \ac{rtos};
-    \item Investigar técnicas de sintetização de conjuntos de dados de treinamento no contexto de \ac{ml} para
+    \item Realizar uma revisão sistemática sobre a aplicação de \gls{ml} na área de algoritmos de escalonamento para
+          \gls{rtos};
+    \item Desenvolver a arquitetura do escalonador e investigar técnicas de treinamento no contexto de \gls{ml} para
           algoritmos de escalonamento;
-    \item Desenvolver o escalonador proposto;
     \item Realizar a validação do escalonador com diferentes cenários de teste;
     \item Analisar os resultados obtidos, comparando o escalonador com outros algoritmos de escalonamento relevantes.
 \end{itemize}
 
 \section{Estado da Arte}
 
+No cenário de escalonamento para \gls{rtos} \textit{multi-core}, diversas propostas para problemas pertinentes foram
+feitas, muitas delas focando em sistemas críticos em ambientes embarcados \cite{ismael2021scheduling}.
+
+Um dos desafios introduzidos pelas arquiteturas \textit{multi-core} é a distribuição eficiente da carga de trabalho
+entre os núcleos. Muitas das soluções propostas ainda são limitadas por problemas como a heterogeneidade das
+arquiteturas, escalabilidade, dinamicidade das cargas de trabalho e \textit{overheads} causados pela complexidade dos
+escalonadores \cite{jadon2024comprehensive}. A aplicação de \gls{ml} no contexto geral escalonamento
+\textit{multi-core} ainda é limitada, mas há propostas que aplicam \gls{rl} e \gls{drl} \cite{liang2024adaptive,
+tan2024deep}.
+
+Outro tópico relevante é a segurança desses sistemas, principalmente em ambientes distribuídos. Neste contexto, os
+aspectos de segurança, como a confidencialidade, autenticidade e a integridade dos dados devem ser considerados em
+conjunto com as restrições temporais do sistema. A aplicação de \gls{ml} nessa linha ainda é baixa
+\cite{singh2023systematic}.
+
+Com a aplicação de sistemas de tempo real em ambientes embarcados com fontes limitadas de energia, a eficiência
+energética se tornou um tópico relevante na área. Vários trabalhos propostos nessa linha utilizam \gls{ml}, aplicando
+\gls{drl}, redes de \gls{lstm}, regressão linear e \glspl{cnn} \cite{peng2024energy, allaqband2024efficient,
+khan2025enhanced}.
+
+Para sistema de tempo real em geral, a aplicação de \gls{ml} em algoritmos de escalonamento ainda é recente, mas ela se
+demonstra promissora, indicando que há espaço para avanços no estado da arte.
+
 \section{Contribuições}
 
+Com a execução deste trabalho, espera-se contribuir com:
+
+\begin{itemize}
+    \item A discussão e resultados de uma revisão sistemática sobre a aplicação de \gls{ml} na área de algoritmos de
+          escalonamento para \gls{rtos} \textit{multi-core};
+    \item Um algoritmo adaptativo baseado em \gls{ml} para o escalonamento em \gls{rtos} \textit{multi-core};
+    \item Resultados de testes com o algoritmo desenvolvido e análises comparativas.
+\end{itemize}
+
 \section{Metodologia}
+
+O projeto se trata de uma pesquisa aplicada e será iniciado com uma pesquisa exploratória, visando o desenvolvimento da
+fundamentação teórica e o estabelecimento do estado da arte. Posteriormente, a arquitetura do escalonador será definida
+e o seu desenvolvimento será planejado. Os passos mais relevantes no desenvolvimento envolvem a obtenção dos dados de
+treinamento, o treinamento em si e a validação. Por fim, será feita a análise comparativa dos resultados.
 
 \newpage
 
