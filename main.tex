@@ -27,8 +27,8 @@
 
 \makeatother
 
-\Title{Proposta de um Escalonador Adaptativo baseado em Aprendizado de Máquina para Sistemas Operacionais de Tempo Real
-\textit{Multi-core}}
+\Title{Escalonador Adaptativo para Sistemas Operacionais de Tempo Real \textit{Multicore} guiado por Aprendizado de
+Máquina}
 
 \begin{document}
 
@@ -47,7 +47,7 @@ que todas as restrições temporais sejam satisfeitas. Os escalonadores que a de
 sistema são denominados estáticos, enquanto os que definem as prioridades durante o tempo de execução são considerados
 dinâmicos \cite[247--248]{kopetz2022real}.
 
-Atualmente, diversas arquiteturas de processadores são \textit{multi-core}, permitindo o paralelismo na execução de
+Atualmente, diversas arquiteturas de processadores são \textit{multicore}, permitindo o paralelismo na execução de
 tarefas. A complexidade dessas arquiteturas introduz novos desafios na implementação de escalonadores de tempo real. O
 compartilhamento de recursos, como a memória, \textit{cache} ou Entrada/Saída, por exemplo, pode afetar o tempo de
 execução das tarefas de forma não determinística \cite{aceituno2023optimized}. Além disso, há problemas relacionados à
@@ -58,66 +58,76 @@ Considerando este cenário, diferentes técnicas de escalonamento foram proposta
 utilizam heurísticas, como algoritmos genéticos, para otimizar o desempenho do sistema. Há também a aplicação de
 \gls{ml}, principalmente com técnicas de \gls{rl} \cite{hassan2025optimizing, liang2024adaptive}.
 
-Propõe-se então o desenvolvimento de um escalonador dinâmico adaptativo para \gls{rtos} \textit{multi-core} que utilize
-técnicas de \gls{ml} para a otimização do desempenho. A priorização das tarefas seria feita com base nas métricas do
-sistema, permitindo que elas sejam executadas de uma forma que considere as variações de carga, perdas de prazo, e
-outros fatores relevantes que afetam o tempo de execução.
+Propõe-se então o desenvolvimento de um escalonador dinâmico adaptativo para \gls{rtos} \textit{multicore} que seja
+guiado por \gls{ml}, visando a otimização do desempenho. A política de priorização das tarefas seria definida com base
+na inferência feita pelo algoritmo de \gls{ml} sobre a evolução temporal do estado do sistema. Isso permitiria que as
+tarefas sejam executadas de uma forma que considere as variações de carga, perdas de prazo e outros fatores relevantes
+que afetam o tempo de execução.
 
 \section{Objetivos}
 
-Os objetivos principais incluem:
+O objetivo principal deste trabalho é investigar e desenvolver um algoritmo de escalonamento informado por \gls{ml}
+para \gls{rtos} \textit{multicore}, buscando aprimorar o desempenho do sistema e contribuir para o estado da arte da
+aplicação de \gls{ml} em \gls{rtos}.
+
+\subsection{Objetivos específicos}
 
 \begin{itemize}
-    \item Realizar uma revisão sistemática sobre a aplicação de \gls{ml} na área de algoritmos de escalonamento para
-          \gls{rtos};
-    \item Desenvolver a arquitetura do escalonador e investigar técnicas de treinamento no contexto de \gls{ml} para
-          algoritmos de escalonamento;
-    \item Realizar a validação do escalonador com diferentes cenários de teste;
-    \item Analisar os resultados obtidos, comparando o escalonador com outros algoritmos de escalonamento relevantes.
+    \item Realizar uma revisão sistemática sobre a aplicação de \gls{ml} em \gls{rtos};
+    \item Desenvolver um modelo de \gls{ml} para a inferência do estado do sistema;
+    \item Desenvolver o algoritmo de escalonamento, utilizando o modelo treinado para informar o algoritmo;
+    \item Validar a solução proposta, avaliando seu desempenho e \textit{overhead} sob diversos cenários de teste;
+    \item Analisar os resultados obtidos, comparando a solução com o estado da arte.
 \end{itemize}
 
 \section{Estado da Arte}
 
-No cenário de escalonamento para \gls{rtos} \textit{multi-core}, diversas propostas para problemas pertinentes foram
-feitas, muitas delas focando em sistemas críticos em ambientes embarcados \cite{ismael2021scheduling}.
+No cenário de escalonamento para \gls{rtos} \textit{multicore}, diversas propostas buscam solucionar problemas
+pertinentes, muitas delas focando em sistemas críticos em ambientes embarcados \cite{ismael2021scheduling}. Um dos
+desafios relevantes é a mitigação da interferência entre tarefas, originada pelo compartilhamento de recursos. Embora
+soluções de escalonamento tenham sido propostas para resolver esse problema, elas ainda encontram-se limitadas
+\cite{lugo2022survey}. Além disso, a distribuição eficiente da carga de trabalho entre os núcleos também é um problema
+investigado. Contudo, muitas das soluções propostas para o balanceamento de carga ainda são limitadas por problemas
+como a heterogeneidade das arquiteturas, escalabilidade, dinamicidade das cargas de trabalho e \textit{overheads}
+inerentes à complexidade dos escalonadores \cite{jadon2024comprehensive}.
 
-Um dos desafios introduzidos pelas arquiteturas \textit{multi-core} é a distribuição eficiente da carga de trabalho
-entre os núcleos. Muitas das soluções propostas ainda são limitadas por problemas como a heterogeneidade das
-arquiteturas, escalabilidade, dinamicidade das cargas de trabalho e \textit{overheads} causados pela complexidade dos
-escalonadores \cite{jadon2024comprehensive}. A aplicação de \gls{ml} no contexto geral escalonamento
-\textit{multi-core} ainda é limitada, mas há propostas que aplicam \gls{rl} e \gls{drl} \cite{liang2024adaptive,
-tan2024deep}.
+Com a utilização de sistemas de tempo real em ambientes embarcados com fontes limitadas de energia, a eficiência
+energética se tornou um tópico relevante na área. Nesse contexto, são utilizados em algoritmos técnicas que envolvem
+\gls{dvfs} e também heurísticas para minimizar o consumo de energia \cite{chniter2020improved, antolak2021energy}.
 
-Outro tópico relevante é a segurança desses sistemas, principalmente em ambientes distribuídos. Neste contexto, os
-aspectos de segurança, como a confidencialidade, autenticidade e a integridade dos dados devem ser considerados em
-conjunto com as restrições temporais do sistema. A aplicação de \gls{ml} nessa linha ainda é baixa
-\cite{singh2023systematic}.
+A aplicação de \gls{ml} no contexto de escalonamento \textit{multicore} foca em vários objetivos, como, por exemplo, na
+otimização do escalonamento através de \gls{rl} e também na aplicação de \gls{drl} para a otimização do escalonamento
+em arquiteturas heterogêneas \cite{liang2024adaptive, tan2024deep}. A eficiência energética também é um dos focos,
+sendo que vários trabalhos propostos nessa linha utilizam \gls{ml}, aplicando \gls{drl}, redes de \gls{lstm}, regressão
+linear e \glspl{cnn} \cite{peng2024energy, allaqband2024efficient, khan2025enhanced}. De modo geral, essas soluções
+aplicam \gls{ml} para modelar o comportamento do sistema e das aplicações, analisando dados como contadores de
+desempenho, características das tarefas e suas dependências. A partir disso, são tomadas as decisões relacionadas ao
+escalonamento ou outros aspectos.
 
-Com a aplicação de sistemas de tempo real em ambientes embarcados com fontes limitadas de energia, a eficiência
-energética se tornou um tópico relevante na área. Vários trabalhos propostos nessa linha utilizam \gls{ml}, aplicando
-\gls{drl}, redes de \gls{lstm}, regressão linear e \glspl{cnn} \cite{peng2024energy, allaqband2024efficient,
-khan2025enhanced}.
-
-Para sistema de tempo real em geral, a aplicação de \gls{ml} em algoritmos de escalonamento ainda é recente, mas ela se
-demonstra promissora, indicando que há espaço para avanços no estado da arte.
+Além do escalonamento, \gls{ml} também é utilizado em contextos mais gerais de otimização e gerenciamento de eficiência
+energética e temperatura \cite{pagani2018machine}. Por fim, há estudos que demonstram a viabilidade da aplicação de
+\gls{ml} em \gls{rtos} de forma não intrusiva e eficiente \cite{hoffmann2021online, horstmann2019framework}. Em geral,
+ainda há espaço para avançar com soluções que utilizam modelos mais explicáveis e generalistas quanto a arquiteturas
+\textit{multicore}.
 
 \section{Contribuições}
 
-Com a execução deste trabalho, espera-se contribuir com:
-
-\begin{itemize}
-    \item A discussão e resultados de uma revisão sistemática sobre a aplicação de \gls{ml} na área de algoritmos de
-          escalonamento para \gls{rtos} \textit{multi-core};
-    \item Um algoritmo adaptativo baseado em \gls{ml} para o escalonamento em \gls{rtos} \textit{multi-core};
-    \item Resultados de testes com o algoritmo desenvolvido e análises comparativas.
-\end{itemize}
+Considerando o estado da arte, esse trabalho contribuirá com o desenvolvimento de um escalonador adaptativo guiado
+por um modelo de \gls{ml} que possa operar eficientemente sob cenários mais complexos com cargas de trabalho variadas.
+Graças a técnicas de implementação e coleta de dados não disruptivas, é esperado que essa solução tenha um
+\textit{overhead} baixo \cite{horstmann2019framework, passig2023monitoring}. Adicionalmente, o trabalho oferecerá uma
+revisão aprofundada do estado da arte de algoritmos de escalonamento guiados por \gls{ml}.
 
 \section{Metodologia}
 
 O projeto se trata de uma pesquisa aplicada e será iniciado com uma pesquisa exploratória, visando o desenvolvimento da
-fundamentação teórica e o estabelecimento do estado da arte. Posteriormente, a arquitetura do escalonador será definida
-e o seu desenvolvimento será planejado. Os passos mais relevantes no desenvolvimento envolvem a obtenção dos dados de
-treinamento, o treinamento em si e a validação. Por fim, será feita a análise comparativa dos resultados.
+fundamentação teórica e o estabelecimento do estado da arte. A implementação prática se baseará nos fundamentos do
+\textit{framework} de \citet{horstmann2019framework} e utilizará o \gls{rtos} \gls{epos} \cite{epos}. Inicialmente,
+será feito um estudo sobre as métricas e dados relevantes a serem incluídos no treinamento do modelo. Posteriormente,
+uma estratégia de treinamento e arquitetura serão definidas, seguidas por uma validação preliminar do modelo antes do
+avanço para a próxima etapa. Em sequência, o escalonador será implementado com a integração do modelo treinado para
+a captura do estado do sistema. Por fim, a solução será testada experimentalmente e os resultados serão analisados e
+documentados.
 
 \newpage
 

@@ -1164,7 +1164,7 @@ pdfauthor={\@AuthorNames}
 	\leftskip0.2cm
 	\fontsize{9}{9}\selectfont
 	{%
-	\ifthenelse{\equal{\@status}{submit}}{\textbf{Linha de Pesquisa}: Inteligência Computacional.
+	\ifthenelse{\equal{\@status}{submit}}{\textbf{Linha de Pesquisa}: Sistemas Embarcados.
  
     \textbf{Tema}: Processamento Paralelo Determinístico em Multicores.
 	
