@@ -462,7 +462,7 @@
 
 %% To choose the type of manuscript
 \DeclareOption{addendum}{\gdef\@arttype{Addendum}}
-\DeclareOption{article}{\gdef\@arttype{Plano de Trabalho para Mestrado - EDITAL Nº02/2025/PPGCC/UFSC}}
+\DeclareOption{article}{\gdef\@arttype{INE410111 - Metodologia da Pesquisa em Ciência da Computação}}
 \DeclareOption{benchmark}{\gdef\@arttype{Benchmark}}
 \DeclareOption{book}{\gdef\@arttype{Book}}
 \DeclareOption{bookreview}{\gdef\@arttype{Book Review}}
@@ -1048,13 +1048,6 @@ pdfauthor={\@AuthorNames}
 				\fancyhead[L]{
 					\footnotesize %
 					\ifthenelse{\equal{\@status}{submit}}{%
-						Possíveis Orientadores: 
-						
-						\begin{enumeration}
-						    \item Antônio Augusto Fröhlich
-						\end{enumeration}
-						
-						
 					 %{\em \journalname}%
 						}{
 						{\em \journalname} %
@@ -1077,7 +1070,7 @@ pdfauthor={\@AuthorNames}
 				\fancyfoot[L]{
 					\footnotesize%
  	 				\ifthenelse{\equal{\@status}{submit}}{%
-						Plano de Trabalho para Mestrado - EDITAL Nº02/2025/PPGCC/UFSC %{\em \journalname}, %
+						INE410111 - Metodologia da Pesquisa em Ciência da Computação %{\em \journalname}, %
 						Páginas \thepage \ -- \color{black}{\pageref*{LastPage}}%
 						}{
 						{\em \journalname}\ %
@@ -1145,6 +1138,7 @@ pdfauthor={\@AuthorNames}
    	 	\vspace{15pt}
    	 	}%2
    		{%3
+			% \boldmath\bfseries{\@Author}
     		\par
     		\vspace{-4pt}
     		}%3
@@ -1164,19 +1158,15 @@ pdfauthor={\@AuthorNames}
 	\leftskip0.2cm
 	\fontsize{9}{9}\selectfont
 	{%
-	\ifthenelse{\equal{\@status}{submit}}{\textbf{Linha de Pesquisa}: Sistemas Embarcados.
- 
-    \textbf{Tema}: Processamento Paralelo Determinístico em Multicores.
-	
-		\textbf{Possíveis Orientadores}: 
-	\vspace{-0.3cm}
-	\begin{enumerate}
-	    \item Antônio Augusto Fröhlich
-	\end{enumerate}
+	\ifthenelse{\equal{\@status}{submit}}{
 
-	    
-	    
-	    
+    Eric Fernandes Evaristo \hfill
+	\textit{eric.f.evaristo@posgrad.ufsc.br} \\
+
+    Antônio Augusto Frölich \hfill
+
+	\par\noindent\rule{\textwidth}{0.4pt}
+
 	}{\@history}
 	\par
 	\vspace{-4pt}
@@ -1514,7 +1504,7 @@ pdfauthor={\@AuthorNames}
 		}{%
 		\fontsize{8}{8}\selectfont%
 		\ifthenelse{\equal{\@status}{submit}}{%
-			Plano de Trabalho para Mestrado - EDITAL Nº02/2025/PPGCC/UFSC %{\em \journalname}%
+			INE410111 - Metodologia da Pesquisa em Ciência da Computação %{\em \journalname}%
 			}{%
 			\ifthenelse{\equal{\@arttype}{Supfile}}{%
 			{\em \journalname} {\bfseries \@pubyear}, {\em \@pubvolume}, %
@@ -1572,7 +1562,7 @@ pdfauthor={\@AuthorNames}
 \renewcommand\@biblabel[1]{#1.\hfill}
 \def\thebibliography#1{
 \linespread{1.44} 
-\section*{Referências}
+\section*{References}
 \fontsize{9}{9}\selectfont
 \list{{\arabic{enumi}}}{\def\makelabel##1{\hss{##1}}
 \topsep=0\p@

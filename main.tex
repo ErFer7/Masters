@@ -7,7 +7,7 @@
 \usepackage{verbatim}
 \usepackage{float}
 
-\usepackage[portuguese]{babel}
+\usepackage[english]{babel}
 
 \usepackage[nomain, acronym, symbols]{glossaries}
 
@@ -27,50 +27,57 @@
 
 \makeatother
 
-\Title{Escalonador Adaptativo para Sistemas Operacionais de Tempo Real \textit{Multicore} guiado por Aprendizado de
-Máquina}
+\Title{Machine Learning Guided Adaptive Scheduling for Multi-core Real-time Operating Systems}
 
 \begin{document}
 
-\section{Introdução e Motivação}
+\section{Introduction}
 
-\gls{rtos} são sistemas desenvolvidos para o processamento de tarefas com restrições temporais, onde deve-se assegurar
-que os prazos de conclusão das tarefas sejam cumpridos. É possível classificar esses sistemas como críticos ou não
-críticos conforme as suas aplicações e requisitos. \gls{rtos} críticos são utilizados em contextos onde a perda de
-prazo na execução de tarefas pode ter consequências graves, o que inclui sistemas industriais, veículos autônomos,
-sistemas de navegação de aeronaves e outros. Já em \gls{rtos} não-críticos, a perda de prazos pode ser tolerada, sendo
-que os seus casos de uso envolvem sistemas de multimídia e processamento de áudio \cite[13--22]{kopetz2022real}.
+\gls{rtos} are systems developed to handle the processing of tasks with timing constraints, where it is necessary to
+ensure that the deadlines for the tasks are met. These systems can be classified as hard or soft based on their
+capabilities and requirements. Hard \gls{rtos} are used in situations where the failure to meet a deadline in the
+execution of a task can have severe consequences, this includes industrial systems, autonomous vehicles, avionic
+systems and others. Alternatively, soft \gls{rtos} are used in non-critical contexts, where deadline misses can be
+tolerated to a certain degree. Multimedia and audio processing are examples of contexts where a soft \gls{rtos} might
+be used \cite[13--22]{kopetz2022real}.
 
-As tarefas a serem executadas podem ter tempos de execução, prazos e requisitos de recursos computacionais variados,
-sendo assim, são utilizados escalonadores que definem prioridades para cada tarefa de modo a ordená-las de uma forma em
-que todas as restrições temporais sejam satisfeitas. Os escalonadores que a definem as prioridades antes da execução do
-sistema são denominados estáticos, enquanto os que definem as prioridades durante o tempo de execução são considerados
-dinâmicos \cite[247--248]{kopetz2022real}.
+The deterministic execution of tasks is ensured by real-time scheduling algorithms, which are responsible for their
+prioritization. These algorithms must order the tasks in such a way that their timing constraints are satisfied, for
+that, the execution time, deadlines and other aspects of tasks can be considered. Schedulers that set the priorities
+before the execution of the system are classified as static, while those that set the priorities at runtime are
+classified as dynamic \cite[247--248]{kopetz2022real}.
 
-Atualmente, diversas arquiteturas de processadores são \textit{multicore}, permitindo o paralelismo na execução de
-tarefas. A complexidade dessas arquiteturas introduz novos desafios na implementação de escalonadores de tempo real. O
-compartilhamento de recursos, como a memória, \textit{cache} ou Entrada/Saída, por exemplo, pode afetar o tempo de
-execução das tarefas de forma não determinística \cite{aceituno2023optimized}. Além disso, há problemas relacionados à
-otimização e utilização eficiente dos recursos, como o balanceamento de carga entre núcleos ou a otimização no consumo
-de energia do sistema \cite{jadon2024comprehensive, baital2024energy}.
+Currently, several processor architectures are multi-core, allowing real parallelism in task execution. These
+architectures introduce challenges in the implementation of real-time schedulers, as the use of shared resources, such
+as the memory, cache and input/output can affect the execution time of tasks in non-deterministic ways
+\cite{aceituno2023optimized, lugo2022survey}. Moreover, there also problems related to the efficient usage of the
+cores, such as load balancing \cite{jadon2024comprehensive}. Overall, the complexity of real-time task scheduling in
+multi-core \gls{rtos} can require more sophisticated schedulers.
 
-Considerando este cenário, diferentes técnicas de escalonamento foram propostas nos últimos anos. Algumas técnicas
-utilizam heurísticas, como algoritmos genéticos, para otimizar o desempenho do sistema. Há também a aplicação de
-\gls{ml}, principalmente com técnicas de \gls{rl} \cite{hassan2025optimizing, liang2024adaptive}.
+% TODO: Justify this better
+Considering this scenario, different scheduling techniques have been proposed over the last years. Some of them apply
+heuristics, such as genetic algorithms, to optimize the system's performance. There is also the utilization of
+\gls{ml}, mainly with \gls{rl} \cite{hassan2025optimizing, liang2024adaptive}. The utilization of \gls{ml} is useful
+for capturing patterns and learn how to adapt the scheduling to the state of the system. However, this technique can
+introduce a significant overhead, which is a often overlooked impact.
 
-Propõe-se então o desenvolvimento de um escalonador dinâmico adaptativo para \gls{rtos} \textit{multicore} que seja
-guiado por \gls{ml}, visando a otimização do desempenho. A política de priorização das tarefas seria definida com base
-na inferência feita pelo algoritmo de \gls{ml} sobre a evolução temporal do estado do sistema. Isso permitiria que as
-tarefas sejam executadas de uma forma que considere as variações de carga, perdas de prazo e outros fatores relevantes
-que afetam o tempo de execução.
+% Inference?
+% TODO: Check the genitives
+This study proposes the development of an adaptive dynamic scheduler for multi-core \gls{rtos} that will be guided by a
+\gls{ml} model, focusing on the improvement of the system's performance while keeping a low overhead. The
+prioritization policy of the tasks will be based on the inference realized by the \gls{ml} model over the temporal
+evolution of the system's state. This will allow the tasks to be scheduled with the consideration of factors that
+affect the timing.
 
-\section{Objetivos}
+\section{Research Problem}
+
+\section{Objectives}
 
 O objetivo principal deste trabalho é investigar e desenvolver um algoritmo de escalonamento informado por \gls{ml}
 para \gls{rtos} \textit{multicore}, buscando aprimorar o desempenho do sistema e contribuir para o estado da arte da
 aplicação de \gls{ml} em \gls{rtos}.
 
-\subsection{Objetivos específicos}
+\subsection{Specific Objectives}
 
 \begin{itemize}
     \item Realizar uma revisão sistemática sobre a aplicação de \gls{ml} em \gls{rtos};
