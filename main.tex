@@ -50,7 +50,7 @@ classified as dynamic \cite[247--248]{kopetz2022real}.
 Currently, several processor architectures are multi-core, allowing real parallelism in task execution. These
 architectures introduce challenges in the implementation of real-time schedulers, as the use of shared resources, such
 as the memory, cache and input/output can affect the execution time of tasks in non-deterministic ways
-\cite{aceituno2023optimized, lugo2022survey}. Moreover, there also problems related to the efficient usage of the
+\cite{aceituno2023optimized, lugo2022survey}. Moreover, there are also problems related to the efficient usage of the
 cores, such as load balancing \cite{jadon2024comprehensive}. Overall, the complexity of real-time task scheduling in
 multi-core \gls{rtos} can require more sophisticated schedulers.
 
@@ -59,7 +59,7 @@ Considering this scenario, different scheduling techniques have been proposed ov
 heuristics, such as genetic algorithms, to optimize the system's performance. There is also the utilization of
 \gls{ml}, mainly with \gls{rl} \cite{hassan2025optimizing, liang2024adaptive}. The utilization of \gls{ml} is useful
 for capturing patterns and learn how to adapt the scheduling to the state of the system. However, this technique can
-introduce a significant overhead, which is a often overlooked impact.
+introduce a significant overhead, which is an often overlooked impact.
 
 % Inference?
 % TODO: Check the genitives
@@ -71,70 +71,71 @@ affect the timing.
 
 \section{Research Problem}
 
+Several works in the field of \gls{rtos} proposed methods to solve pertinent problems introduced by multi-core systems,
+most of them in the context of embedded systems \cite{ismael2021scheduling}. The interference between tasks caused by
+the usage of shared resources and load balancing are problems that have been the focus of several researchers. However,
+solutions for these problems are still limited by aspects such as the heterogeneity of architectures, scalability,
+workload variations and other intrinsic problems to scheduling algorithms \cite{lugo2022survey,
+jadon2024comprehensive}. Overall, the complexity of these systems leads to difficulties in the implementation of
+schedulers.
+
+The dynamic context of these systems opens opportunities for the application of \gls{ml}. Research in this area focuses
+on several objectives, such as the optimization of schedulers through \gls{rl} and also in optimization for
+heterogeneous architectures through \gls{drl} \cite{liang2024adaptive, tan2024deep}. The power efficiency is also
+relevant, with several works applying \gls{ml} with techniques, such as \gls{drl}, \gls{lstm} networks, linear
+regression and \glspl{cnn} \cite{peng2024energy, allaqband2024efficient, khan2025enhanced}. These solutions apply
+\gls{ml} in order to model the behavior of the system and applications, analyzing performance metrics and relevant data
+about tasks. With these models, it is possible to make decisions about prioritization.
+
+Nonetheless, the research in the area is still limited. There is a lack of focus on aspects such as the overhead
+introduced by \gls{ml} models. The dynamic context of task creation, destruction and workload variation is also
+underexplored. There is still space for the exploration of the application of \gls{ml} techniques in this field with
+the consideration of these aspects. This scenario leads to questions that are still unanswered:
+
+\begin{itemize}
+    \item Can a \gls{ml} model learn to capture the evolving state of the dynamic environment of task creation,
+          evolution and destruction based on system metrics?
+    \item How can a \gls{ml} model be introduced in a multi-core \gls{rtos} without causing a significant overhead that
+          invalidates its use?
+    \item Will the usage of a \gls{ml} informed scheduler result in a more reliable system with a lower jitter?
+\end{itemize}
+
 \section{Objectives}
 
-O objetivo principal deste trabalho é investigar e desenvolver um algoritmo de escalonamento informado por \gls{ml}
-para \gls{rtos} \textit{multicore}, buscando aprimorar o desempenho do sistema e contribuir para o estado da arte da
-aplicação de \gls{ml} em \gls{rtos}.
+The general objective of this research is to develop an adaptive \gls{ml} guided scheduler for multi-core \gls{rtos}
+aiming to improve the performance and reliability of the system under evolving scenarios.
 
 \subsection{Specific Objectives}
 
 \begin{itemize}
-    \item Realizar uma revisão sistemática sobre a aplicação de \gls{ml} em \gls{rtos};
-    \item Desenvolver um modelo de \gls{ml} para a inferência do estado do sistema;
-    \item Desenvolver o algoritmo de escalonamento, utilizando o modelo treinado para informar o algoritmo;
-    \item Validar a solução proposta, avaliando seu desempenho e \textit{overhead} sob diversos cenários de teste;
-    \item Analisar os resultados obtidos, comparando a solução com o estado da arte.
+    \item Contribute to the production of a systematic literature review in the context of the application of
+          \gls{ml} in multi-core \gls{rtos};
+    \item Present an analysis of the impact of the overhead introduced by \gls{ml} models in \gls{rtos};
 \end{itemize}
 
-\section{Estado da Arte}
+\section{Methodology}
 
-No cenário de escalonamento para \gls{rtos} \textit{multicore}, diversas propostas buscam solucionar problemas
-pertinentes, muitas delas focando em sistemas críticos em ambientes embarcados \cite{ismael2021scheduling}. Um dos
-desafios relevantes é a mitigação da interferência entre tarefas, originada pelo compartilhamento de recursos. Embora
-soluções de escalonamento tenham sido propostas para resolver esse problema, elas ainda encontram-se limitadas
-\cite{lugo2022survey}. Além disso, a distribuição eficiente da carga de trabalho entre os núcleos também é um problema
-investigado. Contudo, muitas das soluções propostas para o balanceamento de carga ainda são limitadas por problemas
-como a heterogeneidade das arquiteturas, escalabilidade, dinamicidade das cargas de trabalho e \textit{overheads}
-inerentes à complexidade dos escalonadores \cite{jadon2024comprehensive}.
+This work will be conducted as an applied research and will approach the problem with qualitative analyses. The
+research will also take an exploratory approach to the subject, identifying the viability, advantages and disadvantages
+of the proposed solution.
 
-Com a utilização de sistemas de tempo real em ambientes embarcados com fontes limitadas de energia, a eficiência
-energética se tornou um tópico relevante na área. Nesse contexto, são utilizados em algoritmos técnicas que envolvem
-\gls{dvfs} e também heurísticas para minimizar o consumo de energia \cite{chniter2020improved, antolak2021energy}.
+The initial step is comprised of a systematic literature review that will explore the state of the art in the
+application of \gls{ml} in multi-core \gls{rtos}, with a special focus in the context of scheduling algorithms.
+Moreover, the next step will be the creation of datasets of metrics collected during the execution of tasks in evolving
+scenarios, including workload variation, usage of synchronizers, input/output and other aspects. After this step, the
+model and scheduler will be developed with the application of concepts from the work of \citet{horstmann2019framework}.
+The solution will be validated with practical experiments and data collection on \gls{epos} \cite{epos}. Lastly, the
+results will be analyzed, where it will be possible to answer the research questions.
 
-A aplicação de \gls{ml} no contexto de escalonamento \textit{multicore} foca em vários objetivos, como, por exemplo, na
-otimização do escalonamento através de \gls{rl} e também na aplicação de \gls{drl} para a otimização do escalonamento
-em arquiteturas heterogêneas \cite{liang2024adaptive, tan2024deep}. A eficiência energética também é um dos focos,
-sendo que vários trabalhos propostos nessa linha utilizam \gls{ml}, aplicando \gls{drl}, redes de \gls{lstm}, regressão
-linear e \glspl{cnn} \cite{peng2024energy, allaqband2024efficient, khan2025enhanced}. De modo geral, essas soluções
-aplicam \gls{ml} para modelar o comportamento do sistema e das aplicações, analisando dados como contadores de
-desempenho, características das tarefas e suas dependências. A partir disso, são tomadas as decisões relacionadas ao
-escalonamento ou outros aspectos.
+\section{Theoretical Foundation}
 
-Além do escalonamento, \gls{ml} também é utilizado em contextos mais gerais de otimização e gerenciamento de eficiência
-energética e temperatura \cite{pagani2018machine}. Por fim, há estudos que demonstram a viabilidade da aplicação de
-\gls{ml} em \gls{rtos} de forma não intrusiva e eficiente \cite{hoffmann2021online, horstmann2019framework}. Em geral,
-ainda há espaço para avançar com soluções que utilizam modelos mais explicáveis e generalistas quanto a arquiteturas
-\textit{multicore}.
+\subsection{Real-time Operating Systems}
 
-\section{Contribuições}
+\subsection{Real-time Schedulers}
 
-Considerando o estado da arte, esse trabalho contribuirá com o desenvolvimento de um escalonador adaptativo guiado
-por um modelo de \gls{ml} que possa operar eficientemente sob cenários mais complexos com cargas de trabalho variadas.
-Graças a técnicas de implementação e coleta de dados não disruptivas, é esperado que essa solução tenha um
-\textit{overhead} baixo \cite{horstmann2019framework, passig2023monitoring}. Adicionalmente, o trabalho oferecerá uma
-revisão aprofundada do estado da arte de algoritmos de escalonamento guiados por \gls{ml}.
+\subsection{Multi-core processors}
 
-\section{Metodologia}
-
-O projeto se trata de uma pesquisa aplicada e será iniciado com uma pesquisa exploratória, visando o desenvolvimento da
-fundamentação teórica e o estabelecimento do estado da arte. A implementação prática se baseará nos fundamentos do
-\textit{framework} de \citet{horstmann2019framework} e utilizará o \gls{rtos} \gls{epos} \cite{epos}. Inicialmente,
-será feito um estudo sobre as métricas e dados relevantes a serem incluídos no treinamento do modelo. Posteriormente,
-uma estratégia de treinamento e arquitetura serão definidas, seguidas por uma validação preliminar do modelo antes do
-avanço para a próxima etapa. Em sequência, o escalonador será implementado com a integração do modelo treinado para
-a captura do estado do sistema. Por fim, a solução será testada experimentalmente e os resultados serão analisados e
-documentados.
+\subsection{Machine Learning for Embedded Systems}
 
 \newpage
 

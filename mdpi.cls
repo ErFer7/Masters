@@ -1160,9 +1160,7 @@ pdfauthor={\@AuthorNames}
 	{%
 	\ifthenelse{\equal{\@status}{submit}}{
 
-    Eric Fernandes Evaristo \hfill
-	\textit{eric.f.evaristo@posgrad.ufsc.br} \\
-
+    Eric Fernandes Evaristo \hfill \\
     Antônio Augusto Frölich \hfill
 
 	\par\noindent\rule{\textwidth}{0.4pt}
