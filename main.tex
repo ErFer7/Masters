@@ -33,6 +33,21 @@
 
 \section{Introduction}
 
+% TODO: Context and relevancy
+
+% TODO: Problem
+% TODO: How others tried to solve it
+% TODO: What they achieved
+% TODO: What's missing
+
+% TODO: The proposed solution
+% TODO: Challenges
+
+% TODO: Objectives
+
+% TODO: Methodology
+
+% Context and relevancy
 \gls{rtos} are systems developed to handle the processing of tasks with timing constraints, where it is necessary to
 ensure that the deadlines for the tasks are met. These systems can be classified as hard or soft based on their
 capabilities and requirements. Hard \gls{rtos} are used in situations where the failure to meet a deadline in the
@@ -76,7 +91,7 @@ most of them in the context of embedded systems \cite{ismael2021scheduling}. The
 the usage of shared resources and load balancing are problems that have been the focus of several researchers. However,
 solutions for these problems are still limited by aspects such as the heterogeneity of architectures, scalability,
 workload variations and other intrinsic problems to scheduling algorithms \cite{lugo2022survey,
-jadon2024comprehensive}. Overall, the complexity of these systems leads to difficulties in the implementation of
+	jadon2024comprehensive}. Overall, the complexity of these systems leads to difficulties in the implementation of
 schedulers.
 
 The dynamic context of these systems opens opportunities for the application of \gls{ml}. Research in this area focuses
@@ -93,11 +108,11 @@ underexplored. There is still space for the exploration of the application of \g
 the consideration of these aspects. This scenario leads to questions that are still unanswered:
 
 \begin{itemize}
-    \item Can a \gls{ml} model learn to capture the evolving state of the dynamic environment of task creation,
-          evolution and destruction based on system metrics?
-    \item How can a \gls{ml} model be introduced in a multi-core \gls{rtos} without causing a significant overhead that
-          invalidates its use?
-    \item Will the usage of a \gls{ml} informed scheduler result in a more reliable system with a lower jitter?
+	\item Can a \gls{ml} model learn to capture the evolving state of the dynamic environment of task creation,
+	      evolution and destruction based on system metrics?
+	\item How can a \gls{ml} model be introduced in a multi-core \gls{rtos} without causing a significant overhead that
+	      invalidates its use?
+	\item Will the usage of a \gls{ml} informed scheduler result in a more reliable system with a lower jitter?
 \end{itemize}
 
 \section{Objectives}
@@ -108,9 +123,9 @@ aiming to improve the performance and reliability of the system under evolving s
 \subsection{Specific Objectives}
 
 \begin{itemize}
-    \item Contribute to the production of a systematic literature review in the context of the application of
-          \gls{ml} in multi-core \gls{rtos};
-    \item Present an analysis of the impact of the overhead introduced by \gls{ml} models in \gls{rtos};
+	\item Contribute to the production of a systematic literature review in the context of the application of
+	      \gls{ml} in multi-core \gls{rtos};
+	\item Present an analysis of the impact of the overhead introduced by \gls{ml} models in \gls{rtos};
 \end{itemize}
 
 \section{Methodology}
