@@ -33,34 +33,35 @@
 
 \section{Introduction}
 
-% TODO: Context and relevancy
-
-% TODO: Problem
-% TODO: How others tried to solve it
-% TODO: What they achieved
-% TODO: What's missing
-
-% TODO: The proposed solution
-% TODO: Challenges
-
-% TODO: Objectives
-
+% TODO: Introduction
+    % TODO: Research problem
+    % TODO: Research question
+    % TODO: Objectives
+        % TODO: General objective
+        % TODO: Specific objectives
+    % TODO: Motivation
+    % TODO: Scope
+    % TODO: Structure
 % TODO: Methodology
+% TODO: Chronogram
+% TODO: Expected results
 
 % Context and relevancy
-% TODO: Refine this
-Over the last years,
+% TODO: Add sources for the utilization of RTOS in these areas
+Currently, several areas of technology require software that must execute in real-time. This often includes autonomous
+vehicles, aviation, robotics, industrial systems, and other critical systems where the software is directly responsible
+for system safety and control. In these domains, a failure to meet timing constraints during execution can lead to
+severe consequences. Thus, to ensure predictable execution and meet these timing requirements, \gls{rtos} are utilized.
 
-
-
-\gls{rtos} are systems developed to handle the processing of tasks with timing constraints, where it is necessary to
+% Definition of RTOS
+\gls{rtos} are systems developed to handle the deterministic processing of tasks, where it is necessary to
 ensure that the deadlines for the tasks are met. These systems can be classified as hard or soft based on their
 capabilities and requirements. Hard \gls{rtos} are used in situations where the failure to meet a deadline in the
-execution of a task can have severe consequences, this includes industrial systems, autonomous vehicles, avionic
-systems and others. Alternatively, soft \gls{rtos} are used in non-critical contexts, where deadline misses can be
-tolerated to a certain degree. Multimedia and audio processing are examples of contexts where a soft \gls{rtos} might
-be used \cite[13--22]{kopetz2022real}.
+execution of a task can have severe consequences, this includes the areas cited previously. Alternatively, soft
+\gls{rtos} are used in non-critical contexts, where deadline misses can be tolerated to a certain degree. Multimedia
+and audio processing are examples of contexts where a soft \gls{rtos} might be used \cite[13--22]{kopetz2022real}.
 
+% Definition of scheduling algorithms
 The deterministic execution of tasks is ensured by real-time scheduling algorithms, which are responsible for their
 prioritization. These algorithms must order the tasks in such a way that their timing constraints are satisfied, for
 that, the execution time, deadlines and other aspects of tasks can be considered. Schedulers that set the priorities
@@ -72,7 +73,7 @@ architectures introduce challenges in the implementation of real-time schedulers
 as the memory, cache and input/output can affect the execution time of tasks in non-deterministic ways
 \cite{aceituno2023optimized, lugo2022survey}. Moreover, there are also problems related to the efficient usage of the
 cores, such as load balancing \cite{jadon2024comprehensive}. Overall, the complexity of real-time task scheduling in
-multi-core \gls{rtos} can require more sophisticated schedulers.
+multi-core \gls{rtos} may require more sophisticated schedulers.
 
 % TODO: Justify this better
 Considering this scenario, different scheduling techniques have been proposed over the last years. Some of them apply
@@ -89,7 +90,7 @@ prioritization policy of the tasks will be based on the inference realized by th
 evolution of the system's state. This will allow the tasks to be scheduled with the consideration of factors that
 affect the timing.
 
-\section{Research Problem}
+\subsection{Research Problem}
 
 Several works in the field of \gls{rtos} proposed methods to solve pertinent problems introduced by multi-core systems,
 most of them in the context of embedded systems \cite{ismael2021scheduling}. The interference between tasks caused by
@@ -120,12 +121,12 @@ the consideration of these aspects. This scenario leads to questions that are st
 	\item Will the usage of a \gls{ml} informed scheduler result in a more reliable system with a lower jitter?
 \end{itemize}
 
-\section{Objectives}
+\subsection{Objectives}
 
 The general objective of this research is to develop an adaptive \gls{ml} guided scheduler for multi-core \gls{rtos}
 aiming to improve the performance and reliability of the system under evolving scenarios.
 
-\subsection{Specific Objectives}
+\subsubsection{Specific Objectives}
 
 \begin{itemize}
 	\item Contribute to the production of a systematic literature review in the context of the application of
@@ -133,6 +134,16 @@ aiming to improve the performance and reliability of the system under evolving s
 	\item Present an analysis of the impact of the overhead introduced by \gls{ml} models in \gls{rtos};
 \end{itemize}
 
+% INFO: Maybe it would be interesting to use part of the research problem here
+\subsection{Motivation}
+
+% WARN: CHECK THE SLIDES!
+
+\subsection{Scope}
+
+\subsection{Structure}
+
+% TODO: Add new ideas and the work of the first two semesters
 \section{Methodology}
 
 This work will be conducted as an applied research and will approach the problem with qualitative analyses. The
