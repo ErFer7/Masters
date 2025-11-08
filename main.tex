@@ -46,51 +46,54 @@
 % TODO: Chronogram
 % TODO: Expected results
 
+% TODO: Check the sources
+% TODO: Check the structure and semantics
+% TODO: Check the grammar
+
 % Context and relevancy
 % TODO: Add sources for the utilization of RTOS in these areas
-Currently, several areas of technology require software that must execute in real-time. This often includes autonomous
-vehicles, aviation, robotics, industrial systems, and other critical systems where the software is directly responsible
-for system safety and control. In these domains, a failure to meet timing constraints during execution can lead to
-severe consequences. Thus, to ensure predictable execution and meet these timing requirements, \gls{rtos} are utilized.
+Currently, several areas of technology require software that must execute in real-time. This often includes autonomous vehicles, aviation, robotics, industrial systems, and other critical systems where the software is directly responsible for system safety and control. In these domains, a failure to meet timing constraints during execution can lead to severe consequences. Thus, to ensure predictable execution and meet these timing requirements, \gls{rtos} are utilized.
 
 % Definition of RTOS
-\gls{rtos} are systems developed to handle the deterministic processing of tasks, where it is necessary to
-ensure that the deadlines for the tasks are met. These systems can be classified as hard or soft based on their
-capabilities and requirements. Hard \gls{rtos} are used in situations where the failure to meet a deadline in the
-execution of a task can have severe consequences, this includes the areas cited previously. Alternatively, soft
-\gls{rtos} are used in non-critical contexts, where deadline misses can be tolerated to a certain degree. Multimedia
-and audio processing are examples of contexts where a soft \gls{rtos} might be used \cite[13--22]{kopetz2022real}.
+\gls{rtos} are systems developed to handle the deterministic processing of tasks, where it is necessary to ensure that the deadlines for the tasks are met. These systems can be classified as hard or soft based on their capabilities and requirements. Hard \gls{rtos} are used in situations where the failure to meet a deadline in the execution of a task can have severe consequences, this includes the areas cited previously. Alternatively, soft \gls{rtos} are used in non-critical contexts, where deadline misses can be tolerated to a certain degree. Multimedia and audio processing are examples of contexts where a soft \gls{rtos} might be used \cite[13--22]{kopetz2022real}.
 
 % Definition of scheduling algorithms
-The deterministic execution of tasks is ensured by real-time scheduling algorithms, which are responsible for their
-prioritization. These algorithms must order the tasks in such a way that their timing constraints are satisfied, for
-that, the execution time, deadlines and other aspects of tasks can be considered. Schedulers that set the priorities
-before the execution of the system are classified as static, while those that set the priorities at runtime are
-classified as dynamic \cite[247--248]{kopetz2022real}.
+The deterministic execution of tasks is ensured by real-time scheduling algorithms, which are responsible for their prioritization. These algorithms must order the tasks in such a way that their timing constraints are satisfied, for that, the execution time, deadlines and other aspects of tasks can be considered. Schedulers that set the priorities before the execution of the system are classified as static, while those that set the priorities at runtime are classified as dynamic \cite[247--248]{kopetz2022real}.
 
-Currently, several processor architectures are multi-core, allowing real parallelism in task execution. These
+% TODO: Move this somewhere else
+% TODO: Justify this better
+Considering this scenario, different scheduling techniques have been proposed over the last years. Some of them apply heuristics, such as genetic algorithms, to optimize the system's performance. There is also the utilization of \gls{ml}, mainly with \gls{rl} \cite{hassan2025optimizing, liang2024adaptive}. The utilization of \gls{ml} is useful for capturing patterns and learn how to adapt the scheduling to the state of the system. However, this technique can introduce a significant overhead, which is an often overlooked impact.
+
+% Inference?
+% TODO: Check the genitives
+This study proposes the development of an adaptive dynamic scheduler for multi-core \gls{rtos} that will be guided by a \gls{ml} model, focusing on the improvement of the system's performance while keeping a low overhead. The prioritization policy of the tasks will be based on the inference realized by the \gls{ml} model over the temporal evolution of the system's state. This will allow the tasks to be scheduled with the consideration of factors that affect the timing.
+
+\subsection{Research Problem}
+
+% Problems
+% TODO: Check if it's ok to say the execution is faster
+Most modern processors adopt a multi-core implementation, which allows tasks to be executed in parallel. This design offers many advantages, such as the higher efficiency with a faster execution speed and improved power efficiency. However, multi-core processors also introduce several challenges \cite{sethi2015multicore}.
+
+% Interference
+% TODO: Check if it's ok to talk about WCET like this
+One of the major challenges introduced by multi-core processors is interference, which arises from task contention for shared resources such as main memory, caches, and I/O peripherals. This contention introduces non-deterministic delays into task execution, making it difficult to accurately estimate the \gls{wcet}. This interference affects the scheduler's ability to guarantee that tasks will meet their deadlines, thus compromising system reliability \cite{aceituno2023optimized, lugo2022survey}.
+
+% TODO: Load balancing
+Load balancing is also another problem brought by multi-core processors.
+% TODO: Heterogeneous architectures
+% TODO: Workload and dynamism
+% TODO: Scalability
+
+% TODO: SOTA
+% TODO: Gap
+% TODO: Solution
+
+currently, several processor architectures are multi-core, allowing real parallelism in task execution. These
 architectures introduce challenges in the implementation of real-time schedulers, as the use of shared resources, such
 as the memory, cache and input/output can affect the execution time of tasks in non-deterministic ways
 \cite{aceituno2023optimized, lugo2022survey}. Moreover, there are also problems related to the efficient usage of the
 cores, such as load balancing \cite{jadon2024comprehensive}. Overall, the complexity of real-time task scheduling in
 multi-core \gls{rtos} may require more sophisticated schedulers.
-
-% TODO: Justify this better
-Considering this scenario, different scheduling techniques have been proposed over the last years. Some of them apply
-heuristics, such as genetic algorithms, to optimize the system's performance. There is also the utilization of
-\gls{ml}, mainly with \gls{rl} \cite{hassan2025optimizing, liang2024adaptive}. The utilization of \gls{ml} is useful
-for capturing patterns and learn how to adapt the scheduling to the state of the system. However, this technique can
-introduce a significant overhead, which is an often overlooked impact.
-
-% Inference?
-% TODO: Check the genitives
-This study proposes the development of an adaptive dynamic scheduler for multi-core \gls{rtos} that will be guided by a
-\gls{ml} model, focusing on the improvement of the system's performance while keeping a low overhead. The
-prioritization policy of the tasks will be based on the inference realized by the \gls{ml} model over the temporal
-evolution of the system's state. This will allow the tasks to be scheduled with the consideration of factors that
-affect the timing.
-
-\subsection{Research Problem}
 
 Several works in the field of \gls{rtos} proposed methods to solve pertinent problems introduced by multi-core systems,
 most of them in the context of embedded systems \cite{ismael2021scheduling}. The interference between tasks caused by
@@ -120,6 +123,8 @@ the consideration of these aspects. This scenario leads to questions that are st
 	      invalidates its use?
 	\item Will the usage of a \gls{ml} informed scheduler result in a more reliable system with a lower jitter?
 \end{itemize}
+
+\subsection{Research Question}
 
 \subsection{Objectives}
 
