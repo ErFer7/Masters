@@ -33,9 +33,6 @@
 
 \section{Introduction}
 
-% TODO: Introduction
-    % TODO: Scope
-    % TODO: Structure
 % TODO: Methodology
 % TODO: Chronogram
 % TODO: Expected results
@@ -69,6 +66,7 @@ One of the major challenges introduced by multi-core processors is interference,
 Several works in the field of \gls{rtos} proposed methods to solve pertinent problems introduced by multi-core systems, most of them in the context of embedded systems \cite{ismael2021scheduling}. Some works employ optimization methods based on \gls{ilp} or \gls{pso} in order to minimize interference and optimize load balance \cite{aceituno2023optimized, liu2021multi}. However, beyound the application of heuristics and classical optimization methods, there is also the utilization of \gls{ml}.
 
 % Machine learning
+% TODO: Cite Zé's work
 Research works that employ \gls{ml} focuses on several objectives, such as the optimization of schedulers through \gls{rl} and also in optimization for heterogeneous architectures through \gls{drl} \cite{liang2024adaptive, tan2024deep}. Power efficiency is also relevant, with several works applying \gls{ml} with techniques such as \gls{drl}, \gls{lstm} networks, linear regression and \glspl{cnn} \cite{peng2024energy, allaqband2024efficient, khan2025enhanced}. These solutions apply \gls{ml} in order to model the behavior of the system and applications, analyzing performance metrics and relevant data about tasks. With these models, it is possible to make decisions about prioritization.
 
 % Gap
@@ -105,7 +103,13 @@ Considering the open problems in the field, this research has the potential to o
 
 \subsection{Scope}
 
+This work will focus primarily on the improvement of reliability of \gls{rtos} for multi-core processors, thus, other objectives won't be treated. Regarding the usage of hardware performance metrics, wich are architecture dependend, only two architectures will be explored, ARM and Risc-V. Moreover, the execution on heterogeneous multi-core processors also won't be explored. Lastly, the proposed implementation will be applied only to the \gls{epos} \cite{epos}.
+
 \subsection{Structure}
+
+% TODO: Check if "solution" is an ok term.
+% TODO: Section reference or direct citation?
+Initially, the methodology section will give an overview of the steps taken in the research and implementation of the proposed solution. After that, the main concepts will be explained in \autoref{sec:theory}. Furthermore, the current state of the art will be reviewed in depth, highlighting the gaps in the literature. Subsequently, the development section will present an elaborate description of the implementation process, from the collection of relevant data to the integration of the solution in the \gls{rtos}. Then, the analysis and discussion section will present the results in a comparative manner. Lastly, the work will conclude with an elaboration over the achieved results and the future works that might be necessary.
 
 % TODO: Add new ideas and the work of the first two semesters
 \section{Methodology}
@@ -122,7 +126,7 @@ model and scheduler will be developed with the application of concepts from the 
 The solution will be validated with practical experiments and data collection on \gls{epos} \cite{epos}. Lastly, the
 results will be analyzed, where it will be possible to answer the research questions.
 
-\section{Theoretical Foundation}
+\section{Theoretical Foundation} \label{sec:theory}
 
 \subsection{Real-time Operating Systems}
 
