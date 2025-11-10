@@ -116,9 +116,40 @@ Initially, the methodology section will give an overview of the steps taken in t
 This work will be conducted as an applied research and will approach the problem with qualitative analyses. The research will also take an exploratory approach to the subject, identifying the viability, advantages and disadvantages of the proposed solution.
 
 % TODO: Check if a non systematic review is ok
-The initial step is comprised of a literature review that will explore the state of the art in the application of \gls{ml} in multi-core \gls{rtos}, with a special focus in the context of scheduling algorithms. Moreover, the next step will be the creation of datasets of software and hardware metrics collected during the execution of tasks in evolving scenarios, including workload variation, usage of synchronizers, input/output and other aspects. These metrics will be collected with the \gls{rtos} \gls{epos} being executed on Risc-V and ARM multi-core processors. After this step, the model and scheduler will be developed with the application of concepts from the work of \citet{horstmann2019framework} and \citet{hoffmann2021online}. The solution will be validated with practical experiments. Lastly, the results will be analyzed comparatively, where it will be possible to answer the research questions.
+The initial step is comprised of a literature review that will explore the state of the art in the application of \gls{ml} in multi-core \gls{rtos}, with a special focus in the context of scheduling algorithms. Moreover, the next step will be the adaptation of the \gls{rtos} \gls{epos} for the research and the creation of datasets of software and hardware metrics collected during the execution of tasks in evolving scenarios, including workload variation, usage of synchronizers, input/output and other aspects. These metrics will be collected with \gls{epos} being executed on Risc-V and ARM multi-core processors. After this step, the model and scheduler will be developed with the application of concepts from the work of \citet{horstmann2019framework} and \citet{hoffmann2021online}. The solution will be validated with practical experiments. Lastly, the results will be analyzed comparatively, where it will be possible to answer the research questions.
 
 \section{Schedule}
+
+The following activities will be performed though the development of this research:
+
+% TODO: Fix the verbs
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|p{8cm}|c|}
+\hline
+Code & \multicolumn{1}{c|}{Description} & Type \\ \hline
+S0 & Review the literature on \gls{rtos} scheduling & Study \\ \hline
+S1 & Review the literature on embedded machine learning & Study \\ \hline
+S2 & Review the literature on adaptive real-time schedulers & Study \\ \hline
+C0 & Adapt \gls{epos} for the experiments and development & Code \\ \hline
+C1 & Collect hardware performance metrics for the Risc-V architecture & Code \\ \hline
+C2 & Adapt the work of \citet{hoffmann2021online} to train a model with metrics collected on Risc-V & Code \\ \hline
+A0 & Perform a comparative analysis with the trained model over different processor architectures & Analysis \\ \hline
+W0 & Write a scientific paper about the performance of \glspl{ann} trained with hardware performance metrics on multiple architectures. & Write \\ \hline
+C3 & Design the experimental scenario with a dynamic application. & Code \\ \hline
+C4 & Collect hardware and software performance metrics with the experimental application running on \gls{epos} on Risc-V and ARM processors. & Code \\ \hline
+M0 & Scientific paper publishing & Milestone \\ \hline
+W1 & Write the EQM report & Write \\ \hline
+M1 & Defend the report in the EQM & Milestone \\ \hline
+A1 & Perform a feature extraction and analyze the correlation between metrics and system reliability. & Analysis \\ \hline
+C5 & Develop and train a model with the collected metrics. & Code \\ \hline
+C6 & Validate the solution with experiments over multiple scenarios and multiple processor architectures. & Code \\ \hline
+W2 & Write a scientific paper with the obtained results & Code \\ \hline
+W3 & Write the dissertation & Write \\ \hline
+M2 & Scientific paper publishing & Milestone \\ \hline
+M3 & Defend the dissertation & Milestone \\ \hline
+\end{tabular}
+\end{table}
 
 \section{Expected Results}
 
