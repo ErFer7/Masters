@@ -1,159 +1,194 @@
-\documentclass[journal,article,submit,moreauthors,pdftex,10pt,a4paper]{mdpi}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{verbatim}
-\usepackage{float}
-
-\usepackage[english]{babel}
+\documentclass[journal,onecolumn]{IEEEtran}
 
 \usepackage[nomain, acronym, symbols]{glossaries}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[numbers]{natbib}
 
 \loadglsentries{acronyms}
 
-\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
-\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
-
-\newcommand{\ct}[1]{{\color{black}#1}}
-\newcommand{\odo}[1]{{\color{black}#1}}
-\newcommand{\gus}[1]{{\color{black}#1}}
-\newcommand{\cris}[1]{{\color{black}#1}}
-
-\firstpage{1}
-\makeatletter
-\setcounter{page}{\@firstpage}
-
-\makeatother
-
-\Title{Machine Learning Guided Adaptive Scheduling for Multi-core Real-time Operating Systems}
-
 \begin{document}
+
+\title{Machine Learning Guided Adaptive Scheduling for Multi-core Real-time Operating Systems}
+
+\author{Eric Fernandes Evaristo, Antônio Augusto Medeiros Frölich}
+
+\maketitle
+
+\IEEEpeerreviewmaketitle
 
 \section{Introduction}
 
-% TODO: Context and relevancy
-
-% TODO: Problem
-% TODO: How others tried to solve it
-% TODO: What they achieved
-% TODO: What's missing
-
-% TODO: The proposed solution
-% TODO: Challenges
-
-% TODO: Objectives
-
-% TODO: Methodology
-
 % Context and relevancy
-\gls{rtos} are systems developed to handle the processing of tasks with timing constraints, where it is necessary to
-ensure that the deadlines for the tasks are met. These systems can be classified as hard or soft based on their
-capabilities and requirements. Hard \gls{rtos} are used in situations where the failure to meet a deadline in the
-execution of a task can have severe consequences, this includes industrial systems, autonomous vehicles, avionic
-systems and others. Alternatively, soft \gls{rtos} are used in non-critical contexts, where deadline misses can be
-tolerated to a certain degree. Multimedia and audio processing are examples of contexts where a soft \gls{rtos} might
-be used \cite[13--22]{kopetz2022real}.
+Currently, several areas of technology require software that must execute in real-time. This often includes autonomous vehicles, aviation, robotics, industrial systems, and other critical systems where the software is directly responsible for system safety and control. In these domains, a failure to meet timing constraints during execution can lead to severe consequences. Thus, to ensure predictable execution and meet these timing requirements, \gls{rtos} are utilized.
 
-The deterministic execution of tasks is ensured by real-time scheduling algorithms, which are responsible for their
-prioritization. These algorithms must order the tasks in such a way that their timing constraints are satisfied, for
-that, the execution time, deadlines and other aspects of tasks can be considered. Schedulers that set the priorities
-before the execution of the system are classified as static, while those that set the priorities at runtime are
-classified as dynamic \cite[247--248]{kopetz2022real}.
+% Definition of RTOS
+\gls{rtos} are systems developed to handle the deterministic processing of tasks. These systems can be classified as hard or soft based on their capabilities and requirements. Hard \gls{rtos} are used in situations where the failure to meet a deadline in the execution of a task can lead to catastrophic consequences, this includes the areas cited previously. Alternatively, soft \gls{rtos} are used in non-critical contexts, where deadline misses can be tolerated to a certain degree. Multimedia and audio processing are examples of contexts where a soft \gls{rtos} might be used \cite[13--22]{kopetz2022real}.
 
-Currently, several processor architectures are multi-core, allowing real parallelism in task execution. These
-architectures introduce challenges in the implementation of real-time schedulers, as the use of shared resources, such
-as the memory, cache and input/output can affect the execution time of tasks in non-deterministic ways
-\cite{aceituno2023optimized, lugo2022survey}. Moreover, there are also problems related to the efficient usage of the
-cores, such as load balancing \cite{jadon2024comprehensive}. Overall, the complexity of real-time task scheduling in
-multi-core \gls{rtos} can require more sophisticated schedulers.
+% Definition of scheduling algorithms
+The deterministic execution of tasks is ensured by real-time scheduling algorithms, which are responsible for their prioritization. These algorithms must manage tasks in such a way that their timing constraints are satisfied. For this purpose, the execution time, deadlines and other aspects of tasks can be considered. Schedulers that set the priorities before the execution of the system are classified as static, while those that set the priorities at runtime are classified as dynamic \cite[247--248]{kopetz2022real}.
 
-% TODO: Justify this better
-Considering this scenario, different scheduling techniques have been proposed over the last years. Some of them apply
-heuristics, such as genetic algorithms, to optimize the system's performance. There is also the utilization of
-\gls{ml}, mainly with \gls{rl} \cite{hassan2025optimizing, liang2024adaptive}. The utilization of \gls{ml} is useful
-for capturing patterns and learn how to adapt the scheduling to the state of the system. However, this technique can
-introduce a significant overhead, which is an often overlooked impact.
+\subsection{Research Problem}
 
-% Inference?
-% TODO: Check the genitives
-This study proposes the development of an adaptive dynamic scheduler for multi-core \gls{rtos} that will be guided by a
-\gls{ml} model, focusing on the improvement of the system's performance while keeping a low overhead. The
-prioritization policy of the tasks will be based on the inference realized by the \gls{ml} model over the temporal
-evolution of the system's state. This will allow the tasks to be scheduled with the consideration of factors that
-affect the timing.
+% Introduction to the problems
+Most modern processors adopt a multi-core implementation, which allows tasks to be executed in parallel. This design offers many advantages, such as higher efficiency, faster execution speed, and improved power efficiency. However, multi-core processors also introduce several challenges \cite{sethi2015multicore}.
 
-\section{Research Problem}
+% Problems
+One of the major challenges introduced by multi-core processors is interference, which arises from task contention for shared resources such as main memory, caches, and I/O peripherals. This contention introduces non-deterministic delays into task execution, making it difficult to accurately estimate the \gls{wcet}. This interference affects the scheduler's ability to guarantee that tasks will meet their deadlines, thus compromising system reliability \cite{aceituno2023optimized, lugo2022survey}. Moreover, heterogeneous multi-core processors also introduce challenges, since they present cores with different characteristics. This requires more sophisticated schedulers and is a subject of attention for load balancing mechanisms. Furthermore, the dynamism and variation of tasks' workloads is another challenge. Tasks may evolve over time, changing their resource utilization and demands, which might require adaptive schedulers \cite{mrabet2024scheduling, jadon2024comprehensive}.
 
-Several works in the field of \gls{rtos} proposed methods to solve pertinent problems introduced by multi-core systems,
-most of them in the context of embedded systems \cite{ismael2021scheduling}. The interference between tasks caused by
-the usage of shared resources and load balancing are problems that have been the focus of several researchers. However,
-solutions for these problems are still limited by aspects such as the heterogeneity of architectures, scalability,
-workload variations and other intrinsic problems to scheduling algorithms \cite{lugo2022survey,
-	jadon2024comprehensive}. Overall, the complexity of these systems leads to difficulties in the implementation of
-schedulers.
+% SOTA
+Several works in the field of \gls{rtos} have proposed methods to solve pertinent problems introduced by multi-core systems, most of them in the context of embedded systems \cite{ismael2021scheduling}. Some works employ optimization methods based on \gls{ilp} or \gls{pso} in order to minimize interference and optimize load balance \cite{aceituno2023optimized, liu2021multi}. However, beyond the application of heuristics and classical optimization methods, \gls{ml} is also utilized.
 
-The dynamic context of these systems opens opportunities for the application of \gls{ml}. Research in this area focuses
-on several objectives, such as the optimization of schedulers through \gls{rl} and also in optimization for
-heterogeneous architectures through \gls{drl} \cite{liang2024adaptive, tan2024deep}. The power efficiency is also
-relevant, with several works applying \gls{ml} with techniques, such as \gls{drl}, \gls{lstm} networks, linear
-regression and \glspl{cnn} \cite{peng2024energy, allaqband2024efficient, khan2025enhanced}. These solutions apply
-\gls{ml} in order to model the behavior of the system and applications, analyzing performance metrics and relevant data
-about tasks. With these models, it is possible to make decisions about prioritization.
+% Machine learning
+Research works that employ \gls{ml} focus on several objectives, such as the optimization of schedulers through \gls{rl} and optimization for heterogeneous architectures through \gls{drl} \cite{liang2024adaptive, tan2024deep}. Power efficiency is also relevant, with several works applying \gls{ml} with techniques such as \gls{drl}, \gls{lstm} networks, linear regression, \glspl{cnn} and \glspl{fann} \cite{peng2024energy, allaqband2024efficient, khan2025enhanced, hoffmann2021online}. These solutions apply \gls{ml} in order to model the behavior of the system and applications, analyzing performance metrics and relevant data about tasks. With these models, it is possible to make decisions about prioritization.
 
-Nonetheless, the research in the area is still limited. There is a lack of focus on aspects such as the overhead
-introduced by \gls{ml} models. The dynamic context of task creation, destruction and workload variation is also
-underexplored. There is still space for the exploration of the application of \gls{ml} techniques in this field with
-the consideration of these aspects. This scenario leads to questions that are still unanswered:
+% Gap
+Nonetheless, research on \gls{ml} applications in this area is still limited. The dynamic context of task creation, destruction and workload variation over time is underexplored. Moreover, there is a lack of research on utilization of both hardware and software performance metrics for system state capture, especially considering multiple architectures, heterogeneous multi-core processors and highly dynamic applications.
+
+\subsection{Research Question}
+
+The current scenario in the state of the art leads to questions that are still unanswered:
 
 \begin{itemize}
-	\item Can a \gls{ml} model learn to capture the evolving state of the dynamic environment of task creation,
-	      evolution and destruction based on system metrics?
-	\item How can a \gls{ml} model be introduced in a multi-core \gls{rtos} without causing a significant overhead that
-	      invalidates its use?
-	\item Will the usage of a \gls{ml} informed scheduler result in a more reliable system with a lower jitter?
+    \item How can a \gls{ml} model learn to capture the evolving state of the dynamic environment of task creation, evolution and destruction based on both hardware and software metrics?
+    \item To what extent can such model operate across multiple architectures while still performing satisfactorily?
 \end{itemize}
 
-\section{Objectives}
+\subsection{Objectives}
 
-The general objective of this research is to develop an adaptive \gls{ml} guided scheduler for multi-core \gls{rtos}
-aiming to improve the performance and reliability of the system under evolving scenarios.
+The general objective of this research is to develop an adaptive \gls{ml} guided scheduler for multi-core \gls{rtos}, aiming to improve the reliability of the system with dynamic applications. The model would utilize hardware and software metrics in order to make inferences about the system state, which would then be utilized for informed scheduling decisions.
 
-\subsection{Specific Objectives}
+\subsubsection{Specific Objectives}
 
 \begin{itemize}
-	\item Contribute to the production of a systematic literature review in the context of the application of
-	      \gls{ml} in multi-core \gls{rtos};
-	\item Present an analysis of the impact of the overhead introduced by \gls{ml} models in \gls{rtos};
+    \item Present an analysis of the most relevant hardware and software performance metrics for real-time scheduling;
+    \item Provide an analysis of the architecture's impact on the performance of the \gls{ml} model;
+	\item Present an analysis of the impact of the overhead introduced by \gls{ml} models in \gls{rtos}.
 \end{itemize}
+
+\subsection{Motivation}
+
+Considering the open problems in the field, this research has the potential to offer new methods to address the classical challenges in real-time scheduling for multi-core systems, as well as answer questions related to the feasibility of the implementation of \gls{ml} models in \gls{rtos}. Furthermore, improving the reliability of \gls{rtos} also leads to safety improvements in several areas, such as in autonomous and industrial systems.
+
+\subsection{Scope}
+
+This work will focus primarily on improving the reliability of \gls{rtos} for multi-core processors. Thus, other objectives will not be treated. Regarding the usage of hardware performance metrics, which are architecture-dependend, only two architectures will be explored, ARM and Risc-V. Moreover, the execution on heterogeneous multi-core processors also will not be explored. Lastly, the proposed implementation will be applied only to the \gls{epos} \cite{epos}.
+
+\subsection{Structure}
+
+Initially, the methodology section will give an overview of the steps taken in the research and implementation of the proposed solution. After that, the main concepts will be explained in the theoretical foundation section. Furthermore, the current state of the art will be reviewed in depth, highlighting the gaps in the literature. Subsequently, the development section will present an elaborate description of the implementation process, from the collection of relevant data to the integration of the solution in the \gls{rtos}. Then, the analysis and discussion section will present the results in a comparative manner. Lastly, the work will conclude with an elaboration on the achieved results and the future work that might be necessary.
 
 \section{Methodology}
 
-This work will be conducted as an applied research and will approach the problem with qualitative analyses. The
-research will also take an exploratory approach to the subject, identifying the viability, advantages and disadvantages
-of the proposed solution.
+This work will be conducted as an applied research and will approach the problem with qualitative analyses. The research will also take an exploratory approach to the subject, identifying the viability, advantages and disadvantages of the proposed solution.
 
-The initial step is comprised of a systematic literature review that will explore the state of the art in the
-application of \gls{ml} in multi-core \gls{rtos}, with a special focus in the context of scheduling algorithms.
-Moreover, the next step will be the creation of datasets of metrics collected during the execution of tasks in evolving
-scenarios, including workload variation, usage of synchronizers, input/output and other aspects. After this step, the
-model and scheduler will be developed with the application of concepts from the work of \citet{horstmann2019framework}.
-The solution will be validated with practical experiments and data collection on \gls{epos} \cite{epos}. Lastly, the
-results will be analyzed, where it will be possible to answer the research questions.
+The initial step is comprised of a literature review that will explore the state of the art in the application of \gls{ml} in multi-core \gls{rtos}, with a special focus on scheduling algorithms. Moreover, the next step will be the adaptation of the \gls{rtos} \gls{epos} for the research and the creation of datasets of software and hardware metrics collected during the execution of tasks in evolving scenarios, including workload variation, usage of synchronizers, input/output and other aspects. These metrics will be collected with \gls{epos} being executed on Risc-V and ARM multi-core processors. After this step, the model and scheduler will be developed with the application of concepts from the work of \citet{horstmann2019framework} and \citet{hoffmann2021online}. The solution will be validated with practical experiments. Lastly, the results will be analyzed comparatively, where it will be possible to answer the research questions.
+
+\section{Schedule}
+
+The following activities in \autoref{tab:activities} will be performed though the development of this research:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|p{8cm}|c|}
+\hline
+Code & \multicolumn{1}{c|}{Description} & Type \\ \hline
+S0 & Review the literature on \gls{rtos} scheduling & Study \\ \hline
+S1 & Review the literature on embedded machine learning & Study \\ \hline
+S2 & Review the literature on adaptive real-time schedulers & Study \\ \hline
+C0 & Adapt \gls{epos} for the experiments and development & Code \\ \hline
+C1 & Collect hardware performance metrics for the Risc-V architecture & Code \\ \hline
+C2 & Adapt the work of \citet{hoffmann2021online} to train a model with metrics collected on Risc-V & Code \\ \hline
+A0 & Perform a comparative analysis with the trained model over different processor architectures & Analysis \\ \hline
+W0 & Write a scientific paper about the performance of \glspl{ann} trained with hardware performance metrics on multiple architectures. & Write \\ \hline
+W1 & Write the EQM report & Write \\ \hline
+M0 & Defend the report in the EQM & Milestone \\ \hline
+C3 & Design the experimental scenario with a dynamic application. & Code \\ \hline
+M1 & Publish a scientific paper & Milestone \\ \hline
+C4 & Collect hardware and software performance metrics with the experimental application running on \gls{epos} on Risc-V and ARM processors. & Code \\ \hline
+A1 & Perform a feature extraction and analyze the correlation between metrics and system reliability. & Analysis \\ \hline
+C5 & Develop and train a model with the collected metrics. & Code \\ \hline
+C6 & Validate the solution with experiments over multiple scenarios and multiple processor architectures. & Code \\ \hline
+W2 & Write a scientific paper with the obtained results & Write \\ \hline
+W3 & Write the dissertation & Write \\ \hline
+M2 & Publish a scientific paper & Milestone \\ \hline
+M3 & Defend the dissertation & Milestone \\ \hline
+\end{tabular}
+\caption{Overview of the activities.}
+\label{tab:activities}
+\end{table}
+
+The schedule can be seen in \autoref{tab:schedule}:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|llllll|llllll|llllll|llllll|}
+\hline
+Code & \multicolumn{6}{c|}{2025/2}                                                                                                                                     & \multicolumn{6}{c|}{2026/1}                                                                                                                                     & \multicolumn{6}{c|}{2026/2}                                                                                                                                     & \multicolumn{6}{c|}{2027/1}                                                                                                             \\ \hline
+S0   & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+S1   & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+S2   & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+C0   &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+C1   &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+C2   &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+A0   &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+W0   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+W1   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+M0   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+C3   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+M1   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+C4   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+A1   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &  \\ \hline
+C5   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &  \\ \hline
+C6   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} &                          &                          &                          &  \\ \hline
+W2   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &  \\ \hline
+W3   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &  \\ \hline
+M2   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &  \\ \hline
+M3   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &  \\ \hline
+\end{tabular}
+\caption{Approximate schedule.}
+\label{tab:schedule}
+\end{table}
+
+\section{Expected Results}
+
+Upon achieving this research's objectives, it is expected that the adaptive scheduler could be adapted for other \gls{rtos}. Besides, the solution could be further improved by future research. Thus, this work could not only be directly applied in real scenarios, but also serve as a foundation to other schedulers and optimizers that integrate \gls{ml}.
 
 \section{Theoretical Foundation}
 
 \subsection{Real-time Operating Systems}
 
+\subsubsection{EPOS}
+
+\subsubsection{Software performance metrics}
+
 \subsection{Real-time Schedulers}
+
+\subsubsection{RM}
+
+\subsubsection{EDF}
 
 \subsection{Multi-core processors}
 
+\subsubsection{Risc-V}
+
+\subsubsection{ARM}
+
+\subsubsection{Hardware performance metrics}
+
 \subsection{Machine Learning for Embedded Systems}
+
+\subsection{Offline and Online Learning}
 
 \newpage
 
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+\bibliographystyle{IEEEtranN}
 \bibliography{references}
 
 \end{document}
