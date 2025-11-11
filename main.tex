@@ -1,129 +1,95 @@
-\documentclass[journal,article,submit,moreauthors,pdftex,10pt,a4paper]{mdpi}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{verbatim}
-\usepackage{float}
-\usepackage[table,xcdraw]{xcolor}
-
-\usepackage[english]{babel}
+\documentclass[journal,onecolumn]{IEEEtran}
 
 \usepackage[nomain, acronym, symbols]{glossaries}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[numbers]{natbib}
 
 \loadglsentries{acronyms}
 
-\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
-\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
-
-\newcommand{\ct}[1]{{\color{black}#1}}
-\newcommand{\odo}[1]{{\color{black}#1}}
-\newcommand{\gus}[1]{{\color{black}#1}}
-\newcommand{\cris}[1]{{\color{black}#1}}
-
-\firstpage{1}
-\makeatletter
-\setcounter{page}{\@firstpage}
-
-\makeatother
-
-\Title{Machine Learning Guided Adaptive Scheduling for Multi-core Real-time Operating Systems}
-
 \begin{document}
+
+\title{Machine Learning Guided Adaptive Scheduling for Multi-core Real-time Operating Systems}
+
+\author{Eric Fernandes Evaristo, Antônio Augusto Medeiros Frölich}
+
+\maketitle
+
+\IEEEpeerreviewmaketitle
 
 \section{Introduction}
 
-% TODO: Chronogram
-% TODO: Expected results
-
-% TODO: Check the sources
-% TODO: Check the correctness, structure and flow
-% TODO: Check the grammar
-% TODO: Change the template to IEEE single column
-
 % Context and relevancy
-% TODO: Add sources for the utilization of RTOS in these areas
 Currently, several areas of technology require software that must execute in real-time. This often includes autonomous vehicles, aviation, robotics, industrial systems, and other critical systems where the software is directly responsible for system safety and control. In these domains, a failure to meet timing constraints during execution can lead to severe consequences. Thus, to ensure predictable execution and meet these timing requirements, \gls{rtos} are utilized.
 
 % Definition of RTOS
-\gls{rtos} are systems developed to handle the deterministic processing of tasks, where it is necessary to ensure that the deadlines for the tasks are met. These systems can be classified as hard or soft based on their capabilities and requirements. Hard \gls{rtos} are used in situations where the failure to meet a deadline in the execution of a task can have severe consequences, this includes the areas cited previously. Alternatively, soft \gls{rtos} are used in non-critical contexts, where deadline misses can be tolerated to a certain degree. Multimedia and audio processing are examples of contexts where a soft \gls{rtos} might be used \cite[13--22]{kopetz2022real}.
+\gls{rtos} are systems developed to handle the deterministic processing of tasks. These systems can be classified as hard or soft based on their capabilities and requirements. Hard \gls{rtos} are used in situations where the failure to meet a deadline in the execution of a task can lead to catastrophic consequences, this includes the areas cited previously. Alternatively, soft \gls{rtos} are used in non-critical contexts, where deadline misses can be tolerated to a certain degree. Multimedia and audio processing are examples of contexts where a soft \gls{rtos} might be used \cite[13--22]{kopetz2022real}.
 
 % Definition of scheduling algorithms
-The deterministic execution of tasks is ensured by real-time scheduling algorithms, which are responsible for their prioritization. These algorithms must order the tasks in such a way that their timing constraints are satisfied, for that, the execution time, deadlines and other aspects of tasks can be considered. Schedulers that set the priorities before the execution of the system are classified as static, while those that set the priorities at runtime are classified as dynamic \cite[247--248]{kopetz2022real}.
+The deterministic execution of tasks is ensured by real-time scheduling algorithms, which are responsible for their prioritization. These algorithms must manage tasks in such a way that their timing constraints are satisfied. For this purpose, the execution time, deadlines and other aspects of tasks can be considered. Schedulers that set the priorities before the execution of the system are classified as static, while those that set the priorities at runtime are classified as dynamic \cite[247--248]{kopetz2022real}.
 
 \subsection{Research Problem}
 
 % Introduction to the problems
-% TODO: Check if it's ok to say the execution is faster
-Most modern processors adopt a multi-core implementation, which allows tasks to be executed in parallel. This design offers many advantages, such as the higher efficiency with a faster execution speed and improved power efficiency. However, multi-core processors also introduce several challenges \cite{sethi2015multicore}.
+Most modern processors adopt a multi-core implementation, which allows tasks to be executed in parallel. This design offers many advantages, such as higher efficiency, faster execution speed, and improved power efficiency. However, multi-core processors also introduce several challenges \cite{sethi2015multicore}.
 
 % Problems
-One of the major challenges introduced by multi-core processors is interference, which arises from task contention for shared resources such as main memory, caches, and I/O peripherals. This contention introduces non-deterministic delays into task execution, making it difficult to accurately estimate the \gls{wcet}. This interference affects the scheduler's ability to guarantee that tasks will meet their deadlines, thus compromising system reliability \cite{aceituno2023optimized, lugo2022survey}. Moreover, heterogeneous multi-core processors also introduce challenges, since they present cores with different characteristics from each other. This requires more sophisticated schedulers and is a subject of attention for load balancing mechanisms. Furthermore, the dynamism and variation of tasks' workloads is another challenge. Tasks may evolve through time, changing their resource utilization and demands, which might require adaptive schedulers \cite{mrabet2024scheduling, jadon2024comprehensive}.
+One of the major challenges introduced by multi-core processors is interference, which arises from task contention for shared resources such as main memory, caches, and I/O peripherals. This contention introduces non-deterministic delays into task execution, making it difficult to accurately estimate the \gls{wcet}. This interference affects the scheduler's ability to guarantee that tasks will meet their deadlines, thus compromising system reliability \cite{aceituno2023optimized, lugo2022survey}. Moreover, heterogeneous multi-core processors also introduce challenges, since they present cores with different characteristics. This requires more sophisticated schedulers and is a subject of attention for load balancing mechanisms. Furthermore, the dynamism and variation of tasks' workloads is another challenge. Tasks may evolve over time, changing their resource utilization and demands, which might require adaptive schedulers \cite{mrabet2024scheduling, jadon2024comprehensive}.
 
 % SOTA
-% TODO: Verify if "classical optimization methods" is ok
-Several works in the field of \gls{rtos} proposed methods to solve pertinent problems introduced by multi-core systems, most of them in the context of embedded systems \cite{ismael2021scheduling}. Some works employ optimization methods based on \gls{ilp} or \gls{pso} in order to minimize interference and optimize load balance \cite{aceituno2023optimized, liu2021multi}. However, beyound the application of heuristics and classical optimization methods, there is also the utilization of \gls{ml}.
+Several works in the field of \gls{rtos} have proposed methods to solve pertinent problems introduced by multi-core systems, most of them in the context of embedded systems \cite{ismael2021scheduling}. Some works employ optimization methods based on \gls{ilp} or \gls{pso} in order to minimize interference and optimize load balance \cite{aceituno2023optimized, liu2021multi}. However, beyond the application of heuristics and classical optimization methods, \gls{ml} is also utilized.
 
 % Machine learning
-% TODO: Cite Zé's work
-Research works that employ \gls{ml} focuses on several objectives, such as the optimization of schedulers through \gls{rl} and also in optimization for heterogeneous architectures through \gls{drl} \cite{liang2024adaptive, tan2024deep}. Power efficiency is also relevant, with several works applying \gls{ml} with techniques such as \gls{drl}, \gls{lstm} networks, linear regression and \glspl{cnn} \cite{peng2024energy, allaqband2024efficient, khan2025enhanced}. These solutions apply \gls{ml} in order to model the behavior of the system and applications, analyzing performance metrics and relevant data about tasks. With these models, it is possible to make decisions about prioritization.
+Research works that employ \gls{ml} focus on several objectives, such as the optimization of schedulers through \gls{rl} and optimization for heterogeneous architectures through \gls{drl} \cite{liang2024adaptive, tan2024deep}. Power efficiency is also relevant, with several works applying \gls{ml} with techniques such as \gls{drl}, \gls{lstm} networks, linear regression, \glspl{cnn} and \glspl{fann} \cite{peng2024energy, allaqband2024efficient, khan2025enhanced, hoffmann2021online}. These solutions apply \gls{ml} in order to model the behavior of the system and applications, analyzing performance metrics and relevant data about tasks. With these models, it is possible to make decisions about prioritization.
 
 % Gap
-Nonetheless, the research in the area with \gls{ml} application is still limited. The dynamic context of task creation, destruction and workload variation through time is underexplored. Moreover, there is a lack of research on utilization of both hardware and software performance metrics for system state capture, specially considering multiple architectures, heterogeneous multi-core processors and highly dynamic applications.
+Nonetheless, research on \gls{ml} applications in this area is still limited. The dynamic context of task creation, destruction and workload variation over time is underexplored. Moreover, there is a lack of research on utilization of both hardware and software performance metrics for system state capture, especially considering multiple architectures, heterogeneous multi-core processors and highly dynamic applications.
 
 \subsection{Research Question}
 
 The current scenario in the state of the art leads to questions that are still unanswered:
 
-% TODO: Improve these questions
-% TODO: Check if these need to be only one question
 \begin{itemize}
     \item How can a \gls{ml} model learn to capture the evolving state of the dynamic environment of task creation, evolution and destruction based on both hardware and software metrics?
-    \item Will such model operate accross multiple architectures while still performing satisfactorily?
+    \item To what extent can such model operate across multiple architectures while still performing satisfactorily?
 \end{itemize}
 
 \subsection{Objectives}
 
-% TODO: Connect this parts better
-% TODO: Check if inference is ok
-The general objective of this research is to develop an adaptive \gls{ml} guided scheduler for multi-core \gls{rtos}, aiming to improve the reliability of the system with dynamic applications. The model would utilize hardware and software metrics in order to make inferences about the system state, that would then be utilized for informed scheduling decitions.
+The general objective of this research is to develop an adaptive \gls{ml} guided scheduler for multi-core \gls{rtos}, aiming to improve the reliability of the system with dynamic applications. The model would utilize hardware and software metrics in order to make inferences about the system state, which would then be utilized for informed scheduling decisions.
 
 \subsubsection{Specific Objectives}
 
 \begin{itemize}
-    \item Contribute with an analysis of the most relevant hardware and software performance metrics for real-time scheduling;
-    \item Contribute with an analysis of the architecture's impact in the performance of the \gls{ml} model; % TODO: Maybe reword this
+    \item Present an analysis of the most relevant hardware and software performance metrics for real-time scheduling;
+    \item Provide an analysis of the architecture's impact on the performance of the \gls{ml} model;
 	\item Present an analysis of the impact of the overhead introduced by \gls{ml} models in \gls{rtos}.
 \end{itemize}
 
 \subsection{Motivation}
 
-Considering the open problems in the field, this research has the potential to offer a new methods to address the classical challenges in real-time scheduling for multi-core systems and also answer questions related to the feasibility of the implementation of \gls{ml} models in \gls{rtos}. Furthermore, the improvement of reliability of \gls{rtos} also leads to safety improvements in several areas, such as in autonomous and industrial systems.  % TODO: Make this less capitalistic
+Considering the open problems in the field, this research has the potential to offer new methods to address the classical challenges in real-time scheduling for multi-core systems, as well as answer questions related to the feasibility of the implementation of \gls{ml} models in \gls{rtos}. Furthermore, improving the reliability of \gls{rtos} also leads to safety improvements in several areas, such as in autonomous and industrial systems.
 
 \subsection{Scope}
 
-This work will focus primarily on the improvement of reliability of \gls{rtos} for multi-core processors, thus, other objectives won't be treated. Regarding the usage of hardware performance metrics, wich are architecture dependend, only two architectures will be explored, ARM and Risc-V. Moreover, the execution on heterogeneous multi-core processors also won't be explored. Lastly, the proposed implementation will be applied only to the \gls{epos} \cite{epos}.
+This work will focus primarily on improving the reliability of \gls{rtos} for multi-core processors. Thus, other objectives will not be treated. Regarding the usage of hardware performance metrics, which are architecture-dependend, only two architectures will be explored, ARM and Risc-V. Moreover, the execution on heterogeneous multi-core processors also will not be explored. Lastly, the proposed implementation will be applied only to the \gls{epos} \cite{epos}.
 
 \subsection{Structure}
 
-% TODO: Check if "solution" is an ok term.
-% TODO: Section reference or direct citation?
-Initially, the methodology section will give an overview of the steps taken in the research and implementation of the proposed solution. After that, the main concepts will be explained in \autoref{sec:theory}. Furthermore, the current state of the art will be reviewed in depth, highlighting the gaps in the literature. Subsequently, the development section will present an elaborate description of the implementation process, from the collection of relevant data to the integration of the solution in the \gls{rtos}. Then, the analysis and discussion section will present the results in a comparative manner. Lastly, the work will conclude with an elaboration over the achieved results and the future works that might be necessary.
+Initially, the methodology section will give an overview of the steps taken in the research and implementation of the proposed solution. After that, the main concepts will be explained in the theoretical foundation section. Furthermore, the current state of the art will be reviewed in depth, highlighting the gaps in the literature. Subsequently, the development section will present an elaborate description of the implementation process, from the collection of relevant data to the integration of the solution in the \gls{rtos}. Then, the analysis and discussion section will present the results in a comparative manner. Lastly, the work will conclude with an elaboration on the achieved results and the future work that might be necessary.
 
-% TODO: Add new ideas and the work of the first two semesters
 \section{Methodology}
 
 This work will be conducted as an applied research and will approach the problem with qualitative analyses. The research will also take an exploratory approach to the subject, identifying the viability, advantages and disadvantages of the proposed solution.
 
-% TODO: Check if a non systematic review is ok
-The initial step is comprised of a literature review that will explore the state of the art in the application of \gls{ml} in multi-core \gls{rtos}, with a special focus in the context of scheduling algorithms. Moreover, the next step will be the adaptation of the \gls{rtos} \gls{epos} for the research and the creation of datasets of software and hardware metrics collected during the execution of tasks in evolving scenarios, including workload variation, usage of synchronizers, input/output and other aspects. These metrics will be collected with \gls{epos} being executed on Risc-V and ARM multi-core processors. After this step, the model and scheduler will be developed with the application of concepts from the work of \citet{horstmann2019framework} and \citet{hoffmann2021online}. The solution will be validated with practical experiments. Lastly, the results will be analyzed comparatively, where it will be possible to answer the research questions.
+The initial step is comprised of a literature review that will explore the state of the art in the application of \gls{ml} in multi-core \gls{rtos}, with a special focus on scheduling algorithms. Moreover, the next step will be the adaptation of the \gls{rtos} \gls{epos} for the research and the creation of datasets of software and hardware metrics collected during the execution of tasks in evolving scenarios, including workload variation, usage of synchronizers, input/output and other aspects. These metrics will be collected with \gls{epos} being executed on Risc-V and ARM multi-core processors. After this step, the model and scheduler will be developed with the application of concepts from the work of \citet{horstmann2019framework} and \citet{hoffmann2021online}. The solution will be validated with practical experiments. Lastly, the results will be analyzed comparatively, where it will be possible to answer the research questions.
 
 \section{Schedule}
 
-The following activities will be performed though the development of this research:
+The following activities in \autoref{tab:activities} will be performed though the development of this research:
 
-% TODO: Fix the verbs
 \begin{table}[ht]
 \centering
 \begin{tabular}{|c|p{8cm}|c|}
@@ -145,58 +111,84 @@ C4 & Collect hardware and software performance metrics with the experimental app
 A1 & Perform a feature extraction and analyze the correlation between metrics and system reliability. & Analysis \\ \hline
 C5 & Develop and train a model with the collected metrics. & Code \\ \hline
 C6 & Validate the solution with experiments over multiple scenarios and multiple processor architectures. & Code \\ \hline
-W2 & Write a scientific paper with the obtained results & Code \\ \hline
+W2 & Write a scientific paper with the obtained results & Write \\ \hline
 W3 & Write the dissertation & Write \\ \hline
 M2 & Publish a scientific paper & Milestone \\ \hline
 M3 & Defend the dissertation & Milestone \\ \hline
 \end{tabular}
+\caption{Overview of the activities.}
+\label{tab:activities}
 \end{table}
 
-% TODO: Labels
-The schedule can be seen in the table bellow:
+The schedule can be seen in \autoref{tab:schedule}:
 
 \begin{table}[ht]
 \centering
-\begin{tabular}{|l|llllllllllllllllllllllll|}
+\begin{tabular}{|l|llllll|llllll|llllll|llllll|}
 \hline
 Code & \multicolumn{6}{c|}{2025/2}                                                                                                                                     & \multicolumn{6}{c|}{2026/1}                                                                                                                                     & \multicolumn{6}{c|}{2026/2}                                                                                                                                     & \multicolumn{6}{c|}{2027/1}                                                                                                             \\ \hline
-S0   & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-S1   & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-S2   & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-C0   &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-C1   &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-C2   &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-A0   &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-W0   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-W1   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-M0   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-C3   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-M1   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\
-C4   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &  \\
-A1   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &  \\
-C5   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &  \\
-C6   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} &                          &                          &                          &  \\
-W2   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &  \\
-W3   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &  \\
-M2   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &  \\
+S0   & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+S1   & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+S2   & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+C0   &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+C1   &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+C2   &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+A0   &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+W0   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+W1   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+M0   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+C3   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+M1   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &                          &                          &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+C4   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &                          &  \\ \hline
+A1   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} &                          &                          &                          &                          &                          &                          &  \\ \hline
+C5   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &                          &  \\ \hline
+C6   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} &                          &                          &                          &  \\ \hline
+W2   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &                          &  \\ \hline
+W3   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{414868} & \cellcolor[HTML]{414868} &                          &  \\ \hline
+M2   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &  \\ \hline
 M3   &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{7AA2F7} &  \\ \hline
 \end{tabular}
+\caption{Approximate schedule.}
+\label{tab:schedule}
 \end{table}
 
 \section{Expected Results}
 
-\section{Theoretical Foundation} \label{sec:theory}
+Upon achieving this research's objectives, it is expected that the adaptive scheduler could be adapted for other \gls{rtos}. Besides, the solution could be further improved by future research. Thus, this work could not only be directly applied in real scenarios, but also serve as a foundation to other schedulers and optimizers that integrate \gls{ml}.
+
+\section{Theoretical Foundation}
 
 \subsection{Real-time Operating Systems}
 
+\subsubsection{EPOS}
+
+\subsubsection{Software performance metrics}
+
 \subsection{Real-time Schedulers}
+
+\subsubsection{RM}
+
+\subsubsection{EDF}
 
 \subsection{Multi-core processors}
 
+\subsubsection{Risc-V}
+
+\subsubsection{ARM}
+
+\subsubsection{Hardware performance metrics}
+
 \subsection{Machine Learning for Embedded Systems}
+
+\subsection{Offline and Online Learning}
 
 \newpage
 
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+\bibliographystyle{IEEEtranN}
 \bibliography{references}
 
 \end{document}
