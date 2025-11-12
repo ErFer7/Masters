@@ -42,7 +42,7 @@ One of the major challenges introduced by multi-core processors is interference,
 Several works in the field of \gls{rtos} have proposed methods to solve pertinent problems introduced by multi-core systems, most of them in the context of embedded systems \cite{ismael2021scheduling}. Some works employ optimization methods based on \gls{ilp} or \gls{pso} in order to minimize interference and optimize load balance \cite{aceituno2023optimized, liu2021multi}. However, beyond the application of heuristics and classical optimization methods, \gls{ml} is also utilized.
 
 % Machine learning
-Research works that employ \gls{ml} focus on several objectives, such as the optimization of schedulers through \gls{rl} and optimization for heterogeneous architectures through \gls{drl} \cite{liang2024adaptive, tan2024deep}. Power efficiency is also relevant, with several works applying \gls{ml} with techniques such as \gls{drl}, \gls{lstm} networks, linear regression, \glspl{cnn} and \glspl{fann} \cite{peng2024energy, allaqband2024efficient, khan2025enhanced, hoffmann2021online}. These solutions apply \gls{ml} in order to model the behavior of the system and applications, analyzing performance metrics and relevant data about tasks. With these models, it is possible to make decisions about prioritization.
+Research works that employ \gls{ml} focus on several objectives, such as the optimization of schedulers through \gls{rl} and optimization for heterogeneous architectures through \gls{drl} \cite{liang2024adaptive, tan2024deep}. Power efficiency is also relevant, with several works applying \gls{ml} with techniques such as \gls{drl}, \gls{lstm} networks, linear regression, \glspl{cnn} and feedforward \glspl{ann} \cite{peng2024energy, allaqband2024efficient, khan2025enhanced, hoffmann2021online}. These solutions apply \gls{ml} in order to model the behavior of the system and applications, analyzing performance metrics and relevant data about tasks. With these models, it is possible to make decisions about prioritization.
 
 % Gap
 Nonetheless, research on \gls{ml} applications in this area is still limited. The dynamic context of task creation, destruction and workload variation over time is underexplored. Moreover, there is a lack of research on utilization of both hardware and software performance metrics for system state capture, especially considering multiple architectures, heterogeneous multi-core processors and highly dynamic applications.
@@ -63,7 +63,7 @@ The general objective of this research is to develop an adaptive \gls{ml} guided
 \subsubsection{Specific Objectives}
 
 \begin{itemize}
-    \item Present an analysis of the most relevant hardware and software performance metrics for real-time scheduling;
+    \item Present an analysis of the most relevant hardware and software performance metrics for real-time scheduling across multiple architectures;
     \item Provide an analysis of the architecture's impact on the performance of the \gls{ml} model;
 	\item Present an analysis of the impact of the overhead introduced by \gls{ml} models in \gls{rtos}.
 \end{itemize}
@@ -89,6 +89,8 @@ The initial step is comprised of a literature review that will explore the state
 \section{Schedule}
 
 The following activities in \autoref{tab:activities} will be performed though the development of this research:
+
+\clearpage
 
 \begin{table}[ht]
 \centering
