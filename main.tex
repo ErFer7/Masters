@@ -21,22 +21,23 @@
 
 \section{Introduction}
 
-% Context and relevancy
-Currently, several areas of technology require software that must execute in real-time. This often includes autonomous vehicles, aviation, robotics, industrial systems, and other critical systems where the software is directly responsible for system safety and control. In these domains, a failure to meet timing constraints during execution can lead to severe consequences. Thus, to ensure predictable execution and meet these timing requirements, \gls{rtos} are utilized.
-
-% Definition of RTOS
-\gls{rtos} are systems developed to handle the deterministic processing of tasks. These systems can be classified as hard or soft based on their capabilities and requirements. Hard \gls{rtos} are used in situations where the failure to meet a deadline in the execution of a task can lead to catastrophic consequences, this includes the areas cited previously. Alternatively, soft \gls{rtos} are used in non-critical contexts, where deadline misses can be tolerated to a certain degree. Multimedia and audio processing are examples of contexts where a soft \gls{rtos} might be used \cite[13--22]{kopetz2022real}.
-
-% Definition of scheduling algorithms
-The deterministic execution of tasks is ensured by real-time scheduling algorithms, which are responsible for their prioritization. These algorithms must manage tasks in such a way that their timing constraints are satisfied. For this purpose, the execution time, deadlines and other aspects of tasks can be considered. Schedulers that set the priorities before the execution of the system are classified as static, while those that set the priorities at runtime are classified as dynamic \cite[247--248]{kopetz2022real}.
-
-\subsection{Research Problem}
-
-% Introduction to the problems
-Most modern processors adopt a multi-core implementation, which allows tasks to be executed in parallel. This design offers many advantages, such as higher efficiency, faster execution speed, and improved power efficiency. However, multi-core processors also introduce several challenges \cite{sethi2015multicore}.
+% TODO: Cite and polish
+Currently, several areas of technology require software that must execute in real time. This often includes autonomous vehicles, aviation, robotics, industrial systems, and other critical systems where the software is directly responsible for system safety and control. In these domains, a failure to meet timing constraints during execution can lead to severe consequences. Thus, to ensure predictable execution and meet these timing requirements, \gls{rtos} are utilized. These systems are commonly employed in embedded scenarios, where other variables must also be considered, such as energy consumption. When timing and energy consumption constraints are combined with the current widespread adoption of multicore systems, the algorithms responsible for scheduling and load balancing face a considerable challenge. This scenario motivates the need for predictive algorithms that can capture the state of the system and estimate relevant characteristics of each task in order to schedule and balance them accordingly.
 
 % Problems
-One of the major challenges introduced by multi-core processors is interference, which arises from task contention for shared resources such as main memory, caches, and I/O peripherals. This contention introduces non-deterministic delays into task execution, making it difficult to accurately estimate the \gls{wcet}. This interference affects the scheduler's ability to guarantee that tasks will meet their deadlines, thus compromising system reliability \cite{aceituno2023optimized, lugo2022survey}. Moreover, heterogeneous multi-core processors also introduce challenges, since they present cores with different characteristics. This requires more sophisticated schedulers and is a subject of attention for load balancing mechanisms. Furthermore, the dynamism and variation of tasks' workloads is another challenge. Tasks may evolve over time, changing their resource utilization and demands, which might require adaptive schedulers \cite{mrabet2024scheduling, jadon2024comprehensive}.
+% TODO: Cite and polish
+One of the major challenges introduced by multicore processors is interference, which arises from task contention for shared resources such as main memory, caches, and I/O peripherals. This contention introduces non-deterministic delays into task execution, making it difficult to accurately estimate the \gls{wcet}. Such interference affects the scheduler's ability to guarantee that tasks will meet their deadlines, thus compromising system reliability \cite{aceituno2023optimized, lugo2022survey}. Heterogeneous multi-core processors introduce additional challenges as well, since they present cores with different characteristics, demanding more sophisticated schedulers and closer attention from load balancing mechanisms. The dynamism and variation of tasks' workloads are another challenge, as tasks may evolve over time, changing their resource utilization and demands and requiring adaptive schedulers \cite{mrabet2024scheduling, jadon2024comprehensive}.
+
+% What people are doing and why it doesn't work
+% TODO: Cite and polish (This will be expanded with the paper that Leonardo presented and our findings from the previous papers)
+In recent years, several works have proposed the use of \glspl{pmc} in predictive algorithms, relying on hardware information to guide decisions. Most of these approaches rely on \gls{ml} techniques, however, they also report difficulties and pitfalls that hinder their adoption. \gls{ml} solutions usually introduce prohibitive overhead and fail to generalize well to new task-sets and platforms. Moreover, the use of \glspl{pmc} makes it difficult to design architecture-agnostic predictive algorithms. Although some works propose solutions to this issue, they remain limited by problems such as the divergence of \gls{pmc} semantics across architectures and the lack of counters in some platform implementations.
+
+% TODO: Cite and polish
+Considering this scenario, this dissertation addresses the main problems associated with the use of \glspl{pmc} in \gls{ml} algorithms, offering an analysis based on data collected from a \gls{rtos} running on RISC-V and ARM platforms. We also propose an architecture-agnostic solution that overcomes the identified problems and evaluate its performance using several real-time task-sets.
+
+% NOTE: ---- The updated part ends here ----
+
+\clearpage
 
 % SOTA
 Several works in the field of \gls{rtos} have proposed methods to solve pertinent problems introduced by multi-core systems, most of them in the context of embedded systems \cite{ismael2021scheduling}. Some works employ optimization methods based on \gls{ilp} or \gls{pso} in order to minimize interference and optimize load balance \cite{aceituno2023optimized, liu2021multi}. However, beyond the application of heuristics and classical optimization methods, \gls{ml} is also utilized.
