@@ -1,0 +1,29 @@
+[project]
+name = "epos-ann-scheduling-tools"
+version = "0.1.0"
+description = "Tool for managing datasets and training in the context of energy optimizer ANNs for EPOS"
+authors = [
+    {name = "Eric Fernandes Evaristo",email = "ericfernandes7@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "matplotlib (>=3.10.8,<4.0.0)",
+    "pydantic (>=2.12.5,<3.0.0)",
+    "pandas (>=3.0.1,<4.0.0)",
+    "pillow (>=12.1.1,<13.0.0)",
+    "scikit-learn (>=1.8.0,<2.0.0)",
+    "info-gain (>=1.0.1,<2.0.0)",
+    "pyqt6 (>=6.10.2,<7.0.0)",
+    "termcolor (>=3.3.0,<4.0.0)",
+    "plotly (>=6.7.0,<7.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+[tool.ruff]
+line-length = 120
+[tool.ruff.format]
+quote-style = "single"

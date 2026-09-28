@@ -1,0 +1,11 @@
+Prediction uses utilization, L2 counters, and L1/CPU counters to prediction utilization in lower CPU frequency. (e.g., if suffering from contention, can decrease frequency with low impact into performance)
+
+Problem at ANN entry:
+- L2 counters are global;
+- L1/CPU counters are invariable on job if code is the same, even if the utilization changes;
+
+therefore, a CPU Hungry task running parallel to a bandwidth will have high L2 counters. Nonetheless, dividing by CPU counters will let ANN to ignore L2 counters.
+
+A disparity running in parallel to a bandwidth will have high L2 counters, and we like that. However, CPU counters will be the same as the ones not running in parallel to a bandwidth.
+
+

@@ -1,0 +1,484 @@
+Total configurations to test: 21420
+Optimizing for: REAL_ACCURACY
+Starting parallel execution with 15 workers...
+
+[NEW BEST] real_accuracy: 0.62838 | Epochs: 1 | Off-LR: 0.01 | On-LR: 0.5 | Layers: []
+Progress: 50/21420 (0.2%) - 95.0 runs/sec - last real_accuracy: 0.06880
+Progress: 100/21420 (0.5%) - 153.9 runs/sec - last real_accuracy: 0.10764
+Progress: 150/21420 (0.7%) - 190.2 runs/sec - last real_accuracy: 0.14975
+Progress: 200/21420 (0.9%) - 216.4 runs/sec - last real_accuracy: 0.24761
+Progress: 250/21420 (1.2%) - 235.2 runs/sec - last real_accuracy: 0.24419
+Progress: 300/21420 (1.4%) - 250.8 runs/sec - last real_accuracy: 0.33158
+Progress: 350/21420 (1.6%) - 264.9 runs/sec - last real_accuracy: 0.31246
+Progress: 400/21420 (1.9%) - 274.4 runs/sec - last real_accuracy: 0.33925
+Progress: 450/21420 (2.1%) - 283.7 runs/sec - last real_accuracy: 0.38060
+Progress: 500/21420 (2.3%) - 291.4 runs/sec - last real_accuracy: 0.30642
+Progress: 550/21420 (2.6%) - 297.6 runs/sec - last real_accuracy: 0.41602
+
+[NEW BEST] real_accuracy: 0.68973 | Epochs: 1 | Off-LR: 0.05 | On-LR: 0.5 | Layers: []
+Progress: 600/21420 (2.8%) - 303.3 runs/sec - last real_accuracy: 0.07070
+Progress: 650/21420 (3.0%) - 306.8 runs/sec - last real_accuracy: 0.06919
+Progress: 700/21420 (3.3%) - 309.7 runs/sec - last real_accuracy: 0.17944
+Progress: 750/21420 (3.5%) - 312.4 runs/sec - last real_accuracy: 0.15019
+Progress: 800/21420 (3.7%) - 316.2 runs/sec - last real_accuracy: 0.21686
+Progress: 850/21420 (4.0%) - 318.3 runs/sec - last real_accuracy: 0.01567
+Progress: 900/21420 (4.2%) - 320.9 runs/sec - last real_accuracy: 0.23437
+Progress: 950/21420 (4.4%) - 323.6 runs/sec - last real_accuracy: 0.27649
+Progress: 1000/21420 (4.7%) - 326.6 runs/sec - last real_accuracy: 0.33465
+Progress: 1050/21420 (4.9%) - 328.6 runs/sec - last real_accuracy: 0.30541
+Progress: 1100/21420 (5.1%) - 330.1 runs/sec - last real_accuracy: 0.36826
+Progress: 1150/21420 (5.4%) - 332.6 runs/sec - last real_accuracy: 0.34296
+
+[NEW BEST] real_accuracy: 0.71178 | Epochs: 1 | Off-LR: 0.1 | On-LR: 0.5 | Layers: []
+Progress: 1200/21420 (5.6%) - 333.8 runs/sec - last real_accuracy: 0.06850
+Progress: 1250/21420 (5.8%) - 335.1 runs/sec - last real_accuracy: 0.10593
+Progress: 1300/21420 (6.1%) - 335.8 runs/sec - last real_accuracy: 0.14666
+Progress: 1350/21420 (6.3%) - 338.5 runs/sec - last real_accuracy: 0.14897
+Progress: 1400/21420 (6.5%) - 342.0 runs/sec - last real_accuracy: 0.18287
+Progress: 1450/21420 (6.8%) - 344.9 runs/sec - last real_accuracy: 0.42007
+Progress: 1500/21420 (7.0%) - 347.3 runs/sec - last real_accuracy: 0.32447
+Progress: 1550/21420 (7.2%) - 350.1 runs/sec - last real_accuracy: 0.33797
+Progress: 1600/21420 (7.5%) - 352.6 runs/sec - last real_accuracy: 0.27701
+Progress: 1650/21420 (7.7%) - 354.9 runs/sec - last real_accuracy: 0.33736
+Progress: 1700/21420 (7.9%) - 357.8 runs/sec - last real_accuracy: 0.39868
+Progress: 1750/21420 (8.2%) - 360.5 runs/sec - last real_accuracy: 0.34140
+Progress: 1800/21420 (8.4%) - 362.0 runs/sec - last real_accuracy: 0.10532
+Progress: 1850/21420 (8.6%) - 363.5 runs/sec - last real_accuracy: 0.10189
+Progress: 1900/21420 (8.9%) - 365.6 runs/sec - last real_accuracy: 0.17691
+Progress: 1950/21420 (9.1%) - 366.5 runs/sec - last real_accuracy: 0.20095
+Progress: 2000/21420 (9.3%) - 368.1 runs/sec - last real_accuracy: 0.28186
+Progress: 2050/21420 (9.6%) - 370.1 runs/sec - last real_accuracy: 0.33206
+Progress: 2100/21420 (9.8%) - 372.1 runs/sec - last real_accuracy: 0.29808
+Progress: 2150/21420 (10.0%) - 373.1 runs/sec - last real_accuracy: 0.36795
+Progress: 2200/21420 (10.3%) - 374.9 runs/sec - last real_accuracy: 0.27422
+Progress: 2250/21420 (10.5%) - 376.9 runs/sec - last real_accuracy: 0.37574
+Progress: 2300/21420 (10.7%) - 377.9 runs/sec - last real_accuracy: 0.56408
+Progress: 2350/21420 (11.0%) - 379.6 runs/sec - last real_accuracy: 0.43663
+Progress: 2400/21420 (11.2%) - 381.0 runs/sec - last real_accuracy: 0.06842
+Progress: 2450/21420 (11.4%) - 381.6 runs/sec - last real_accuracy: 0.12217
+Progress: 2500/21420 (11.7%) - 382.5 runs/sec - last real_accuracy: 0.14207
+Progress: 2550/21420 (11.9%) - 383.4 runs/sec - last real_accuracy: 0.44604
+Progress: 2600/21420 (12.1%) - 384.6 runs/sec - last real_accuracy: 0.23893
+Progress: 2650/21420 (12.4%) - 385.6 runs/sec - last real_accuracy: 0.26558
+Progress: 2700/21420 (12.6%) - 386.4 runs/sec - last real_accuracy: 0.29858
+Progress: 2750/21420 (12.8%) - 387.5 runs/sec - last real_accuracy: 0.32725
+Progress: 2800/21420 (13.1%) - 388.8 runs/sec - last real_accuracy: 0.32882
+Progress: 2850/21420 (13.3%) - 389.6 runs/sec - last real_accuracy: 0.40953
+Progress: 2900/21420 (13.5%) - 390.8 runs/sec - last real_accuracy: 0.45019
+Progress: 2950/21420 (13.8%) - 391.8 runs/sec - last real_accuracy: 0.41041
+Progress: 3000/21420 (14.0%) - 392.8 runs/sec - last real_accuracy: 0.09542
+Progress: 3050/21420 (14.2%) - 393.0 runs/sec - last real_accuracy: 0.11390
+Progress: 3100/21420 (14.5%) - 393.8 runs/sec - last real_accuracy: 0.13443
+Progress: 3150/21420 (14.7%) - 394.4 runs/sec - last real_accuracy: 0.60867
+Progress: 3200/21420 (14.9%) - 394.9 runs/sec - last real_accuracy: 0.21804
+Progress: 3250/21420 (15.2%) - 395.7 runs/sec - last real_accuracy: 0.28625
+Progress: 3300/21420 (15.4%) - 396.6 runs/sec - last real_accuracy: 0.30404
+Progress: 3350/21420 (15.6%) - 397.2 runs/sec - last real_accuracy: 0.33816
+Progress: 3400/21420 (15.9%) - 397.9 runs/sec - last real_accuracy: 0.29112
+
+[NEW BEST] real_accuracy: 0.72272 | Epochs: 1 | Off-LR: 0.5 | On-LR: 1.75 | Layers: [2]
+Progress: 3450/21420 (16.1%) - 398.7 runs/sec - last real_accuracy: 0.30101
+Progress: 3500/21420 (16.3%) - 399.7 runs/sec - last real_accuracy: 0.34092
+Progress: 3550/21420 (16.6%) - 400.2 runs/sec - last real_accuracy: 0.38900
+Progress: 3600/21420 (16.8%) - 400.4 runs/sec - last real_accuracy: 0.13596
+Progress: 3650/21420 (17.0%) - 400.0 runs/sec - last real_accuracy: 0.06855
+Progress: 3700/21420 (17.3%) - 399.9 runs/sec - last real_accuracy: 0.14799
+Progress: 3750/21420 (17.5%) - 399.5 runs/sec - last real_accuracy: 0.18286
+Progress: 3800/21420 (17.7%) - 399.5 runs/sec - last real_accuracy: 0.22057
+Progress: 3850/21420 (18.0%) - 399.4 runs/sec - last real_accuracy: 0.33038
+Progress: 3900/21420 (18.2%) - 399.3 runs/sec - last real_accuracy: 0.23554
+Progress: 3950/21420 (18.4%) - 399.2 runs/sec - last real_accuracy: 0.33822
+Progress: 4000/21420 (18.7%) - 399.5 runs/sec - last real_accuracy: 0.31269
+Progress: 4050/21420 (18.9%) - 399.2 runs/sec - last real_accuracy: 0.41992
+Progress: 4100/21420 (19.1%) - 399.5 runs/sec - last real_accuracy: 0.37130
+Progress: 4150/21420 (19.4%) - 399.4 runs/sec - last real_accuracy: 0.43689
+Progress: 4200/21420 (19.6%) - 399.3 runs/sec - last real_accuracy: 0.06840
+Progress: 4250/21420 (19.8%) - 398.9 runs/sec - last real_accuracy: 0.70093
+Progress: 4300/21420 (20.1%) - 398.8 runs/sec - last real_accuracy: 0.17668
+Progress: 4350/21420 (20.3%) - 398.6 runs/sec - last real_accuracy: 0.22287
+Progress: 4400/21420 (20.5%) - 398.3 runs/sec - last real_accuracy: 0.27876
+Progress: 4450/21420 (20.8%) - 398.5 runs/sec - last real_accuracy: 0.23406
+Progress: 4500/21420 (21.0%) - 398.1 runs/sec - last real_accuracy: 0.29188
+Progress: 4550/21420 (21.2%) - 398.2 runs/sec - last real_accuracy: 0.37352
+Progress: 4600/21420 (21.5%) - 398.2 runs/sec - last real_accuracy: 0.41826
+Progress: 4650/21420 (21.7%) - 398.4 runs/sec - last real_accuracy: 0.30632
+Progress: 4700/21420 (21.9%) - 398.4 runs/sec - last real_accuracy: 0.37427
+Progress: 4750/21420 (22.2%) - 398.5 runs/sec - last real_accuracy: 0.40597
+Progress: 4800/21420 (22.4%) - 398.4 runs/sec - last real_accuracy: 0.06844
+Progress: 4850/21420 (22.6%) - 397.9 runs/sec - last real_accuracy: 0.49888
+Progress: 4900/21420 (22.9%) - 397.9 runs/sec - last real_accuracy: 0.14774
+Progress: 4950/21420 (23.1%) - 397.8 runs/sec - last real_accuracy: 0.22050
+Progress: 5000/21420 (23.3%) - 397.6 runs/sec - last real_accuracy: 0.22582
+Progress: 5050/21420 (23.6%) - 397.5 runs/sec - last real_accuracy: 0.26490
+Progress: 5100/21420 (23.8%) - 397.6 runs/sec - last real_accuracy: 0.32184
+Progress: 5150/21420 (24.0%) - 397.8 runs/sec - last real_accuracy: 0.36425
+Progress: 5200/21420 (24.3%) - 397.5 runs/sec - last real_accuracy: 0.33965
+Progress: 5250/21420 (24.5%) - 397.5 runs/sec - last real_accuracy: 0.30855
+Progress: 5300/21420 (24.7%) - 397.8 runs/sec - last real_accuracy: 0.36590
+Progress: 5350/21420 (25.0%) - 397.4 runs/sec - last real_accuracy: 0.40403
+Progress: 5400/21420 (25.2%) - 397.5 runs/sec - last real_accuracy: 0.09805
+Progress: 5450/21420 (25.4%) - 397.3 runs/sec - last real_accuracy: 0.09888
+Progress: 5500/21420 (25.7%) - 397.1 runs/sec - last real_accuracy: 0.14108
+
+[NEW BEST] real_accuracy: 0.76375 | Epochs: 5 | Off-LR: 0.2 | On-LR: 1.0 | Layers: [2]
+Progress: 5550/21420 (25.9%) - 396.9 runs/sec - last real_accuracy: 0.27270
+Progress: 5600/21420 (26.1%) - 396.8 runs/sec - last real_accuracy: 0.20903
+
+[NEW BEST] real_accuracy: 0.78843 | Epochs: 5 | Off-LR: 0.2 | On-LR: 1.25 | Layers: [2]
+
+[NEW BEST] real_accuracy: 0.78901 | Epochs: 5 | Off-LR: 0.2 | On-LR: 1.25 | Layers: [1]
+Progress: 5650/21420 (26.4%) - 397.0 runs/sec - last real_accuracy: 0.29067
+
+[NEW BEST] real_accuracy: 0.81144 | Epochs: 5 | Off-LR: 0.2 | On-LR: 1.5 | Layers: [1]
+Progress: 5700/21420 (26.6%) - 396.9 runs/sec - last real_accuracy: 0.27635
+Progress: 5750/21420 (26.8%) - 397.1 runs/sec - last real_accuracy: 0.34911
+Progress: 5800/21420 (27.1%) - 397.0 runs/sec - last real_accuracy: 0.33346
+Progress: 5850/21420 (27.3%) - 396.9 runs/sec - last real_accuracy: 0.38662
+Progress: 5900/21420 (27.5%) - 397.1 runs/sec - last real_accuracy: 0.42965
+Progress: 5950/21420 (27.8%) - 397.0 runs/sec - last real_accuracy: 0.36169
+Progress: 6000/21420 (28.0%) - 396.9 runs/sec - last real_accuracy: 0.09822
+Progress: 6050/21420 (28.2%) - 396.6 runs/sec - last real_accuracy: 0.09756
+Progress: 6100/21420 (28.5%) - 396.4 runs/sec - last real_accuracy: 0.14912
+Progress: 6150/21420 (28.7%) - 396.3 runs/sec - last real_accuracy: 0.24598
+Progress: 6200/21420 (28.9%) - 396.2 runs/sec - last real_accuracy: 0.22034
+
+[NEW BEST] real_accuracy: 0.81830 | Epochs: 5 | Off-LR: 0.35 | On-LR: 1.25 | Layers: [2]
+Progress: 6250/21420 (29.2%) - 396.2 runs/sec - last real_accuracy: 0.29900
+
+[NEW BEST] real_accuracy: 0.81987 | Epochs: 5 | Off-LR: 0.35 | On-LR: 1.5 | Layers: [1]
+Progress: 6300/21420 (29.4%) - 396.1 runs/sec - last real_accuracy: 0.26073
+Progress: 6350/21420 (29.6%) - 396.2 runs/sec - last real_accuracy: 0.26131
+Progress: 6400/21420 (29.9%) - 396.3 runs/sec - last real_accuracy: 0.38411
+Progress: 6450/21420 (30.1%) - 396.3 runs/sec - last real_accuracy: 0.34537
+Progress: 6500/21420 (30.3%) - 396.3 runs/sec - last real_accuracy: 0.35612
+Progress: 6550/21420 (30.6%) - 396.5 runs/sec - last real_accuracy: 0.36879
+Progress: 6600/21420 (30.8%) - 396.2 runs/sec - last real_accuracy: 0.07150
+Progress: 6650/21420 (31.0%) - 396.0 runs/sec - last real_accuracy: 0.11187
+Progress: 6700/21420 (31.3%) - 395.8 runs/sec - last real_accuracy: 0.09453
+Progress: 6750/21420 (31.5%) - 395.8 runs/sec - last real_accuracy: 0.17963
+Progress: 6800/21420 (31.7%) - 395.6 runs/sec - last real_accuracy: 0.19130
+Progress: 6850/21420 (32.0%) - 395.7 runs/sec - last real_accuracy: 0.26735
+Progress: 6900/21420 (32.2%) - 395.7 runs/sec - last real_accuracy: 0.33676
+Progress: 6950/21420 (32.4%) - 395.6 runs/sec - last real_accuracy: 0.28714
+Progress: 7000/21420 (32.7%) - 395.7 runs/sec - last real_accuracy: 0.29309
+Progress: 7050/21420 (32.9%) - 395.6 runs/sec - last real_accuracy: 0.32295
+Progress: 7100/21420 (33.1%) - 395.7 runs/sec - last real_accuracy: 0.38381
+Progress: 7150/21420 (33.4%) - 395.7 runs/sec - last real_accuracy: 0.10568
+Progress: 7200/21420 (33.6%) - 395.1 runs/sec - last real_accuracy: 0.08417
+Progress: 7250/21420 (33.8%) - 394.6 runs/sec - last real_accuracy: 0.20538
+Progress: 7300/21420 (34.1%) - 394.0 runs/sec - last real_accuracy: 0.10222
+Progress: 7350/21420 (34.3%) - 393.5 runs/sec - last real_accuracy: 0.24935
+Progress: 7400/21420 (34.5%) - 393.1 runs/sec - last real_accuracy: 0.27383
+Progress: 7450/21420 (34.8%) - 392.7 runs/sec - last real_accuracy: 0.27252
+Progress: 7500/21420 (35.0%) - 392.4 runs/sec - last real_accuracy: 0.30628
+Progress: 7550/21420 (35.2%) - 392.0 runs/sec - last real_accuracy: 0.36224
+Progress: 7600/21420 (35.5%) - 391.7 runs/sec - last real_accuracy: 0.30402
+Progress: 7650/21420 (35.7%) - 391.3 runs/sec - last real_accuracy: 0.36771
+Progress: 7700/21420 (35.9%) - 391.0 runs/sec - last real_accuracy: 0.36910
+Progress: 7750/21420 (36.2%) - 390.5 runs/sec - last real_accuracy: 0.12503
+Progress: 7800/21420 (36.4%) - 390.0 runs/sec - last real_accuracy: 0.13851
+Progress: 7850/21420 (36.6%) - 389.7 runs/sec - last real_accuracy: 0.20454
+Progress: 7900/21420 (36.9%) - 389.1 runs/sec - last real_accuracy: 0.14742
+Progress: 7950/21420 (37.1%) - 388.8 runs/sec - last real_accuracy: 0.25249
+Progress: 8000/21420 (37.3%) - 388.5 runs/sec - last real_accuracy: 0.23547
+Progress: 8050/21420 (37.6%) - 388.2 runs/sec - last real_accuracy: 0.26853
+Progress: 8100/21420 (37.8%) - 387.8 runs/sec - last real_accuracy: 0.33847
+Progress: 8150/21420 (38.0%) - 387.4 runs/sec - last real_accuracy: 0.27359
+Progress: 8200/21420 (38.3%) - 387.3 runs/sec - last real_accuracy: 0.41342
+Progress: 8250/21420 (38.5%) - 386.9 runs/sec - last real_accuracy: 0.34764
+Progress: 8300/21420 (38.7%) - 386.7 runs/sec - last real_accuracy: 0.37974
+Progress: 8350/21420 (39.0%) - 386.4 runs/sec - last real_accuracy: 0.11978
+Progress: 8400/21420 (39.2%) - 385.9 runs/sec - last real_accuracy: 0.12647
+Progress: 8450/21420 (39.4%) - 385.5 runs/sec - last real_accuracy: 0.19661
+Progress: 8500/21420 (39.7%) - 385.2 runs/sec - last real_accuracy: 0.76254
+Progress: 8550/21420 (39.9%) - 384.8 runs/sec - last real_accuracy: 0.18133
+Progress: 8600/21420 (40.1%) - 384.6 runs/sec - last real_accuracy: 0.23582
+Progress: 8650/21420 (40.4%) - 384.2 runs/sec - last real_accuracy: 0.28889
+Progress: 8700/21420 (40.6%) - 384.1 runs/sec - last real_accuracy: 0.36063
+Progress: 8750/21420 (40.8%) - 383.6 runs/sec - last real_accuracy: 0.29859
+Progress: 8800/21420 (41.1%) - 383.5 runs/sec - last real_accuracy: 0.37545
+Progress: 8850/21420 (41.3%) - 383.3 runs/sec - last real_accuracy: 0.45142
+Progress: 8900/21420 (41.5%) - 383.0 runs/sec - last real_accuracy: 0.41109
+Progress: 8950/21420 (41.8%) - 382.8 runs/sec - last real_accuracy: 0.06705
+Progress: 9000/21420 (42.0%) - 382.3 runs/sec - last real_accuracy: 0.11556
+Progress: 9050/21420 (42.3%) - 382.1 runs/sec - last real_accuracy: 0.12828
+Progress: 9100/21420 (42.5%) - 381.8 runs/sec - last real_accuracy: 0.77719
+Progress: 9150/21420 (42.7%) - 381.4 runs/sec - last real_accuracy: 0.18034
+Progress: 9200/21420 (43.0%) - 381.2 runs/sec - last real_accuracy: 0.29750
+Progress: 9250/21420 (43.2%) - 380.8 runs/sec - last real_accuracy: 0.23540
+Progress: 9300/21420 (43.4%) - 380.3 runs/sec - last real_accuracy: 0.28802
+Progress: 9350/21420 (43.7%) - 380.0 runs/sec - last real_accuracy: 0.77622
+Progress: 9400/21420 (43.9%) - 379.9 runs/sec - last real_accuracy: 0.29947
+Progress: 9450/21420 (44.1%) - 379.7 runs/sec - last real_accuracy: 0.35897
+Progress: 9500/21420 (44.4%) - 379.5 runs/sec - last real_accuracy: 0.35815
+Progress: 9550/21420 (44.6%) - 379.2 runs/sec - last real_accuracy: 0.06314
+Progress: 9600/21420 (44.8%) - 378.8 runs/sec - last real_accuracy: 0.06315
+Progress: 9650/21420 (45.1%) - 378.7 runs/sec - last real_accuracy: 0.10381
+Progress: 9700/21420 (45.3%) - 378.3 runs/sec - last real_accuracy: 0.23750
+Progress: 9750/21420 (45.5%) - 378.0 runs/sec - last real_accuracy: 0.16625
+Progress: 9800/21420 (45.8%) - 377.8 runs/sec - last real_accuracy: 0.22382
+Progress: 9850/21420 (46.0%) - 377.6 runs/sec - last real_accuracy: 0.22276
+
+[NEW BEST] real_accuracy: 0.82296 | Epochs: 10 | Off-LR: 0.35 | On-LR: 1.5 | Layers: [1]
+Progress: 9900/21420 (46.2%) - 377.5 runs/sec - last real_accuracy: 0.25681
+Progress: 9950/21420 (46.5%) - 377.3 runs/sec - last real_accuracy: 0.73857
+Progress: 10000/21420 (46.7%) - 377.0 runs/sec - last real_accuracy: 0.32094
+Progress: 10050/21420 (46.9%) - 376.9 runs/sec - last real_accuracy: 0.51147
+Progress: 10100/21420 (47.2%) - 376.7 runs/sec - last real_accuracy: 0.35091
+Progress: 10150/21420 (47.4%) - 376.6 runs/sec - last real_accuracy: 0.06919
+Progress: 10200/21420 (47.6%) - 376.2 runs/sec - last real_accuracy: 0.06579
+Progress: 10250/21420 (47.9%) - 376.0 runs/sec - last real_accuracy: 0.08583
+
+[NEW BEST] real_accuracy: 0.85389 | Epochs: 10 | Off-LR: 0.5 | On-LR: 1.0 | Layers: [2, 4]
+Progress: 10300/21420 (48.1%) - 375.7 runs/sec - last real_accuracy: 0.66160
+Progress: 10350/21420 (48.3%) - 375.5 runs/sec - last real_accuracy: 0.18769
+
+[NEW BEST] real_accuracy: 0.87620 | Epochs: 10 | Off-LR: 0.5 | On-LR: 1.25 | Layers: [2, 4]
+Progress: 10400/21420 (48.6%) - 375.3 runs/sec - last real_accuracy: 0.20945
+Progress: 10450/21420 (48.8%) - 374.9 runs/sec - last real_accuracy: 0.00760
+
+[NEW BEST] real_accuracy: 0.88637 | Epochs: 10 | Off-LR: 0.5 | On-LR: 1.5 | Layers: [2, 4]
+Progress: 10500/21420 (49.0%) - 374.9 runs/sec - last real_accuracy: 0.25151
+Progress: 10550/21420 (49.3%) - 374.7 runs/sec - last real_accuracy: 0.82560
+Progress: 10600/21420 (49.5%) - 374.5 runs/sec - last real_accuracy: 0.30643
+Progress: 10650/21420 (49.7%) - 374.4 runs/sec - last real_accuracy: 0.33490
+Progress: 10700/21420 (50.0%) - 374.3 runs/sec - last real_accuracy: 0.33494
+Progress: 10750/21420 (50.2%) - 370.3 runs/sec - last real_accuracy: 0.09954
+Progress: 10800/21420 (50.4%) - 365.5 runs/sec - last real_accuracy: 0.13431
+Progress: 10850/21420 (50.7%) - 361.3 runs/sec - last real_accuracy: 0.17763
+Progress: 10900/21420 (50.9%) - 357.0 runs/sec - last real_accuracy: 0.22197
+Progress: 10950/21420 (51.1%) - 352.7 runs/sec - last real_accuracy: 0.24573
+Progress: 11000/21420 (51.4%) - 349.1 runs/sec - last real_accuracy: 0.23258
+Progress: 11050/21420 (51.6%) - 344.9 runs/sec - last real_accuracy: 0.74661
+Progress: 11100/21420 (51.8%) - 341.5 runs/sec - last real_accuracy: 0.27453
+Progress: 11150/21420 (52.1%) - 338.0 runs/sec - last real_accuracy: 0.30791
+Progress: 11200/21420 (52.3%) - 334.1 runs/sec - last real_accuracy: 0.36963
+Progress: 11250/21420 (52.5%) - 331.1 runs/sec - last real_accuracy: 0.34154
+Progress: 11300/21420 (52.8%) - 327.5 runs/sec - last real_accuracy: 0.70484
+Progress: 11350/21420 (53.0%) - 324.7 runs/sec - last real_accuracy: 0.09485
+Progress: 11400/21420 (53.2%) - 321.6 runs/sec - last real_accuracy: 0.71956
+Progress: 11450/21420 (53.5%) - 318.2 runs/sec - last real_accuracy: 0.19593
+Progress: 11500/21420 (53.7%) - 315.5 runs/sec - last real_accuracy: 0.24140
+Progress: 11550/21420 (53.9%) - 312.1 runs/sec - last real_accuracy: 0.17778
+Progress: 11600/21420 (54.2%) - 309.9 runs/sec - last real_accuracy: 0.28917
+Progress: 11650/21420 (54.4%) - 306.9 runs/sec - last real_accuracy: 0.74068
+Progress: 11700/21420 (54.6%) - 304.4 runs/sec - last real_accuracy: 0.33452
+Progress: 11750/21420 (54.9%) - 301.9 runs/sec - last real_accuracy: 0.33791
+Progress: 11800/21420 (55.1%) - 299.2 runs/sec - last real_accuracy: 0.34044
+Progress: 11850/21420 (55.3%) - 296.8 runs/sec - last real_accuracy: 0.34325
+Progress: 11900/21420 (55.6%) - 294.2 runs/sec - last real_accuracy: 0.33576
+Progress: 11950/21420 (55.8%) - 292.0 runs/sec - last real_accuracy: 0.06430
+Progress: 12000/21420 (56.0%) - 289.7 runs/sec - last real_accuracy: 0.85425
+Progress: 12050/21420 (56.3%) - 287.4 runs/sec - last real_accuracy: 0.13214
+
+[NEW BEST] real_accuracy: 0.89295 | Epochs: 100 | Off-LR: 0.1 | On-LR: 1.0 | Layers: [2, 1]
+
+[NEW BEST] real_accuracy: 0.89836 | Epochs: 100 | Off-LR: 0.1 | On-LR: 1.0 | Layers: [3, 3]
+
+[NEW BEST] real_accuracy: 0.90171 | Epochs: 100 | Off-LR: 0.1 | On-LR: 1.0 | Layers: [4, 1]
+Progress: 12100/21420 (56.5%) - 285.4 runs/sec - last real_accuracy: 0.21668
+Progress: 12150/21420 (56.7%) - 283.1 runs/sec - last real_accuracy: 0.23299
+
+[NEW BEST] real_accuracy: 0.91348 | Epochs: 100 | Off-LR: 0.1 | On-LR: 1.25 | Layers: [2, 1]
+
+[NEW BEST] real_accuracy: 0.91388 | Epochs: 100 | Off-LR: 0.1 | On-LR: 1.25 | Layers: [4, 1]
+Progress: 12200/21420 (57.0%) - 281.2 runs/sec - last real_accuracy: 0.26835
+
+[NEW BEST] real_accuracy: 0.92114 | Epochs: 100 | Off-LR: 0.1 | On-LR: 1.5 | Layers: [2, 1]
+Progress: 12250/21420 (57.2%) - 279.1 runs/sec - last real_accuracy: 0.26834
+
+[NEW BEST] real_accuracy: 0.92959 | Epochs: 100 | Off-LR: 0.1 | On-LR: 1.5 | Layers: [4, 1]
+Progress: 12300/21420 (57.4%) - 277.1 runs/sec - last real_accuracy: 0.30377
+Progress: 12350/21420 (57.7%) - 275.3 runs/sec - last real_accuracy: 0.90168
+Progress: 12400/21420 (57.9%) - 273.1 runs/sec - last real_accuracy: 0.29584
+Progress: 12450/21420 (58.1%) - 271.4 runs/sec - last real_accuracy: 0.37174
+Progress: 12500/21420 (58.4%) - 269.5 runs/sec - last real_accuracy: 0.38048
+Progress: 12550/21420 (58.6%) - 267.6 runs/sec - last real_accuracy: 0.06607
+Progress: 12600/21420 (58.8%) - 265.7 runs/sec - last real_accuracy: 0.77126
+Progress: 12650/21420 (59.1%) - 263.9 runs/sec - last real_accuracy: 0.09350
+Progress: 12700/21420 (59.3%) - 262.3 runs/sec - last real_accuracy: 0.17618
+Progress: 12750/21420 (59.5%) - 260.5 runs/sec - last real_accuracy: 0.89556
+Progress: 12800/21420 (59.8%) - 259.0 runs/sec - last real_accuracy: 0.20430
+Progress: 12850/21420 (60.0%) - 257.4 runs/sec - last real_accuracy: 0.88480
+Progress: 12900/21420 (60.2%) - 255.8 runs/sec - last real_accuracy: 0.24934
+Progress: 12950/21420 (60.5%) - 254.4 runs/sec - last real_accuracy: 0.30616
+Progress: 13000/21420 (60.7%) - 252.8 runs/sec - last real_accuracy: 0.71217
+Progress: 13050/21420 (60.9%) - 251.4 runs/sec - last real_accuracy: 0.34668
+Progress: 13100/21420 (61.2%) - 250.0 runs/sec - last real_accuracy: 0.70370
+Progress: 13150/21420 (61.4%) - 248.6 runs/sec - last real_accuracy: 0.81198
+Progress: 13200/21420 (61.6%) - 247.3 runs/sec - last real_accuracy: 0.78911
+Progress: 13250/21420 (61.9%) - 245.8 runs/sec - last real_accuracy: 0.07957
+Progress: 13300/21420 (62.1%) - 244.6 runs/sec - last real_accuracy: 0.85377
+Progress: 13350/21420 (62.3%) - 243.1 runs/sec - last real_accuracy: 0.87344
+Progress: 13400/21420 (62.6%) - 242.0 runs/sec - last real_accuracy: 0.20154
+Progress: 13450/21420 (62.8%) - 240.6 runs/sec - last real_accuracy: 0.78432
+Progress: 13500/21420 (63.0%) - 239.4 runs/sec - last real_accuracy: 0.89604
+Progress: 13550/21420 (63.3%) - 238.2 runs/sec - last real_accuracy: 0.27991
+
+[NEW BEST] real_accuracy: 0.93326 | Epochs: 100 | Off-LR: 0.35 | On-LR: 1.75 | Layers: [3, 1, 3]
+Progress: 13600/21420 (63.5%) - 236.9 runs/sec - last real_accuracy: 0.68770
+Progress: 13650/21420 (63.7%) - 235.9 runs/sec - last real_accuracy: 0.81382
+Progress: 13700/21420 (64.0%) - 234.7 runs/sec - last real_accuracy: 0.67843
+Progress: 13750/21420 (64.2%) - 233.5 runs/sec - last real_accuracy: 0.71275
+Progress: 13800/21420 (64.4%) - 232.5 runs/sec - last real_accuracy: 0.07864
+Progress: 13850/21420 (64.7%) - 231.3 runs/sec - last real_accuracy: 0.84623
+Progress: 13900/21420 (64.9%) - 230.4 runs/sec - last real_accuracy: 0.82028
+Progress: 13950/21420 (65.1%) - 229.3 runs/sec - last real_accuracy: 0.81081
+Progress: 14000/21420 (65.4%) - 228.3 runs/sec - last real_accuracy: 0.87211
+Progress: 14050/21420 (65.6%) - 227.3 runs/sec - last real_accuracy: 0.82191
+Progress: 14100/21420 (65.8%) - 226.2 runs/sec - last real_accuracy: 0.92112
+Progress: 14150/21420 (66.1%) - 225.3 runs/sec - last real_accuracy: 0.86348
+Progress: 14200/21420 (66.3%) - 224.3 runs/sec - last real_accuracy: 0.82968
+Progress: 14250/21420 (66.5%) - 223.4 runs/sec - last real_accuracy: 0.87669
+Progress: 14300/21420 (66.8%) - 217.4 runs/sec - last real_accuracy: 0.82128
+Progress: 14350/21420 (67.0%) - 205.0 runs/sec - last real_accuracy: 0.09891
+Progress: 14400/21420 (67.2%) - 195.6 runs/sec - last real_accuracy: 0.10077
+Progress: 14450/21420 (67.5%) - 185.4 runs/sec - last real_accuracy: 0.14131
+Progress: 14500/21420 (67.7%) - 177.5 runs/sec - last real_accuracy: 0.24082
+Progress: 14550/21420 (67.9%) - 169.8 runs/sec - last real_accuracy: 0.87704
+Progress: 14600/21420 (68.2%) - 162.5 runs/sec - last real_accuracy: 0.23292
+Progress: 14650/21420 (68.4%) - 156.7 runs/sec - last real_accuracy: 0.36046
+Progress: 14700/21420 (68.6%) - 150.1 runs/sec - last real_accuracy: 0.79870
+Progress: 14750/21420 (68.9%) - 145.3 runs/sec - last real_accuracy: 0.30581
+Progress: 14800/21420 (69.1%) - 140.2 runs/sec - last real_accuracy: 0.39197
+Progress: 14850/21420 (69.3%) - 135.5 runs/sec - last real_accuracy: 0.34061
+Progress: 14900/21420 (69.6%) - 131.5 runs/sec - last real_accuracy: 0.07823
+Progress: 14950/21420 (69.8%) - 127.2 runs/sec - last real_accuracy: 0.81064
+Progress: 15000/21420 (70.0%) - 123.8 runs/sec - last real_accuracy: 0.11037
+Progress: 15050/21420 (70.3%) - 120.0 runs/sec - last real_accuracy: 0.82568
+Progress: 15100/21420 (70.5%) - 116.9 runs/sec - last real_accuracy: 0.17813
+Progress: 15150/21420 (70.7%) - 113.6 runs/sec - last real_accuracy: 0.86606
+Progress: 15200/21420 (71.0%) - 110.5 runs/sec - last real_accuracy: 0.90093
+Progress: 15250/21420 (71.2%) - 108.1 runs/sec - last real_accuracy: 0.89247
+Progress: 15300/21420 (71.4%) - 105.3 runs/sec - last real_accuracy: 0.91147
+Progress: 15350/21420 (71.7%) - 102.9 runs/sec - last real_accuracy: 0.29526
+Progress: 15400/21420 (71.9%) - 100.5 runs/sec - last real_accuracy: 0.82779
+Progress: 15450/21420 (72.1%) - 98.2 runs/sec - last real_accuracy: 0.31737
+Progress: 15500/21420 (72.4%) - 96.2 runs/sec - last real_accuracy: 0.61319
+Progress: 15550/21420 (72.6%) - 93.9 runs/sec - last real_accuracy: 0.70622
+Progress: 15600/21420 (72.8%) - 92.3 runs/sec - last real_accuracy: 0.68732
+Progress: 15650/21420 (73.1%) - 90.3 runs/sec - last real_accuracy: 0.85555
+Progress: 15700/21420 (73.3%) - 88.5 runs/sec - last real_accuracy: 0.82759
+Progress: 15750/21420 (73.5%) - 87.0 runs/sec - last real_accuracy: 0.78523
+Progress: 15800/21420 (73.8%) - 85.2 runs/sec - last real_accuracy: 0.81822
+Progress: 15850/21420 (74.0%) - 83.8 runs/sec - last real_accuracy: 0.75597
+Progress: 15900/21420 (74.2%) - 82.2 runs/sec - last real_accuracy: 0.84230
+Progress: 15950/21420 (74.5%) - 80.8 runs/sec - last real_accuracy: 0.84735
+Progress: 16000/21420 (74.7%) - 79.4 runs/sec - last real_accuracy: 0.77330
+Progress: 16050/21420 (74.9%) - 78.1 runs/sec - last real_accuracy: 0.84460
+Progress: 16100/21420 (75.2%) - 76.9 runs/sec - last real_accuracy: 0.71635
+Progress: 16150/21420 (75.4%) - 75.5 runs/sec - last real_accuracy: 0.80282
+Progress: 16200/21420 (75.6%) - 74.5 runs/sec - last real_accuracy: 0.78711
+Progress: 16250/21420 (75.9%) - 73.3 runs/sec - last real_accuracy: 0.73798
+Progress: 16300/21420 (76.1%) - 72.2 runs/sec - last real_accuracy: 0.76833
+Progress: 16350/21420 (76.3%) - 71.1 runs/sec - last real_accuracy: 0.80671
+Progress: 16400/21420 (76.6%) - 70.0 runs/sec - last real_accuracy: 0.82202
+Progress: 16450/21420 (76.8%) - 69.1 runs/sec - last real_accuracy: 0.87306
+Progress: 16500/21420 (77.0%) - 68.1 runs/sec - last real_accuracy: 0.76493
+Progress: 16550/21420 (77.3%) - 67.2 runs/sec - last real_accuracy: 0.86606
+Progress: 16600/21420 (77.5%) - 66.3 runs/sec - last real_accuracy: 0.72201
+Progress: 16650/21420 (77.7%) - 65.4 runs/sec - last real_accuracy: 0.81108
+Progress: 16700/21420 (78.0%) - 64.6 runs/sec - last real_accuracy: 0.34777
+Progress: 16750/21420 (78.2%) - 63.8 runs/sec - last real_accuracy: 0.76720
+Progress: 16800/21420 (78.4%) - 63.0 runs/sec - last real_accuracy: 0.73783
+Progress: 16850/21420 (78.7%) - 62.2 runs/sec - last real_accuracy: 0.69130
+Progress: 16900/21420 (78.9%) - 61.4 runs/sec - last real_accuracy: 0.60679
+Progress: 16950/21420 (79.1%) - 60.8 runs/sec - last real_accuracy: 0.52295
+Progress: 17000/21420 (79.4%) - 60.0 runs/sec - last real_accuracy: 0.86996
+Progress: 17050/21420 (79.6%) - 59.4 runs/sec - last real_accuracy: 0.84304
+Progress: 17100/21420 (79.8%) - 58.7 runs/sec - last real_accuracy: 0.74153
+Progress: 17150/21420 (80.1%) - 58.0 runs/sec - last real_accuracy: 0.83196
+Progress: 17200/21420 (80.3%) - 57.4 runs/sec - last real_accuracy: 0.67320
+Progress: 17250/21420 (80.5%) - 56.8 runs/sec - last real_accuracy: 0.73998
+Progress: 17300/21420 (80.8%) - 56.3 runs/sec - last real_accuracy: 0.33660
+Progress: 17350/21420 (81.0%) - 55.6 runs/sec - last real_accuracy: 0.71202
+Progress: 17400/21420 (81.2%) - 55.1 runs/sec - last real_accuracy: 0.70763
+Progress: 17450/21420 (81.5%) - 54.6 runs/sec - last real_accuracy: 0.55615
+Progress: 17500/21420 (81.7%) - 54.0 runs/sec - last real_accuracy: 0.01365
+Progress: 17550/21420 (81.9%) - 53.5 runs/sec - last real_accuracy: 0.52886
+Progress: 17600/21420 (82.2%) - 53.0 runs/sec - last real_accuracy: 0.80473
+Progress: 17650/21420 (82.4%) - 52.5 runs/sec - last real_accuracy: 0.58301
+Progress: 17700/21420 (82.6%) - 52.0 runs/sec - last real_accuracy: 0.81741
+Progress: 17750/21420 (82.9%) - 51.6 runs/sec - last real_accuracy: 0.87626
+Progress: 17800/21420 (83.1%) - 51.1 runs/sec - last real_accuracy: 0.56996
+Progress: 17850/21420 (83.3%) - 50.6 runs/sec - last real_accuracy: 0.77473
+Progress: 17900/21420 (83.6%) - 48.1 runs/sec - last real_accuracy: 0.06678
+Progress: 17950/21420 (83.8%) - 45.8 runs/sec - last real_accuracy: 0.79396
+Progress: 18000/21420 (84.0%) - 43.5 runs/sec - last real_accuracy: 0.09600
+Progress: 18050/21420 (84.3%) - 41.8 runs/sec - last real_accuracy: 0.24931
+Progress: 18100/21420 (84.5%) - 40.0 runs/sec - last real_accuracy: 0.17598
+Progress: 18150/21420 (84.7%) - 38.5 runs/sec - last real_accuracy: 0.30487
+Progress: 18200/21420 (85.0%) - 37.1 runs/sec - last real_accuracy: 0.86430
+Progress: 18250/21420 (85.2%) - 35.8 runs/sec - last real_accuracy: 0.32183
+Progress: 18300/21420 (85.4%) - 34.6 runs/sec - last real_accuracy: 0.39240
+Progress: 18350/21420 (85.7%) - 33.3 runs/sec - last real_accuracy: 0.00000
+Progress: 18400/21420 (85.9%) - 32.4 runs/sec - last real_accuracy: 0.39016
+Progress: 18450/21420 (86.1%) - 31.3 runs/sec - last real_accuracy: 0.40154
+Progress: 18500/21420 (86.4%) - 30.4 runs/sec - last real_accuracy: 0.60088
+Progress: 18550/21420 (86.6%) - 29.5 runs/sec - last real_accuracy: 0.69054
+Progress: 18600/21420 (86.8%) - 28.6 runs/sec - last real_accuracy: 0.83182
+Progress: 18650/21420 (87.1%) - 27.9 runs/sec - last real_accuracy: 0.76193
+Progress: 18700/21420 (87.3%) - 27.1 runs/sec - last real_accuracy: 0.80842
+Progress: 18750/21420 (87.5%) - 26.4 runs/sec - last real_accuracy: 0.76552
+Progress: 18800/21420 (87.8%) - 25.7 runs/sec - last real_accuracy: 0.81998
+Progress: 18850/21420 (88.0%) - 25.1 runs/sec - last real_accuracy: 0.84830
+Progress: 18900/21420 (88.2%) - 24.6 runs/sec - last real_accuracy: 0.73249
+Progress: 18950/21420 (88.5%) - 24.0 runs/sec - last real_accuracy: 0.84957
+Progress: 19000/21420 (88.7%) - 23.5 runs/sec - last real_accuracy: 0.68418
+Progress: 19050/21420 (88.9%) - 22.9 runs/sec - last real_accuracy: 0.64790
+Progress: 19100/21420 (89.2%) - 22.5 runs/sec - last real_accuracy: 0.75697
+Progress: 19150/21420 (89.4%) - 22.0 runs/sec - last real_accuracy: 0.60527
+Progress: 19200/21420 (89.6%) - 21.6 runs/sec - last real_accuracy: 0.19176
+Progress: 19250/21420 (89.9%) - 21.2 runs/sec - last real_accuracy: 0.78707
+Progress: 19300/21420 (90.1%) - 20.8 runs/sec - last real_accuracy: 0.77590
+Progress: 19350/21420 (90.3%) - 20.4 runs/sec - last real_accuracy: 0.74293
+Progress: 19400/21420 (90.6%) - 20.0 runs/sec - last real_accuracy: 0.71004
+Progress: 19450/21420 (90.8%) - 19.6 runs/sec - last real_accuracy: 0.87609
+Progress: 19500/21420 (91.0%) - 19.3 runs/sec - last real_accuracy: 0.69828
+Progress: 19550/21420 (91.3%) - 19.0 runs/sec - last real_accuracy: 0.73724
+Progress: 19600/21420 (91.5%) - 18.7 runs/sec - last real_accuracy: 0.68926
+Progress: 19650/21420 (91.7%) - 18.4 runs/sec - last real_accuracy: 0.65237
+Progress: 19700/21420 (92.0%) - 18.1 runs/sec - last real_accuracy: 0.34084
+Progress: 19750/21420 (92.2%) - 17.8 runs/sec - last real_accuracy: 0.39437
+Progress: 19800/21420 (92.4%) - 17.5 runs/sec - last real_accuracy: 0.69430
+Progress: 19850/21420 (92.7%) - 17.3 runs/sec - last real_accuracy: 0.75508
+Progress: 19900/21420 (92.9%) - 17.0 runs/sec - last real_accuracy: 0.71797
+Progress: 19950/21420 (93.1%) - 16.8 runs/sec - last real_accuracy: 0.77572
+Progress: 20000/21420 (93.4%) - 16.6 runs/sec - last real_accuracy: 0.59570
+Progress: 20050/21420 (93.6%) - 16.3 runs/sec - last real_accuracy: 0.00049
+Progress: 20100/21420 (93.8%) - 16.1 runs/sec - last real_accuracy: 0.60441
+Progress: 20150/21420 (94.1%) - 15.9 runs/sec - last real_accuracy: 0.73057
+Progress: 20200/21420 (94.3%) - 15.7 runs/sec - last real_accuracy: 0.81732
+Progress: 20250/21420 (94.5%) - 15.5 runs/sec - last real_accuracy: 0.41427
+Progress: 20300/21420 (94.8%) - 15.3 runs/sec - last real_accuracy: 0.61017
+Progress: 20350/21420 (95.0%) - 15.1 runs/sec - last real_accuracy: 0.37485
+Progress: 20400/21420 (95.2%) - 14.9 runs/sec - last real_accuracy: 0.55642
+Progress: 20450/21420 (95.5%) - 14.7 runs/sec - last real_accuracy: 0.51091
+Progress: 20500/21420 (95.7%) - 14.6 runs/sec - last real_accuracy: 0.56662
+Progress: 20550/21420 (95.9%) - 14.4 runs/sec - last real_accuracy: 0.71531
+Progress: 20600/21420 (96.2%) - 14.2 runs/sec - last real_accuracy: 0.53428
+Progress: 20650/21420 (96.4%) - 14.1 runs/sec - last real_accuracy: 0.72851
+Progress: 20700/21420 (96.6%) - 13.9 runs/sec - last real_accuracy: 0.76975
+Progress: 20750/21420 (96.9%) - 13.8 runs/sec - last real_accuracy: 0.72892
+Progress: 20800/21420 (97.1%) - 13.6 runs/sec - last real_accuracy: 0.77412
+Progress: 20850/21420 (97.3%) - 13.5 runs/sec - last real_accuracy: 0.35750
+Progress: 20900/21420 (97.6%) - 13.3 runs/sec - last real_accuracy: 0.32117
+Progress: 20950/21420 (97.8%) - 13.2 runs/sec - last real_accuracy: 0.39232
+Progress: 21000/21420 (98.0%) - 13.1 runs/sec - last real_accuracy: 0.47555
+Progress: 21050/21420 (98.3%) - 12.9 runs/sec - last real_accuracy: 0.46930
+Progress: 21100/21420 (98.5%) - 12.8 runs/sec - last real_accuracy: 0.58330
+Progress: 21150/21420 (98.7%) - 12.7 runs/sec - last real_accuracy: 0.67636
+Progress: 21200/21420 (99.0%) - 12.6 runs/sec - last real_accuracy: 0.52191
+Progress: 21250/21420 (99.2%) - 12.4 runs/sec - last real_accuracy: 0.55478
+Progress: 21300/21420 (99.4%) - 12.3 runs/sec - last real_accuracy: 0.50656
+Progress: 21350/21420 (99.7%) - 12.2 runs/sec - last real_accuracy: 0.66111
+Progress: 21400/21420 (99.9%) - 12.1 runs/sec - last real_accuracy: 0.68609
+
+========================================
+GRID SEARCH COMPLETE
+========================================
+Best real_accuracy : 0.93326
+Best Epochs        : 100
+Best Offline LR    : 0.35
+Best Online LR     : 1.75
+Best Layer Topology: [3, 1, 3]

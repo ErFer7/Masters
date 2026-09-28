@@ -1,0 +1,193 @@
+The main contributions of this paper are: 
+\begin{itemize}
+    \item A data-driven framework to profile architectural features and predict average execution time in homogeneous multi-core architectures under variable CPU frequency scaling.
+    \item A demonstration of the proposed framework in two distinct architectures.
+\end{itemize}
+
+
+The main contributions of this paper are: 
+\begin{itemize}
+    \item A data-driven framework to profile architectural features and predict average execution time in homogeneous multi-core architectures under variable CPU frequency scaling.
+    \item A demonstration of the proposed framework in two distinct architectures.
+\end{itemize}
+
+
+
+%M. Curtis-Maury et al.~\cite{} proposed a linear regression model capable of both DVFS and migration control based on maximizing Instructions per Second (IPC) for HPC computational systems in order to increase the system performance. The paper bases its model prediction in the system configuration and L1 Cache Access at maximum frequency and maximum parallelism to approximate the impact of different configurations in the IPC count, creating one model for each available configuration. However, as the focus of the paper is regarding performance outside Real-time domain and does not account for energy constraints, and the experiments provides only one level of DVFS configuration, its applicability does not fit embedded real-time system scope.
+
+% https://pdfs.semanticscholar.org/d0c2/392227770391ade3a4d795d8d7f6edf9d7e7.pdf Adaptive Online Voltage Scaling Scheme Based on the Nash Bargaining Solution --> timing only
+
+% Applying Autonomic Principles for Workload Management in Multi-Core Systems on Chip (Johannes Zeppenfeld and Andreas Herkersdorf - 2011)
+%Zeppenfeld and Herkersdorf~\cite{Zeppenfeld:ICAC:2011} achieved a energy consumption reduction of \todo{...} using a Learning Classifier Table, a very similar approach to \gls{RL}, for workload management and \gls{DVFS} application in a FPGA platform implementation, using both hardware and software to control the autonomic behaviour. The learning in this approach is done through a rewarding an action based on its effectiveness regarding a predefined optimal system utilization measured by cycle count, aiming at reducing the slack time of the cores through \gls{DVFS} and migration. Our approach differs by providing a full software solution, while considering a more detailed performance definition at each state and at migration.
+---------------------------------------------------------------------------------------
+
+% Problem  statement
+A well designed collection and actuation system is desired to maintain the timing correctness and to not mislead a system control decision by tainting the acquired samples. Thus,  requiring a low intrusion to achieve a smother sampling process that does not affect neither performance nor energy.
+Moreover, when dealing with dynamic frequency control in a real-time system, timing correctness is the key threshold for actuation, thus taking into consideration the performance impact of frequency reductions is necessary to build awareness of possibilities to further optimize energy-savings, and most important to restrict reductions whenever a impacting resource sharing contentions is detected, which would incur in a greater performance loss, as some stalls can have way more impact when the CPU is running slower. Furthermore, such works do not account for tasks migration, which can be used to both balance the actual task-set load at run-time, avoiding temperature hot spots [ref-to-dark-silicon-law], and by avoiding resource share contention (e.g., sequential execution instead of parallel).
+
+% Our proposed solution
+In this paper, we present an \gls{ANN}-based \gls{DVFS} and task migration heuristic for multicore Real-Time Embedded Systems. Our approach is guided by an extensive analysis of the expressiveness of performance counters to represent tasks' trace of performance and shared resources contention. The most representative counters are used as inputs to a \gls{ANN} that is used at runtime to predict the impact of power-saving operations on tasks. The \gls{ANN} is subjected to both, online and offline learning. Moreover, our implementation focuses at a well design monitoring and actuation system to achieve low intrusion at run-time.
+--------------------------------------------------------------------------------
+Lastly, the average overhead for CPU bound tasks was $0.019596\%$ and a jitter within the same frequency level of $0.000107\%$, for mid-term tasks the average overhead was $0.196670\%$ and a jitter within the same frequency level of $0.017770\%$, and for fully memory-bound tasks the maximum observed overhead was $0.917343\%$ and a jitter within the same frequency level of $0.479685\%$. 
+----------------------------------------------------------
+%the timing characteristics from tasks affected by resource sharing contention in both good and bad performance scenarios has been used as the class to be predicted during feature selection. In our approach, the feature selection is meant to filter the performance counters that better predict performance losses in a task execution time due to its very-own behavior and shared resources. Moreover, to expose shared resources contention impact, the data-set combines tasks' paired and solo behaviors. The performance loss description then will be used to predict the optimal CPU frequency requirements considering its current task-set performance.
+
+%, as a per CPU scale can conceal the desired performance loss trace depending on the behavior of the task-set (i.e., the trace of one task plus the trace of a bad performance task can be equal to a good performance trace of the same task).
+
+%Furthermore, Task T6, which is being parallel executed with Task T2, both Disparity, also present slightly performance loss, which is also evidenced by the counter, mainly due to Bus Access Priority due to sharing the resource with another task with higher priority (Architectural Bus Access Priority order is $CPU0$, $CPU1$, $CPU2$, and $CPU3$).
+
+%To accomplish energy savings and guaranteeing performance constraints in critical scenarios, the \gls{ANN} goal is to predict the impact of frequency reductions considering shared resources contention in the tasks performance demands, more specifically the task execution time, which will then be composed per CPU to be analyzed by the actuation heuristic for \gls{DVFS} control and migration.
+-----------------------------------------------------------
+
+% Different DVFS scenarios (all cores, individually, group)
+%When DVFS can be applied individually in each CPU, the load balance can still increase energy savings by avoiding temperature peaks, which due to the size of modern multicore processors chips can influence in the energy consumption of the other cores. 
+
+%Moreover, we also assume that the task-set can at least fit one frequency level reduction, to provide a safe learning stage for the \gls{ANN} to successfully adapt to the new scenario. Otherwise, a warm-up state with safe restrictions, like assuring deadline misses are accepted for this small period of time, is necessary for scenarios completely different from the one in which the \gls{ANN} was initially trained. As a last resource a offline retraining can be applied.
+
+_____________________________________________________________
+Old discussion base:
+ Which is the best approach, complexity vs. gain vs. time
+The proposed \gls{ANN} model alone provided an average energy consumption reduction of \todo{XX.XX\%}, with a minimum of \todo{XX.XX\%} in task-set \todo{X}, a task-set focused on \todo{XXXXXXX} and a maximum of \todo{XX.XX\%} in task-set \todo{X}, which is focused on \todo{XXXXXXXX}. Thus corroborating with the effectiveness of using a migration technique to achieve a load balance in a multicore system. The migration heuristic incurs in more migrations and an evaluation of the task-set distribution at each hyper-period, however, it incurs in an overhead low overhead of \todo{XX~us} at each hyper-period. The maximum jitter generated was lower than \todo{XXus}.
+
+We also evaluate the \gls{ANN} overhead in the architecture, which presented a maximum execution time of \todo{XXus} at each evaluation period, the maximum value is presented the model execution is also affected by the CPU frequency, ranging from \todo{XXus} at 100\% frequency and \todo{XXus} at \todo{XX} frequency (the lowest frequency designed to a CPU during our tests).
+% Real time impacts
+No deadline misses were accounted during the experiments, corroborating with the claim of a model capable of optimizing energy consumption while guaranteeing hard real-time constraints.
+
+% Compare with related works
+We evaluated both \todo{XXX and YYY} works in the proposed task-sets. \todo{XXX} approach presented an average energy consumption reduction of \todo{XX.XX\%}, with a minimum of \todo{XX.XX\%} in task-set \todo{X}, a task-set focused on \todo{XXXXXXX} and a maximum of \todo{XX.XX\%} in task-set \todo{X}, which is focused on \todo{XXXXXXXX}. \todo{YYY} approach presented an average energy consumption reduction of \todo{XX.XX\%}, with a minimum of \todo{XX.XX\%} in task-set \todo{X}, a task-set focused on \todo{XXXXXXX} and a maximum of \todo{XX.XX\%} in task-set \todo{X}, which is focused on \todo{XXXXXXXX}. When compared to our approach their results were \todo{XXXXXXXXXXXXXXXX}.
+% Add a discussion over the task-sets with best results if relevant
+
+Moreover, when comparing through overhead metric \todo{XXX} presented a maximum overhead of \todo{XXXXX}, while \todo{YYY} presented \todo{YYYYYYYYYY}. Our approach, on the other hand, was \todo{XXXXXXXXXX}.
+-----------------------------------------------------
+ANN and Heuristic change
+
+%Moreover, from batch training algorithms, we have selected \textbf{iRPROP}~\cite{Igel:ISNC:2000}, an adaptive batch training algorithm that updates the weights based on the error and weight partial derivative signal and the gradient direction, while adapting the learning rate (also called step-size) automatically, optimizing the learning process.
+
+%If a deadline miss occurs, the error should be back-propagated according to one level of frequency above. Otherwise, if the CPU idle time percentage fits one level of frequency down-scaling and no performance loss is accounted, the error can be back-propagated.
+
+The actuation heuristic is composed of two main phases: one periodically executed inside a hyper-period and one at the end of a hyper-period. An hyper-period is defined as follows: \{$\forall t \in T_{CPU_i}: HP_{CPU_i} = LCM(HP_{CPU_i},t.period)$\}, where $LCM$ is the least common multiplier function, $t$ is a Task, $T_{CPU_i}$ is the set of tasks of the ith CPU $CPU_i$, and the $HP_{CPU_i}$ is the accumulated hyper-period of the ith CPU, which starts with the value $1$. Moreover, the periodic phase activation can be reconfigured as needed, pondering actuation response time and overhead. In our implementation we assumed the periodic actuation to be executed at every 10 milliseconds, using the very-own PEDF scheduler time-slicer interruptions to avoid additional overhead.
+
+The first phase, which is executed at each 10~$ms$s, runs the \gls{ANN} model for \gls{DVFS} control. As a 10~$ms$ performance trace usually does not account for all tasks trace within a CPU, applying a frequency decrease at this moment can be considered unsafe. Thus, the main purpose of this phase is to rapidly actuate predicting performance losses and increasing the CPU frequency as needed. Moreover, every task must store the \gls{ANN} inputs and outputs for continuous learning at the second phase.
+
+The second phase, which is executed at the end of a hyper-period, works like a voting system for both intra-CPU scope and inter-CPU scope. For the intra-CPU scope, the heuristic will evaluate the possibility of downgrading its frequency, which will only happen if every \gls{ANN} result of its respective tasks were decrease actions. \todo{The training can be done as follows: If the CPU idle time percentage is greater than a threshold, the decrease action will be chosen. In the worst case, if a deadline miss occurs, the increase action is selected. In both cases, the \gls{ANN} must be fatherly trained by backpropagating the respective errors for the collected inputs and outputs.} Following, the inter-CPU scope is composed of the voting for the frequency decrease in the cluster, which will be executed if, and only if, every CPU in the cluster agrees with a frequency decrease. Moreover, when the voting is done, an imbalance check is executed, using the frequency as an imbalance metric for inter-Clusters and the CPUs' idle time percentage for intra-cluster. Thus, according to a user-defined threshold, if an imbalance is detected, the migration algorithm is triggered as follows: first, a load balance algorithm, which is out of the scope of this paper, but could be thought of as \textit{bin packing}, is used to achieve the balance between CPUs load. If the task allocation has changed, the current highest frequency between CPUs is selected, which will be optimized in the next heuristic iterations. Otherwise, the task-set is set as imbalanced and no further tries of load balance will be executed till the task-set changes. A flow diagram representation of the heuristic is depicted in Figure~\cite{fig:heuristic2}.
+-------------------------------------------------------------------------------
+% XGBOOST
+\subsubsection{\textbf{XGBoost}}\cite{Chen:SIGKDD:2016} is a regression tree boosting algorithm meant to optimize the learning process by using a regularized learning objective on a gradient descent error minimization. Its model is composed of a set of trees that are combined to provide the result. The model provides an importance score for each feature, base on its gain of information on the classification through all the used trees, similar to information gain ratio. Moreover, XGBoost importance score can also be used for feature selection. In our approach, we use XGBoost as a feature selection technique, providing a list of the most relevant features following its importance score. Moreover, XGBoost classification is meant to handle discrete data, thus the normalized data has been discretized into 10 classes: class 0 represents values ranging from 0 to 0.05, class 1 represents values from 0.05 to 0.15, and so on. The output class was discretized into two classes: with and without impact on performance. Using all the features, the XGBoost model provided an accuracy of 99.16\%. The 10 more relevant features following the gain importance score in this approach are depicted in Figure~\ref{fig:xgboost}.
+
+\fig[!ht]{width=1\linewidth}{xgboost}{XGBoost Classification feature importance evaluated by gain metric for Tasks impacted by shared resources.}
+
+______________________________________________________________
+% Intro to ANN and why using it
+\gls{ANN}s applies the principle of function approximation by example~\cite{Pagani:TCDICS:2020}, meaning that they learn a function through an input-output pair, also called labeled input, thus it is considered a Supervised learning approach.
+Moreover, \gls{ANN}s can be used to exploit unknown functions, where we only have access to past examples and want to predict the next behavior based on this experience. Its internal structures (e.g. hidden layer neurons) interact through connections and activation functions applied to the input to determine the strength of an output neuron, usually represented in the range \{0,1\} or \{-1,1\}. Supervised learning techniques are not limited to a linear approximation and their capability of model extrapolation to correctly classify unforeseen scenarios in a reasonable manner~\cite{Pagani:TCDICS:2020} supports adaptability in a learning scenario.
+
+% Comparison to unsupervised and reinforcement learning
+Other methods like unsupervised learning (e.g. k-means), are focused on describing a hidden structure for unlabeled data, which does not fit our scope, as we want to extrapolate the relation of performance counters, usage and performance issues. Reinforcement Learning (e.g. Q-Learning) techniques, on the other hand, learn a state-action mapping through trial-and-error to achieve the best actions in each state. However, an important issue in reinforcement learning is exploration versus exploitation (i.e. getting stuck in a suboptimal solution). Moreover, a trial-and-error solution for critical systems must be cautious to avoid timing issues. In~\cite{Rai:ICCI:2009}, authors shown that \gls{ANN} outperformed linear regression method when predicting shared level 2 behavior, and shown similar performance to model trees, Moreover, \gls{NN} has already been proven to provide satisfactory results when used for performance prediction, and \gls{DVFS} and \gls{DPM} control~\cite{Chen:SENSORS:2018,RongYe:ASPDAC:2012,Shen:ACMTDAES:2013,Marinakis:ESL:2019}, however, not considering performance losses. Thus, \gls{ANN} learning is a suitable solution for a noisy data-set like performance counters (high variability of multicore architectures) and exploitation of new scenarios, providing a certain level of adaptation, even when considering offline learning only. In this work we aim at both online learning and offline learning, where offline learning provides a initial broader knowledge while online continuous learning provides a better optimization for the running task-set and accounts for model adaptation.
+--------------------------------------------------------------
+
+%In this way, the \gls{ANN} will account a thread performance trace along with its current \gls{AET}, CPU frequency and CPU usage, thus requiring a warm-up time of at least one hyper-period to measure the CPU usage. Moreover, the warm-up time can be increased to acquire a more representative performance counter measures, e.g., the mean, as not necessarily every job of a task will present performance losses. A simpler approach would be to account for a CPU perspective, however, this approach could hide a performance loss task withing different behaviors accumulated in the performance counters, misleading the decision-taking.
+
+%In a non-critical environment, the learning process can be done completely online, behaving similar to reinforcement learning. In this case, a simple heuristic can be used to incrementally train the \gls{ANN} online: 
+
+%i) save the current state of the system in a historical buffer; 
+
+%ii) decrease the CPU frequency (assuming CPU frequencies started at 100\%) and wait for one hyper-period; 
+
+%iii) if no deadline misses were accounted and the usage is still under 100\%, use the historical buffer as training input and "decrease" as output class, then train the \gls{ANN} and go back to the stage (ii). If a deadline miss is accounted, configure the output as "maintain" for last entry in the historical buffer and the current state as increase, then train the \gls{ANN} and increase the frequency.
+
+%The \gls{ANN} model will return a different frequency to each task within a CPU based on the CPU current usage and their performance trace and usage. The frequency output represents the best frequency for the CPU to achieve 100\% usage considering that every other task in CPU present the same performance. Initially the CPU must select the highest frequency output within its tasks. Then, in the next decision spot, it must check if the highest frequency changed, if so, it must update the running frequency and wait for the next decision spot. Otherwise, the CPU must check if there is a task output with a lower frequency than the current one, if so, it must link the the lowest frequency to its respective task, and then it should update the frequency whenever one job of the respective tasks is dispatched. This behavior is repeated until the frequency control converge, achieving a frequency configuration that is optimal to every task and accounts for performance losses, as it prioritizes the highest frequency in the first step and continuously optimizes until it converges.
+
+%Input is composed of CPU performance features and CPU usage during a hyper period. The output is composed of three classes, each one representing a possible \gls{DVFS} action: increase, maintain or decrease CPU frequency. There are two other possible approaches for the \gls{ANN} output: the first one directly classifies the optimal frequency value, however, this approach increases the complexity of the \gls{ANN} training and the result convergence where some optimizations would hardly be learned due to lack of representativeness. The second approach focus on classifying each thread behavior instead of CPUs, managing frequency per thread. However, this highly increases the complexity of handling timing constraints, as a frequency scaling should take into consideration its effects through all the tasks whiting the same CPU to avoid a deadline misses.
+% and the actuation should now be accounted during each job dispatch
+
+%The proposed \gls{ANN} configuration follows \gls{FANN}~\cite{SiteFann} implementation. \gls{FANN} is a \gls{ANN} library optimized for a low overhead implementation.
+% Backpropagation algorithm
+%Moreover, \gls{FANN} supports four backpropagation training algorithms: \textbf{iRPROP}~\cite{Igel:ISNC:2000}, \textbf{QuickPROP}~\cite{Fahlman:CMSS:1989} \textbf{Batch}, and \textbf{Incremental}. The first three methods follow the batch training method, where the wights will be updated with the average error of the whole training set, optimizing the weights of the \gls{ANN} neurons in a global optimization aspect. Moreover, iRPROP and QuickPROP are advanced training methods with weight updating based on gradient descent error minimization, where iRPROP has an adaptive learning-rate and QuickPROP doesn't. On the other hand, Incremental training update the weights at each input pattern, which provides a simpler training method and hardly stuck into local minima. However global optimizations available with batch approaches aren't explored during Incremental training.
+
+%Offline Cascade Training --> Acquiring configuration
+%\gls{FANN} also supports Cascade training implemented through the Cascade2 algorithm, first proposed by Fahlman et al.~\cite{fahlman:ANI:1990}, called Cascade Correlation. Cascade training starts with only a perceptron network composed of input and output neurons and iteratively adds hidden layers nodes. Each new hidden layer input is composed by input layer and all previous hidden layers outputs. In \gls{FANN} Cascade Training neuron weights updating is supported both by iRPROP and QuickPROP. The main advantage of Cascade Training is the capability of finding a optimal configuration of hidden layers, a parameter that must be tuned otherwise. 
+
+
+
+% Performance needs vs. Energy Consumption vs. Constraints
+% Machine Learning for Power, Energy, and Thermal Management on Multicore Processors: A Survey
+
+%  R. Ye and Q. Xu, “Learning-based power management for multicore processors via idle period manipulation,” 
+% T. Ebi, D. Kramer, W. Karl, and J. Henkel, “Economic learning for thermal-aware power budgeting in many-core architectures,”
+% S. Lu, R. Tessier, and W. Burleson, “Reinforcement learning for thermal-aware many-core task allocation,”
+% A. Iranfar, S. N. Shahsavani, M. Kamal, and A. Afzali-Kusha, “A heuristic machine learning-based algorithm for power and thermal management of heterogeneous MPSoCs,”
+
+% HPC Load Balance -  Adaptive Virtual Machine Migration Mechanism for Energy Efficiency
+% Dynamic Scheduling for Reduced Energy in Configuration-Subsetted Heterogeneous Multicore Systems
+
+%  Performance Evaluation of Hybrid ANN Based Time Series Prediction on Embedded Processor
+%  Performance Prediction on Multi-core Processors
+
+% Global schedulers problem
+
+% How to acquire sufficient data
+
+
+%HPC algorithms vs. Embedded application
+%  Application of secretary algorithm to dynamic load balancing in user-space on multicore systems
+%Teng Sheng Moh et. al.~\cite{Moh:HPCS:2014} proposed proactive user-space dynamic load balancing algorithm using CPUS and each tasks usage as a balancing factor based on the application of secretary algorithm, selecting not necessarily the best migration, but the first one that has an acceptable threshold. The threshold is obtained by a cutoff heuristic of rejecting a certain amount of possibilities based on the usage. The final algorithm uses a relative analysis over the fastest process in a core vs. the lowest process in another core and the core utilization differences to evaluate the load. In our approach, we use in the migration supported by a \gls{ANN} using both the usage and a refined performance counter set, providing not only balance between CPUS but also a better performance for the threads.
+
+% Task scheduling of real-time systems on multi-core embedded processor
+
+
+
+Our analysis focuses at providing samples with low and high resource sharing to expose the counters related to performance loss, not only the counters related directly to the usage (e.g. Cycle Count). This is achieved by combining paired behaviors and solo behaviors to reveal, in a task-level, which counter represents performance's worsen (i.e. \gls{AET} increase).
+%The analysis presented here can handle a wide range of task-set configuration and tasks behaviour, specially considering the capabilities of continuous learning approaches as the one proposed here.
+Performance losses can be profiled in controlled environments, however its representativiness must be evaluated by extending the results to task-sets in a real platform. For instance, in the task-set presented on Table~\ref{tab:task-sets}, CPU X and CPU Y both runs disparity task. In CPU X, disparity is running alone, with a \gls{AET} of \todo{XXX}, while in CPU Y, disparity is running along with bandwidth, which periodically wipes L1 Cache, affecting disparity performance, which presents an \gls{AET} of \todo{YYY}. Not only cache, but other resources shared within a CPU could highly affect tasks' performance. Thus, performance counters are expected to corroborate with performance losses detection within a CPU.
+
+%However, considering and modeling performance losses due to multicore environments resource sharing is crucial to maintain time-correctness and achieve a optimal energy consumption when actuating over frequency and voltage configuration. A simple analysis, e.g. using \gls{AET} or \gls{WCET} alone, can compromise the system by underestimating the performance losses impact on the tasks when a CPU is running on a slower frequency.
+
+%Successfully distribute an equal (or closest as possible) workload between CPUS is a known NP-Hard problem [REF]. However,
+%Achieving a balance of workload can avoid temperature peaks and contribute to a equal aging of CPUS, providing a endured embedded environment life time~\cite{Pagani:TCDICS:2020}. Moreover, embedded systems constraints can be best fitted when using \gls{DVFS} allied with a balanced workload, avoiding limitations of \gls{DVFS} techniques on the chip (e.g. the voltage and frequency scaling must be applies to all CPUS at the same rate).
+
+%Migration techniques and algorithms commonly base their analysis on \gls{WCET}, thus avoiding the increase of complexity for considering resource sharing and dependencies between tasks in a multicore environments, as \gls{AET} can increase depending on the target CPU current performance. Furthermore, multicore techniques like out-of-order execution incur in a performance variability that can worsen the accuracy of a shallow performance counter selection prediction.
+
+%hyperthreading, where some components of the CPU hardware are duplicated for a higher level of parallelism within a single physical CPU providing a performance increase with two logical CPUS abstraction sharing the same physical CPU, tangle even more such algorithms, which must underestimate the processing power of a CPU to avoid missevaluation and deadline misses caused by a underestimation of resource sharing stalls.
+
+%To cover all of those challenges, 
+
+%In this context, we use the \gls{ANN} as a predictor for the task performance given the CPU performance. Moreover, we envisioned the \gls{ANN} to support migration providing information about task \gls{AET} (overall performance measurement) in the set of target CPUS. Expose such information as a ANN output (e.g. ranging \{-1,1\} for each output class) is a complex task. First, one may think that discretize and predict \gls{AET} directly could be a solution, however, discretize \gls{AET} in a sufficient number of slices is not straightforward task, as each range will be a class (scalability problem) and to learn the exact impact of the stalls in each task demand a high complexity model. Another possibility is to classify the performance of a task and a CPU as good or bad migration, based on historical \gls{AET} of the task, however, such approach limits the learning capability of the ANN due to no insight on how better a good classification is than another good classification.
+
+%Finally, our proposed solution is a comparison between current CPU performance and the possible targets. Input is composed of task, current CPU and target CPU performance counters. The output is composed of two classes, one representing that not migrating provides a better performance and the other that migrating will provide a better performance. The learning is acquired by measuring the task \gls{AET} on both CPUS and backpropagating the error.
+
+% Offline and Online
+%Learning such model can be done completely online. In the presented case-study we have used pre-collected data from a generic task-set for the ANN neurons configuration discovery. The achieved final ANN configuration details are presented in the following section (Section~\ref{sec:ann-conf}). Furthermore, the configuration is also evaluated in different task-set on pure online learning regarding performance and overhead on the architecture.
+
+%For online training, a historical buffer is required for each migration, in order to store the input and output layers from the respective ANN run. After one hyperperiod, the \gls{AET} from the migrated task must be measured and compared with its \gls{AET} in the last CPU. If the \gls{AET} decreased, nothing has to be done. Otherwise, the input must and output layer must be restored, and the error must be backpropagated, categorizing a incremental training. Further details on backpropagation and Online training are presented in the next section (Section~\ref{sec:ann-conf}).
+
+\subsection{Migration Heuristic}\label{sec:migrationv2}
+\vtwo{Following the same principle of describing the system performance through the selected performance counters, we designed a migration heuristic that focuses on minimizing the activity variance between CPUs. In this way, we enabled the migrations over the concept of a weighted activity vector. The heuristic adjusts the feature weights $W_i$ online following a linear regression estimation of the composed activity per CPU, shaping the heuristic for the current task-set at every actuation step. Moreover, every counter is also weighted by the task utilization, thus, providing a limit of $1*W_i$ for each activity measure.
+
+We evaluate the possible migrations into single steps, where one CPU sends one task to another or considering a swap between two CPUS. First, the system evaluates the possibilities, scoring the migrations according to its effectiveness. Moreover, an actuation is only allowed if it meets the usage restrictions and if its performance is higher than a minimal improvement threshold. If no simple migration fits the requirements, the heuristic attempts a task swap.
+Before the execution of the migration, a reset of CPU frequency takes place, setting it to the maximum value, preventing that a migration exceeds the Safety Margin established (e.g., due to an underestimation of the migration impact). In this way, we provide enough information for the linear regression to learn, readjusting the activity weights accordingly. This integration of the migration heuristic and the energy-optimizer prediction model is the key-step to not only increase the reliability of the activity vector representation but also to provide more training phases for the very-own \gls{ANN} model. 
+
+%As shown in Task-set 3, taking into consideration the shared resources contention into the migration technique highly increases the task-set overall performance, optimizing, even more, the energy-savings. Moreover, the very-own performance counters here selected can be used to describe shared resource contention scenarios, however, the optimal allocation for such tasks and online contention root detection scales with the number of tasks and their periodic behaviors, adding a considerable overhead.
+% Phase-aware
+%Phase-aware optimizations, like Eyerment et al.~\cite{Eyerman:IEEETC:2010} solution, depending on the task-set, improve even more the energy-savings, further improving the DVFS configuration during memory-bound phases or memory shared resource contention phases that yields CPU usage. However, the whole cluster must accord to a frequency decrease, which in load-balanced scenarios is only possible if every CPU inside the cluster shares such phase. Nevertheless, those solutions provide better results in unbalanced task-sets or whenever the number of CPUS inside a cluster is considered small (e.g., individual DVFS application) when compared to our approach.
+
+% Comparison, if possible, to other works
+%Other solutions like Yen-Lin Chen et. al~\cite{Chen:SIGKDD:2016} approach relies completely in a offline solution, which only uses two performance counters, namely Committed Instructions and cache misses, thus requiring a extended offline training to approximate each behavior. Moreover, a full offline solution lacks of adaptation, requiring an intensive offline training, which is infeasible for many scenarios. The same goes for Lahiri et al.~\cite{Lahiri:ADCOM:2007} and Jung et al.~\cite{Jung:TCADICS:2010} proposed solutions, which only relies on timing characteristics and offline train. Furthermore, as those approaches are not directly correlated to real-time scenarios, it lends on the user to define a limit performance, lending at the same time the responsibility to predict resource sharing contentions effect for the user. In the same way, even though using \gls{RL}, which is naturally a online approach, Islam et al.~\cite{Islam:Science:2018} solution requires a method for return the lowest frequency possible it can actuate without losing a deadline, and focuses on optimizing the DVFS technique to be used. Our approach instead, focuses on learning the lowest frequency possible by itself during online training, only requiring a simpler base knowledge, which as shown through our evaluations has been found with no deadline misses in every test case.
+
+% TS4 Removed
+\Comment{
+4 & 134.568 J & 32.106 & 92.916 J & 8.155  \\ \hline
+4 & 1 & 200$ms$/50$ms$   & T1 Bandwidth  \\ \hline
+4 & 2 & 1000$ms$/200$ms$ & T2 CPU Hungry \\ \hline
+4 & 2 & 1000$ms$/200$ms$ & T3 Disparity  \\ \hline
+4 & 2 & 500$ms$/100$ms$  & T4 CPU Hungry \\ \hline
+4 & 2 & 500$ms$/50$ms$   & T5 Bandwidth  \\ \hline
+4 & 3 & 200$ms$/50$ms$   & T6 Bandwidth  \\ \hline
+4 & 3 & 1000$ms$/200$ms$ & T7 Disparity  \\ \hline
+
+\fig[!ht]{width=0.6\linewidth}{ts4}{Predicted versus Measured execution time for Task-set 4. Figure (a) presents a CPU perspective analysis and (b) a per-task analysis.}
+
+For task-set 4, the energy optimizer presented an average energy saving of \todo{69.05\%}, reaching the lowest frequency possible for this architecture after 18 hyper-periods, as a migration actuation was necessary at the 7th hyper-period (1.0GHz), where the prediction pointed to $95.56\%$ of utilization at CPU2, breaking the current safety margin of $5\%$. The migration consisted in Task T4 ($7.09\%$) and T5 ($22.1\%$), from CPU2 ($86.64\%$) and CPU3 ($47.12\%$) being migrated to CPU1 ($41.62\%$), and T3 ($23.32\%$) being migrated from CPU2 (now $79.55\%$) to CPU3 (now $25.02\%$). Similarly to task-set 3, in this task-set, the Bandwidth tasks that are parallel executed, like T5 from CPU3 and T0 from CPU1 and T4 from CPU2, are heavily affected by shared resource contention, and after the migration have their utilization decreased by $11.65\%$, $6.23\%$, and $1.81\%$, respectively, justifying the higher prediction deviation from CPU 1 in the next prediction, as the new behavior still needs to be learned. The highest prediction deviation per task in this task-set ignoring the deviation due to the new behavior after the migration was $6.58\%$ at Task 0 in CPU1, which decreased to $2.74\%$ in the next prediction after train. The average deviation ignoring the migration deviations was $2.45\%$ of utilization.
+The highest deviation in the CPU scope is $11.87\%$ at CPU1 in the same iteration of the highest deviation per task, which decreased to $4.05\%$ in the next prediction after learning.
+In this scenario, the highest utilization CPU in the task-set, CPU2, has $17.99\%$ of available free time at 0.6GHz, which has been predicted as $16.73\%$ by its ANN model. Moreover, a common safety margin of $20\%$ of free time, for instance, would be correctly assured by the energy optimizer, which would restrict the frequency reduction to 0.7GHz, providing $30.09\%$ of free-time (predicted as $32.87\%$), as the prediction for the next frequency level points to $16.73\%$ of available free time.
+An overview presenting the predicted and measured execution time is available in Figure~\ref{fig:ts4} in both CPU and Task perspective, figures (a) and (b), respectively.
+}

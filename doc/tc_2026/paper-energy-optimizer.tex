@@ -1,0 +1,380 @@
+% Title (Eric): Architecture-Agnostic Energy-Aware Multicore Real-Time Scheduler
+
+% Title (Guto): On the Pitfalls of Applying Architecture-agnostic ML Models to Learn the Utilization of Individual Tasks while Scheduling Mixed Criticality Tasksets on Multicore Platforms
+
+% Context (Eric): Real-time scheduling and load balancing on multi-core processors are inherently complicated by shared resource contention, which introduces severe non-determinism and makes predicting task behavior highly challenging. While Machine Learning (ML) and statistical models have been extensively applied to model task behavior for energy optimization and load balancing, these conceptually architecture-agnostic methods consistently require manual adaptations to overcome the pitfalls of specific platforms. More specifically, solutions relying on hardware metrics struggle to generalize across architectures due to fundamental differences in Performance Monitoring Unit (PMU) topologies and available events. Therefore, there is a critical need for a generalized task-behavior modeling method capable of automatically overcoming these platform-specific hardware limitations.
+
+% Context (Guto):  Statistical analysis and machine learning models have been prized as the ultimate tools to optimize the scheduling of mixed criticality tasksets on multicore platforms \cite{at least 3 with over 20 citations and ours}, but our experiences while deploying an Architecture-Agnostic Energy-aware, Multicore, Migration-capable, Real-Time Scheduler for ARM v7, ARM v8, RISC-V 64, and Intel x86 identified a series of pitfalls, including the lack of architectural support to precisely decompose utilization counters for individual tasks, inconsistent naming and semantics across architectures~\cite{PAPI} and poor scalability of migration heuristics.
+
+%https://hpc.llnl.gov/software/development-environment-software/papi-performance-application-programming-interface
+
+%https://rcs.uwaterloo.ca/~ali/cs854-f23/papers/topdown.pdf
+
+% Hypothesis (Eric): First, by executing targeted benchmarks to stimulate shared resource contention, a statistical feature selection pipeline can be applied offline to systematically identify the most representative, platform-specific hardware metrics.
+% These selected metrics can be used to train a translation model capable of mapping raw, platform-dependent hardware counters into a standardized, architecture-agnostic semantic vector that represents abstract task behaviors (e.g., CPU-boundness, memory-boundness, utilization variance). Crucially, this semantic vector can be continuously updated at runtime in a completely non-intrusive manner with a low memory footprint and by sampling the selected counters exclusively during existing OS idle times, thereby preserving the temporal determinism required by real-time systems.
+% Finally, this abstracted virtual metrics vector can be directly consumed by downstream algorithms to make architecture-agnostic, hardware-informed decisions by entirely decoupling the scheduling logic from the underlying Performance Monitoring Unit (PMU) topology.
+
+% Hypothesis (Guto): By applying Y (alg decomp 1) and Z (alg regul.) to the lack of architectural support to precisely decompose utilization counters for individual tasks, the pitfalls imposed on the "Architecture-Agnostic Energy-aware, Multicore, Migration-capable, Real-Time Scheduler" (generalizar ao máximo) can confined to a space with error not greater than Y and yet capable of being calculated on a service core without interfering with the execution of critical tasks (O(n))
+% By applying Y and Z to the poor scalability of migration heuristics, the pitfalls imposed on the "Architecture-Agnostic Energy-aware, Multicore, Migration-capable, Real-Time Scheduler" (generalizar ao máximo) can confined to a space with error not greater than Y and yet capable of being calculated on a service core without interfering with the execution of critical tasks (O(n))
+
+% References
+% J. L. C. Hoffmann and A. A. Fröhlich, “Online machine learning for energy-aware multicore real-time embedded systems,” IEEE Transactions on Computers, vol. 71, no. 2, pp. 493–505, 2021. [Scopus: Q1, Quantile: 90th, 24 citations (but fundamental)]. 
+% Y.-L. Chen, M.-F. Chang, C.-W. Yu, X.-Z. Chen, and W.-Y. Liang, “Learning-directed dynamic voltage and frequency scaling scheme with adjustable performance for single-core and multi-core embedded and mobile systems,” Sensors, vol. 18, no. 9, Sep. 2018, Art. no. 3068.  [Scopus: Q1, Quantile: 88th, 51 citations] 
+%  Saez, R. Rodríguez-Rodríguez, “Pmctrack: Delivering performance monitoring counter support to the os scheduler,” The Computer Journal, vol. 60, no. 1, pp. 60–85, 2017." [Scopus: Q2, Quantile: 67th, 46 citations]
+
+% Strategy (Eric): The hypothesis will be proven through the implementation of the proposed architecture-agnostic semantic abstraction layer across two fundamentally different hardware platforms (e.g., a VisionFive 2 for RISC-V and an ARMv8 board) running a real-time operating system (EPOS). This implementation will incorporate the envisioned offline statistical feature selection pipeline and the translation model for runtime semantic vector encoding.
+% First, available hardware and system metrics will be collected by executing stress task-sets designed to heavily stimulate the platforms. The proposed feature selection framework will then be applied to this raw data to systematically filter out architectural noise and isolate the most relevant performance counters.
+% Next, the translation model will be implemented and trained offline using these selected metrics. To validate the effectiveness of this abstraction layer, an energy optimizer and load balancer will be deployed to rely exclusively on the resulting semantic vector for decision-making. Comprehensive testing will be conducted to evaluate the accuracy and robustness of the solution, specifically determining whether the abstracted semantic vector successfully guides the downstream algorithms in mitigating contention and optimizing energy consumption without platform-specific modifications.
+
+% Results
+
+% Initial target is ISCC 2026, with deadline on 10/01/25 - Lost deadline
+% Second target is RTCSA 2026, with deadline on 25/03/2026 - Lost deadline
+% Next options are: IEEE ACCESS and IEEE Open Journal of the Computer Society - RTSS - 21/05/2026
+
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage[
+top=0.72in,
+bottom=1.1in,
+left=0.673in,
+right=0.673in
+]{geometry}
+
+\usepackage[acronym,nonumberlist]{glossaries}
+\glsdisablehyper
+\usepackage{algorithm}
+\usepackage{algorithmic}
+% \usepackage{algpseudocode}
+
+% \usepackage[final]{changes}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{cite}
+\usepackage{xcolor}
+\usepackage{comment}
+\usepackage[]{nohyperref}
+\usepackage{tikz}
+\usepackage{url}
+
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark} % Unnumbered remark
+
+\newcommand{\DDiamond}{%
+  \sbox0{$\lozenge$}%
+  \usebox0\kern-.4\wd0\clap{\raisebox{.1ex}{\scalebox{.7}[1]{$-$}}}\kern.5\wd0%
+}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.1}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{6pt}
+\setlength{\belowcaptionskip}{0pt}
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+
+\newcommand{\todo}[1]{{\textcolor{red}{#1}}}
+\newcommand{\review}[1]{{\textcolor{blue}{#1}}}
+
+
+\newcommand{\fig}[4][htbp]{
+  \begin{figure}[#1]
+  \vspace{-10pt}
+    {\centering{\includegraphics[#2]{fig/#3}}\par}
+  \vspace{-5pt}
+  \caption{#4}\label{fig:#3}
+  \end{figure}
+}
+
+\newcommand{\wfig}[4][htbp]{
+  \begin{figure*}[#1]
+    {\centering{\includegraphics[#2]{fig/#3}}\par}
+    \vspace{-5pt}
+    \caption{#4}\label{fig:#3}
+  \end{figure*}
+}
+
+\begin{document}
+\include{acronyms.tex}
+
+% TODO: Rework this title
+\title{On the Pitfalls of Applying Architecture-agnostic ML Models to Learn the Utilization of Individual Tasks while Scheduling Mixed Criticality Tasksets on Multicore Platforms}
+
+\author{\IEEEauthorblockN{Eric Fernandes Evaristo, José Luis Conradi Hoffmann and Antônio Augusto Fröhlich,~\IEEEmembership{Member,~IEEE,}}% <-this % stops a space
+\IEEEauthorblockA{\textit{Software/Hardware Integration Lab}, \textit{Federal University of Santa Catarina}, Florianópolis, Brazil \\
+    \{fernandes,hoffmann,guto\}@lisha.ufsc.br}
+}
+
+\glsdisablehyper
+\IEEEtitleabstractindextext{%
+\begin{abstract}
+% Paragraph 1: Context & Problem. 
+
+%State the hard numbers: 
+We demonstrate inference accuracy restored to X\%, schedulability maintained with Y\% temporal overhead, yielding Z\% energy savings over baseline models that fail under global PMU noise.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Real-time embedded systems, Hardware Performance Counters, Machine Learning, Contention Inference, DVFS, Opaque Architecture.
+\end{IEEEkeywords}
+}
+
+\maketitle
+
+\IEEEdisplaynontitleabstractindextext
+% TODO: Polish
+\section{Introduction}
+
+% Basic context
+\gls{rtos} are characterized by restrictive timing constraints and determinism, which make them suitable for the execution of critical applications. These systems are commonly employed in embedded scenarios, where other variables must also be considered, such as energy consumption \cite{rahim2025survey}. When timing and energy consumption constraints are combined with the current widespread adoption of multicore systems, the algorithms responsible for scheduling and load balancing face a considerable challenge \cite{gracioli2019designing, horstmann2019framework, lugo2022survey}. This scenario motivates the need for predictive algorithms capable of estimating the utilization of each task.
+
+% What people are doing and why it doesn't work
+In recent years, several works have proposed the use of \glspl{pmc} in predictive algorithms, relying on hardware information to guide decisions. Most of these approaches rely on \gls{ml} techniques, however, they also report difficulties and pitfalls that hinder their adoption. \gls{ml} solutions usually introduce prohibitive overhead and fail to generalize well to new task-sets and platforms \cite{rahim2025survey}. Moreover, the use of \glspl{pmc} makes it difficult to design architecture-agnostic predictive algorithms. Although some works propose solutions to this issue, they remain limited by problems such as the divergence of \gls{pmc} semantics across architectures, lack of counters in some platform implementations and also non-determinism and noise introduced by the \gls{os}, applications or other external sources \cite{das2019sok}.
+
+Considering this scenario, this paper addresses the main problems associated with the use of \glspl{pmc} in \gls{ml} algorithms, offering an analysis based on data collected from a \gls{rtos} running on RISC-V and ARM platforms. We also propose an architecture-agnostic solution that overcomes the identified problems and evaluate its performance using several real-time task-sets.
+
+\begin{itemize}
+    \item An analysis of the main pitfalls of using \glspl{pmc} in \gls{ml} algorithms;
+    \item An architecture-agnostic solution that addresses the identified problems with \glspl{pmc} usage;
+    \item Evaluation of the proposed solution on a real RISC-V platform using several task-sets.
+\end{itemize}
+
+% TODO: Write
+\section{Related Work}
+
+In our prior work, we explored the application of a \gls{pmc}-fed lightweight \gls{ann} for task utilization prediction in platforms with ARMv7, ARMv8 and RISC-V architectures \cite{hoffmann2021online, hoffmann2024lightweight}. % ...
+
+\subsection{Predictive Energy Management in RTES}
+% Rewrite the literature review from the 2022 paper. Focus heavily on works that combine DVFS with task migration.
+
+\subsection{RISC-V Performance Monitoring}
+% Discuss the RISC-V Privileged Architecture. Explain how the PMU is abstracted behind the SBI (Machine mode), contrasting it with ARM's CoreSight which can be read directly from Supervisor mode.
+
+\section{System Model}\label{sec:system_model}
+% Keep the mathematical definitions of your tasks ($T_i = \{C, D, T\}$) and frequency scaling exactly the same as the 2022 paper. This consistency proves you are using the exact same framework.
+To evaluate the portability of the predictive energy optimization framework, we adopt a standard multicore real-time scheduling model, augmented with the specific microarchitectural constraints imposed by the target \gls{cots} RISC-V platform.
+
+%\subsection{Task and Platform Model}
+% Define the multicore processor, local caches, and the shared L2.
+We consider a multicore \gls{soc} comprising a set of $M$ identical hardware threads (harts), denoted as $\mathcal{M} = \{m_1, m_2, \dots, m_M\}$. The system supports \gls{dvfs}, providing a finite set of discrete operating frequencies $\mathcal{F} = \{f_{min}, \dots, f_{max}\}$. Dynamic power dissipation scales proportionally to the voltage and frequency ($P \propto V^2f$). 
+
+Crucially, the cores in $\mathcal{M}$ are not necessarily independently scalable. They are organized into frequency clusters (or voltage/frequency domains). Let $\mathcal{V} = \{v_1, \dots, v_K\}$ be the set of clusters, where each cluster $v_k \subseteq \mathcal{M}$ shares a single clock and voltage supply. Consequently, a \gls{dvfs} actuation applied to any core $m \in v_k$ simultaneously forces all cores within $v_k$ to transition to the newly selected frequency $f \in \mathcal{F}$.
+
+The workload consists of a taskset $\Gamma = \{\tau_1, \tau_2, \dots, \tau_N\}$ of independent, periodic, or sporadic real-time tasks. At the operating system level, tasks are scheduled using Partitioned Earliest Deadline First (PEDF). The global taskset $\Gamma$ is statically partitioned into disjoint subsets $\Gamma_m$ assigned to each core $m \in \mathcal{M}$. Each core maintains a local ready queue and schedules its assigned workload independently using the preemptive EDF policy.
+
+Each task $\tau_i$ is formally defined by the tuple $(C_i, D_i, T_i)$, where:
+\begin{itemize}
+    \item $C_i$ is the Worst-Case Execution Time (WCET) measured in strict isolation at the maximum frequency $f_{max}$.
+    \item $D_i$ is the relative deadline, representing the maximum allowable response time.
+    \item $T_i$ is the period or minimum inter-arrival time between consecutive job releases.
+\end{itemize}
+
+We assume constrained or implicit deadlines ($D_i \le T_i$). Under dynamic run-time conditions, the actual execution time of a job belonging to task $\tau_i$, denoted as $C_{actual}$, deviates significantly from $C_i$. This deviation is a nonlinear function of the assigned cluster frequency $f \in \mathcal{F}$ and the inter-core interference $I(t)$ generated by co-scheduled tasks contending for shared resources (e.g., memory buses and \gls{llc}). Because a frequency downscale affects all cores in $v_k$, predicting $C_{actual}$ accurately for all co-located tasks is mandatory. The objective of the framework is to predict $C_{actual}$ under lower frequencies to actuate \gls{dvfs} safely at the cluster level, ensuring $C_{actual} \le D_i$ for all tasks in $v_k$ while minimizing energy consumption.
+
+\section{Architecture-Agnostic Predictive Framework}
+% Introduce this section by stating: "We deploy the core ANN and migration heuristic proposed in [X], modifying only the feature extraction layer to accommodate the RISC-V architectural constraints."
+Accurately modeling the impact of shared resource contention on task execution time requires abstracting highly complex, platform-specific microarchitectural behaviors. However, modern platforms expose hardware and operating system-level performance traces that serve as deterministic indicators of temporal degradation. Given that the primary optimization objective is energy minimization, the scheduler must precisely bound how aggressively \gls{dvfs} can be applied without violating hard real-time constraints.
+
+As established in the baseline framework \cite{hoffmann2022online}, identifying these architectural bottlenecks without relying on vendor-specific heuristics requires a generalized, automated approach to performance event selection. Before run-time prediction occurs, the platform is profiled using a carefully tailored task-set to collect a comprehensive array of available hardware and operating system events. To isolate the most deterministic indicators of shared resource contention, a merged feature selection strategy is applied. This multi-tiered pipeline combines three distinct analytical classes: statistical correlation (Pearson), embedded regularization (Lasso Cross-Validation), and entropy-based filtering (Information Gain). 
+
+The resulting optimal feature vector forms the input for an \gls{ann}, which is continuously trained online to predict the temporal penalty of a proposed CPU frequency reduction. This prediction enables a cluster-wide voting mechanism, allowing each core to verify if its assigned workload can safely absorb the lower frequency state. Furthermore, to resolve severe bottlenecks where \gls{dvfs} is rendered unsafe, the framework embeds a contention-aware task migration heuristic that leverages the exact same feature vector to balance system activity.
+
+The following subsections detail the core components of this architecture-agnostic framework and their specific mathematical adaptations for global counting mechanism not originally covered in \cite{hoffmann2022online}.
+
+\subsection{Workload Categorization}
+To rigorously profile the architectural bottlenecks across distinct contention profiles, the tailored real-time taskset $\Gamma$ is composed of three heterogeneous classes of applications. These classes are designed to isolate specific microarchitectural stress points and validate the model's ability to discern varying degrees of shared resource dependency:
+
+\begin{itemize}
+    \item \textbf{CPU-Bound (Compute-Intensive):} Tasks characterized by high instruction throughput and a negligible \gls{llc} footprint. We employ an iterative Fibonacci sequence generator utilizing dense floating-point operations. This class maintains high internal pipeline utilization and is highly resilient to external memory interference.
+    \item \textbf{Memory-Bound (Bandwidth-Intensive):} Tasks explicitly designed to saturate the memory subsystem. These applications linearly traverse large arrays exceeding the capacity of the private L1 caches, actively thrashing the shared \gls{llc} and generating maximal inter-core interference $I(t)$.
+    \item \textbf{Mid-Term (Balanced Vision Pipeline):} A hybrid workload representative of modern cyber-physical systems, specifically modeled after real-time multimedia streaming and autonomous vehicle perception pipelines. We utilize an image disparity calculation algorithm that exhibits phased execution: it alternates between heavy memory bandwidth utilization (fetching stereo image matrices every iteration) and intense CPU-bound arithmetic (calculating pixel disparities). This class dynamically shifts its bottleneck, challenging the \gls{ann} to adapt to non-linear contention patterns.
+\end{itemize}
+
+Table \ref{tab:taskset} presents the baseline task-set used to profile the architectural bottleneck. It comprises three distinct behaviors for the Image Disparity task: i) the Image disparity running in CPU 1, runs right after the memory-bound task, suffering from L1 cache contention; ii) the Image Disparity running on CPU 2 runs in parallel to the memory-bound task, suffering from L2 cache contention; iii) the Image Disparity running on CPU 3 is not expected to suffer from memory hierarchy contention. By profiling the architecture through this task perspective we are able to identify the main effects of shared resource contention into a mid-term task, while also accounting for baseline CPU-bound performance metrics.
+
+\begin{table}[htbp]
+\caption{Profiling Task-Set Configuration}
+\label{tab:taskset}
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Set} & \textbf{Core} & \textbf{Task Type} & \textbf{Period/Deadline ($\mu s$)} & \textbf{Budget ($\mu s$)} & \textbf{Learning} \\ \hline
+\multirow{6}{*}{\textbf{TS1}} 
+ & 1 & Bandwidth (Heavy) & 1000 & 200 & \multirow{6}{*}{\textit{Warm-Start}} \\ 
+ & 1 & Image Disparity & 1000 & 200 & \\ 
+ & 2 & Image Disparity & 1000 & 200 & \\ 
+ & 2 & CPU-Hungry & 1000 & 200 & \\ 
+ & 3 & CPU-Hungry & 1000 & 200 & \\ 
+ & 3 & Image Disparity & 1000 & 200 & \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Workload Architecture Adaptation}
+To validate the portability of the predictive framework from the baseline architecture in \cite{hoffmann2022online} to a novel platform, the taskset $\Gamma$ cannot be statically ported. Instead, it must be mathematically scaled to match the computational capacity and memory hierarchy of the target \gls{soc}. 
+
+Let the target architecture have a shared \gls{llc} capacity of $S_{LLC}$ and an average Instructions Per Cycle (IPC) scaling factor of $\alpha$ relative to the baseline architecture. The taskset adaptation process ensures that the contention dynamics remain proportional by applying two transformations:
+
+\begin{enumerate}
+    \item \textbf{Temporal Scaling:} The baseline isolated execution time $C_i$ is adjusted by $\alpha$ to account for the new pipeline depth and maximum frequency. The period $T_i$ is subsequently scaled to maintain the original per-core utilization factor $U = \sum (C_i / T_i)$, ensuring the PEDF schedulability bounds remain identical.
+    \item \textbf{Spatial Scaling:} To properly evaluate the contention-aware ML predictor, the taskset must actively induce measurable interference $I(t)$. If $S_{LLC}$ of the new target architecture is larger than the baseline, the Working Set Size $W_i$ of memory-bound and mid-term tasks is scaled such that $\sum_{i \in v_k} W_i > S_{LLC}$. This guarantees that the tasks exhaust the private L1 caches and actively contend for the shared \gls{llc}, recreating the necessary environmental stress to trigger the migration heuristics.
+\end{enumerate}
+
+By adapting $\Gamma$ to the architectural parameters of the target platform, we ensure that the ML framework is evaluated against functionally equivalent contention scenarios, preserving the integrity of the portability validation.
+
+\subsection{Profiling and Feature Selection}\label{sec:feature_selection}
+To systematically isolate the most deterministic indicators of temporal degradation without relying on human intuition, the framework employs a tripartite feature selection pipeline consisting of statistical, entropy-based, and embedded techniques. First, Pearson's Correlation Coefficient (PCC) is applied as a baseline filter to quantify the linear relationship between architectural events and execution time delays, while crucially mapping the covariance between the features themselves. Second, the Information Gain Ratio (IGR) evaluates the entropy reduction provided by each feature, highlighting non-linear dependencies by measuring how much uncertainty in the execution time is resolved by a specific counter's outcome. Finally, Lasso Cross-Validation (Lasso CV) acts as an embedded regression method utilizing L1 regularization. By heavily penalizing the absolute magnitude of regression coefficients, Lasso CV actively shrinks mathematically irrelevant or highly collinear features to zero, yielding an optimized subset tailored for predictive accuracy.
+
+Because each algorithm utilizes a fundamentally distinct relevance metric, identifying the optimal feature-set cannot be achieved through a simple mathematical intersection of their top results. Instead, the framework merges the outputs through a consensus and redundancy-elimination strategy. Features that achieve high importance rankings across multiple methods form an initial candidate pool. To refine this pool and prevent multicollinearity from destabilizing the subsequent \gls{ann} training, the covariance matrix generated by PCC is cross-referenced against the candidates. When multiple top-ranking counters exhibit exceptionally high cross-correlation (e.g., exceeding $90\%$), only a single representative feature from that cluster is retained. This merging methodology safely distills thousands of raw platform events into a compact, information-dense vector, capturing orthogonal dynamics like memory bus saturation, cache thrashing, and pipeline stalls, ensuring the \gls{ml} model is accurately primed to guide real-time \gls{dvfs} actuation.
+
+\subsection{Global Events Adaptation}\label{sec:global_events}
+% REWRITTEN FROM 2022: Instead of just listing the selected features (LLC misses, branch misses), explain the adaptation.
+% INSERT the Contention Penalty ($CP_i = L2_{global} / IR_i$) text we generated earlier here. Explain that this preprocessing allows the original ANN to ingest RISC-V data safely.
+
+The transition of predictive scheduling models across diverse hardware ecosystems frequently encounters the challenge of opaque monitoring topologies at higher levels of the memory hierarchy. In some \gls{cots} multiprocessor systems, the hardware \glspl{pmu} associated with shared resources, such as the \gls{llc} or main memory controllers, track performance events globally. For instance, the RISC-V platform StarFive JH7110 \gls{soc}, built around a quad-core SiFive U74 cluster, employs a unified 2MB L2 cache where performance events are strictly aggregated at the global level. These architectures fundamentally lack the microarchitectural support required to tag or partition cache misses and bus transactions by the originating hardware thread (hart). 
+
+Consequently, directly inputting a global contention metric (e.g., $LLC_{global}$) into a per-core \gls{ann} severely pollutes the feature vector. This aggregation prevents the machine learning model from isolating which specific core is actively generating the memory traffic and which is merely suffering from the resulting pipeline stalls. If left uncorrected, this ambiguity misleads the \gls{ann}, causing it to inaccurately predict diminishing returns or catastrophic deadline misses during CPU frequency scaling actuation.
+
+To maintain the architecture-agnostic property of the framework without requiring custom silicon modifications, we introduce a proxy to disaggregate the global contention metric at the software level. We hypothesize that pipeline stalls induced by \gls{llc} contention are inversely proportional to the local instruction retirement rate (see Figure \ref{fig:llc_vs_ir}). We utilize the fixed, per-core Instructions Retired (\gls{ir}) counter—mandated by the RISC-V privileged specification—as a normalizing denominator. For a given core $i$ during a sampling period $t$, the Contention Penalty ($CP_i$) is calculated as:
+
+\begin{equation}
+    CP_i = \frac{L2_{global}}{\gls{ir}_i}
+\end{equation}
+
+This ratio provides a dynamic, hardware-aware diminishing factor based on workload characteristics:
+\begin{itemize}
+    \item \textbf{CPU-Centric Execution:} If core $i$ executes a compute-bound task, it predominantly hits the private L1 cache, resulting in a high $\gls{ir}_i$. The large denominator diminishes the impact of $L2_{global}$, correctly signaling to the \gls{ann} that the task is largely isolated from current shared memory contention.
+    \item \textbf{Memory-Bound Execution:} If core $i$ experiences \gls{llc} contention, its pipeline stalls, causing a severe drop in $\gls{ir}_i$. The reduced denominator amplifies the $CP_i$ value, allowing the \gls{ann} to accurately correlate the global L2 spike with the specific degradation of the task on core $i$.
+\end{itemize}
+
+By replacing the direct \gls{llc} miss count with the $CP_i$ ratio, the input layer of the \gls{ann} is successfully adapted to opaque U74-based architectures. This preprocessing step adds exactly one floating-point division per core to the monitoring overhead, preserving the strict temporal constraints required for real-time execution time prediction.
+
+\subsection{Online Execution Time Prediction}
+% REWRITTEN FROM 2022: Briefly describe the ANN topology. 
+% "The predictive core relies on a lightweight feed-forward ANN. During runtime, it ingests the adapted performance trace to output a predicted execution time ($C_{pred}$) under a target scaled frequency. The model is continuously trained online, allowing it to adapt to the specific microarchitectural quirks of the VisionFive 2 without offline profiling."
+The predictive core of the architecture-agnostic framework is driven by a lightweight, feed-forward \gls{ann} integrated directly into the real-time scheduler. Rather than relying on static, highly pessimistic worst-case execution time bounds, the \gls{ann} dynamically estimates the execution time ($C_{pred}$) of a task under a proposed lower frequency state. 
+
+During the execution of a job, the modified performance monitoring layer collects the platform's feature vector, which includes the current operating frequency and the newly adapted contention proxy metrics (e.g., $CP_i$). Upon job completion, the actual execution time ($C_{actual}$) is measured and compared against the previously predicted value. The resulting error margin triggers an online backpropagation algorithm that continuously updates the \gls{ann} synaptic weights during run-time. 
+
+This continuous online learning paradigm is the critical enabler for cross-ISA portability: it completely eliminates the need for exhaustive, platform-specific offline profiling. As the taskset executes on the VisionFive 2, the \gls{ann} autonomously learns to map the complex, non-linear relationships between the specific RISC-V pipeline stalls, the scaled clock speeds, and the resulting temporal delays, adapting to the target microarchitecture organically.
+
+\subsection{Contention-Aware DVFS and Task Migration}
+\label{sec:task_migration}
+% REWRITTEN FROM 2022: Explain the DVFS voting and migration heuristic.
+% "When the ANN detects that lowering the frequency would induce a deadline miss due to severe inter-core interference, the framework evaluates a weighted activity vector to trigger a task migration. This resolves thermal and resource bottlenecks dynamically."
+
+
+While \gls{dvfs} is highly effective for saving energy during compute-bound execution, blindly scaling down the frequency of a cluster saturated by memory-bound interference often leads to deadline violations. When the \gls{ann} predicts that scaling to a lower frequency $f$ will induce a temporal failure ($C_{pred} > D_i$), the framework temporarily vetoes the \gls{dvfs} actuation to preserve hard real-time schedulability.
+
+However, simply locking the cluster at maximum frequency does not resolve the underlying architectural bottleneck. To actively mitigate severe inter-core interference, the framework employs a contention-aware migration heuristic. In the 2022 baseline architecture, this heuristic ranked tasks using raw, per-core \gls{llc} misses. Adapted for the opaque RISC-V platform, the scheduler now evaluates a weighted activity vector based on the mathematical proxy $CP_i$. 
+
+When a thermal or resource bottleneck is detected, the scheduler ranks the co-located tasks and identifies the application exhibiting the highest memory-bound interference footprint. This aggressive task is subsequently migrated to an alternate frequency cluster $\mathcal{V}$ with available memory bandwidth. By spatially redistributing the workload, the local \gls{llc} pressure is immediately alleviated. This dynamic resolution of shared resource contention ultimately restores the execution slack required for the \gls{ann} to safely resume energy-saving \gls{dvfs} actuations.
+
+
+\section{Experimental Evaluation}
+% This section must directly parallel your 2022 results to show a 1:1 validation.
+To empirically validate the architecture-agnostic property of the proposed predictive framework and its mathematical adaptation for opaque performance monitoring, we deployed the system on a modern \gls{cots} RISC-V development platform.
+
+\subsection{Experimental Setup}
+% Detail the StarFive JH7110 SoC, SiFive U74 cores, OS/RTOS used, and the scaled-up workloads (e.g., modern vision benchmarks) required to saturate the 2MB L2 cache.
+
+All evaluations were conducted on the StarFive VisionFive 2 Single Board Computer. This platform is powered by the JH7110 \gls{soc}, which features a quad-core SiFive U74 (RV64GC) 64-bit RISC-V processor cluster. The memory hierarchy includes 32KB private L1 instruction and data caches per core, backed by a unified, shared 2MB \gls{llc} (L2 cache). The platform supports \gls{dvfs} at the cluster level, providing a set of discrete operating frequencies ranging from 375 MHz to 1.5 GHz. The hardware \gls{pmu} handles L2 cache events globally, requiring our software-level proxy to disaggregate the contention signals.
+
+\textbf{Real-Time Operating System:} To guarantee deterministic execution and precisely measure microarchitectural overheads without the scheduling noise inherent to general-purpose operating systems, the framework was implemented natively within the Embedded Parallel Operating System (EPOS) \cite{epos_lisha}. EPOS is a component-based RTOS designed to deliver strict timing guarantees for cyber-physical applications. The \gls{ann}, the contention-aware migration heuristic, and the Partitioned EDF (PEDF) scheduler were deeply integrated into the EPOS kernel. To interface with the RISC-V hardware, EPOS accesses the local \gls{ir} counters directly, while global L2 queries are executed via standard \gls{sbi} calls to the machine-mode firmware (OpenSBI).
+
+To support the continuous data acquisition required by the predictive model, the framework relies on a non-intrusive monitoring abstraction layer, originally introduced in \cite{Horstmann:ETFA:2019}. This mechanism provides a unified interface to sample hardware transducers, \gls{pmu} event counters, and \gls{os} scheduling statistics without distorting the underlying system behavior. Because active polling would introduce memory traffic and pollute the shared \gls{llc}---thereby invalidating the contention measurements---the monitoring engine is explicitly designed for minimal interference. It achieves this by piggybacking all sampling operations onto pre-existing kernel routines, such as thread context switches. By leveraging optimized data structures during these mandatory \gls{os} interruptions, the framework guarantees negligible temporal overhead and prevents any scheduling jitter that could compromise the taskset's real-time integrity.
+
+\textbf{Workload Configuration and Scaling:} To rigorously stress the \gls{ann} and force the migration heuristic to actuate, the abstract task classes defined in Section \ref{sec:system_model} were instantiated and scaled to exceed the architectural limits of the JH7110 \gls{soc}. 
+\begin{itemize}
+    \item \textit{CPU-Bound:} The iterative Fibonacci generator was configured to sustain deep pipeline saturation using double-precision floating-point arithmetic.
+    \item \textit{Memory-Bound:} The bandwidth-intensive array traversal tasks were scaled to utilize a Working Set Size (WSS) of 1.5MB per task. When co-scheduled on the quad-core cluster, the aggregate memory footprint severely oversubscribes the 2MB shared \gls{llc}, deliberately inducing catastrophic inter-core interference and continuous pipeline stalls.
+    \item \textit{Mid-Term (Vision Pipeline):} The image disparity algorithm was fed with high-resolution stereo image matrices. This real-world proxy forces rapid, non-linear shifts between L1 cache hits (during pixel block matching) and L2/main memory fetches (during frame loads), continuously challenging the \gls{ann}'s predictive accuracy under a dynamic \gls{dvfs} regime.
+\end{itemize}
+
+\subsection{Task-Set Configurations and Training Methodology}
+\label{sec:tasksets}
+
+To rigorously evaluate the predictive framework's ability to map contention on the novel RISC-V architecture, we synthesized three distinct multiprogrammed task-sets from the workload classes defined previously. The tasks were statically partitioned across cores 1, 2, and 3 of the SiFive U74 cluster, leaving core 0 reserved for the EPOS RTOS tick and platform-level ANN prediction and voting.
+
+The evaluation strategy isolates the initial architecture profiling from continuous run-time adaptation. The configurations are defined as follows:
+
+\begin{itemize}
+    \item \textbf{Task-Set 1 (Homogeneous Warm-Start):} This configuration consists of six tasks with uniform periods and implicit deadlines ($T = D = 1,000 \mu s$ ), evenly distributed across the three available application classes (Bandwidth, Disparity, CPU-Hungry). This symmetric alignment forces highly predictable, persistent contention phases. Task-Set 1 was executed in an offline profiling phase to \textit{warm-start} the \gls{ann}. This provided the model with an initial baseline weight configuration corresponding to the maximum \gls{llc} contention penalty on the new JH7110 \gls{soc}.
+    
+    \item \textbf{Task-Set 2 (Heterogeneous Temporal Adaptation):} Moving away from uniform execution, this configuration introduces severe variance in task periods ($T \in [125, 1000\mu s]$) and execution budgets. The differing periods cause the execution phases of memory-bound and compute-bound tasks to interleave chaotically, creating dynamic, transient contention spikes. Crucially, the \gls{ann} was subjected to this task-set relying \textit{completely on online learning}. The model had to adjust its weights dynamically during execution to predict these newly introduced interference patterns without any prior offline profiling for this specific temporal arrangement.
+    
+    \item \textbf{Task-Set 3 (Asymmetric Contention Stress):} To stress the contention-aware migration heuristic, the final configuration increases the multiprogramming level to seven tasks and introduces asymmetric memory demands (e.g., combining heavy image disparity tasks with lightweight, high-frequency bandwidth thrashers). Core 3 is heavily oversubscribed with diverse workloads. Similar to Task-Set 2, the \gls{ann} adaptation for this highly unpredictable workload was handled entirely online, validating the framework's robustness and architectural agility.
+\end{itemize}
+
+\begin{table}[htbp]
+\caption{Task-Set Configurations on the SiFive U74 Cluster}
+\label{tab:tasksets}
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Set} & \textbf{Core} & \textbf{Task Type} & \textbf{Period/Deadline ($\mu s$)} & \textbf{Budget ($\mu s$)} & \textbf{Learning} \\ \hline
+\multirow{6}{*}{\textbf{TS2}} 
+ & 1 & Bandwidth (Heavy) & 250 & 50 & \multirow{6}{*}{\textit{Online}} \\ 
+ & 1 & Image Disparity & 500 & 100 & \\ 
+ & 2 & Image Disparity & 1000 & 200 & \\ 
+ & 2 & CPU-Hungry & 250 & 35 & \\ 
+ & 3 & CPU-Hungry & 125 & 20 & \\ 
+ & 3 & Image Disparity & 250 & 100 & \\ \hline
+\multirow{7}{*}{\textbf{TS3}} 
+ & 1 & Bandwidth (Light) & 100 & 10 & \multirow{7}{*}{\textit{Online}} \\ 
+ & 2 & Bandwidth (Light) & 100 & 5 & \\ 
+ & 2 & Image Disparity & 1000 & 400 & \\ 
+ & 3 & CPU-Hungry & 100 & 30 & \\ 
+ & 3 & Image Disparity & 500 & 100 & \\ 
+ & 3 & CPU-Hungry & 250 & 60 & \\ 
+ & 3 & Bandwidth (Light) & 1000 & 100 & \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Prediction Accuracy and Convergence}
+% Experiment 1: Show a graph of the ANN converging over time on the VisionFive 2. 
+% Compare the accuracy of using the raw global L2 counter vs. your adapted $CP_i$ feature. 
+
+\subsection{Run-Time Overhead Analysis}
+% Experiment 2: THIS IS CRITICAL. In 2022, prediction took 15.35us and retraining took <100us. 
+% How long does it take on RISC-V? Specifically address the SBI trap latency for reading the counters. 
+% "Despite the introduction of SBI trap overheads mandated by the RISC-V ISA, the total execution time overhead remained bounded at X%, validating its feasibility for hard RTES."
+
+\subsection{Energy Optimization}
+% Experiment 3: Bar charts comparing the Baseline (Run-to-end at max frequency) vs. Linux Ondemand vs. Proposed ML Framework. 
+% Aim to show results corroborating the ~24.97% savings from the original paper.
+
+\subsection{Schedulability Assurance}
+% Experiment 4: Gantt chart or latency distribution proving no deadlines were missed during DVFS actuations or migrations.
+
+\section{Conclusion}
+% Conclude by stating that the successful port to the RISC-V platform proves the framework does not rely on vendor-specific "magic." 
+% The combination of the mathematical proxy for opaque PMUs and the online-learning ANN successfully abstracted the underlying hardware complexity, solidifying ML as a robust, portable solution for energy-aware real-time scheduling.
+
+\section{Data Analysis}
+
+\section*{Acknowledgments}
+This work was partially funded by Fundação de Apoio da UFMG (Fundep), through Linha VI – Conectividade 
+Veicular, a prioritary program from Mover (Mobilidade Verde e Inovação), project AutoDL (29271.03.01/2023.04-00).
+
+\bibliographystyle{IEEEtran}
+\bibliography{all}
+
+\end{document}
+
+% MATERIAIS 
+%https://lisha.ufsc.br/Auto5G+-+Secure+Gateway+Implementation
+%

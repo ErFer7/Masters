@@ -1,0 +1,9 @@
+Taskset 2
+
+Regular:
+Voltage: 4.95 V
+Consumption: 57 mAh
+
+Optimized:
+Voltage: 5.03 V
+Consumption: 41 mAh

@@ -1,0 +1,304 @@
+RUN 0:
+
+PMU:
+
+EXCEPTIONS_TAKEN: EXCEPTIONS
+INTEGER_LOAD_INSTRUCTIONS_RETIRED: LOAD_INSTRUCTIONS_RETIRED
+
+L2_PMU:
+
+L2_INNER_GET: ARCHITECTURE_DEPENDENT_EVENT64
+L2_INNER_PREFETCH_READ: ARCHITECTURE_DEPENDENT_EVENT65
+L2_INNER_ACQUIREBLOCK_NTOB: ARCHITECTURE_DEPENDENT_EVENT67
+L2_INNER_ACQUIREBLOCK_NTOT: ARCHITECTURE_DEPENDENT_EVENT68
+L2_INNER_ACQUIREBLOCK_BTOT: ARCHITECTURE_DEPENDENT_EVENT69
+L2_INNER_RELEASE_TTON: ARCHITECTURE_DEPENDENT_EVENT73
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            EXCEPTIONS,
+                                                                            LOAD_INSTRUCTIONS_RETIRED,
+
+                                                                            ARCHITECTURE_DEPENDENT_EVENT64,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT65,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT67,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT68,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT69,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT73
+                                                                          };
+
+RUN 1:
+
+PMU:
+INTEGER_STORE_INSTRUCTIONS_RETIRED: STORE_INSTRUCTIONS_RETIRED
+ATOMIC_MEMORY_INSTRUCTIONS_RETIRED: ATOMIC_MEMORY_INSTRUCTIONS_RETIRED
+
+L2_PMU:
+
+L2_INNER_RELEASE_BTON: ARCHITECTURE_DEPENDENT_EVENT74
+L2_INNER_RELEASEDATA_TTON: ARCHITECTURE_DEPENDENT_EVENT76
+L2_INNER_GET_HIT_L2: ARCHITECTURE_DEPENDENT_EVENT84
+L2_INNER_PREFETCH_HIT_L2: ARCHITECTURE_DEPENDENT_EVENT85
+L2_INNER_ACQUIREBLOCK_HIT_L2: ARCHITECTURE_DEPENDENT_EVENT86
+L2_INNER_RELEASE_HIT_L2: ARCHITECTURE_DEPENDENT_EVENT88
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            STORE_INSTRUCTIONS_RETIRED,
+                                                                            ATOMIC_MEMORY_INSTRUCTIONS_RETIRED,
+
+                                                                            ARCHITECTURE_DEPENDENT_EVENT74,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT76,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT84,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT85,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT86,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT88
+                                                                          };
+
+RUN 2:
+
+PMU:
+
+SYSTEM_INSTRUCTIONS_RETIRED: ARCHITECTURE_DEPENDENT_EVENT45
+INTEGER_ARITHMETIC_INSTRUCTIONS_RETIRED: INTEGER_ARITHMETIC_INSTRUCTIONS_RETIRED
+
+L2_PMU:
+
+L2_INNER_RELEASEDATA_HIT_L2: ARCHITECTURE_DEPENDENT_EVENT89
+L2_OUTER_ACQUIREBLOCK_NTOB_L2_MISS: ARCHITECTURE_DEPENDENT_EVENT100
+L2_OUTER_ACQUIREBLOCK_NTOT_L2_MISS: ARCHITECTURE_DEPENDENT_EVENT101
+L2_OUTER_RELEASE_TON_EVICTION: ARCHITECTURE_DEPENDENT_EVENT106
+L2_OUTER_RELEASEDATA_TTON_DIRTY_EVICTION: ARCHITECTURE_DEPENDENT_EVENT109
+L2_INNER_PROBEBLOCK_TOB_LOAD_MISS: ARCHITECTURE_DEPENDENT_EVENT112
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            ARCHITECTURE_DEPENDENT_EVENT45,
+                                                                            INTEGER_ARITHMETIC_INSTRUCTIONS_RETIRED,
+
+                                                                            ARCHITECTURE_DEPENDENT_EVENT89,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT100,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT101,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };
+
+RUN 3:
+
+PMU:
+
+CONDITIONAL_BRANCHES_RETIRED: CONDITIONAL_BRANCHES
+JAL_INSTRUCTIONS_RETIRED: ARCHITECTURE_DEPENDENT_EVENT46
+
+L2_PMU:
+
+L2_INNER_PROBEBLOCK_TON_STORE_MISS: ARCHITECTURE_DEPENDENT_EVENT113
+L2_DEMAND_MISS_HIT_MSHR_ALLOC_HINT: ARCHITECTURE_DEPENDENT_EVENT114
+L2_CACHE_MISS: ARCHITECTURE_DEPENDENT_EVENT115
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            CONDITIONAL_BRANCHES,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT46,
+
+                                                                            ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT115,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };
+
+RUN 4:
+
+PMU:
+
+JALR_INSTRUCTIONS_RETIRED: ARCHITECTURE_DEPENDENT_EVENT47
+INTEGER_MULTIPLICATION_INSTRUCTIONS_RETIRED: INTEGER_MULTIPLICATION_INSTRUCTIONS_RETIRED
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            ARCHITECTURE_DEPENDENT_EVENT47,
+                                                                            INTEGER_MULTIPLICATION_INSTRUCTIONS_RETIRED,
+
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT101,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };
+
+RUN 5:
+
+PMU:
+
+INTEGER_DIVISION_INSTRUCTIONS_RETIRED: INTEGER_DIVISION_INSTRUCTIONS_RETIRED
+FLOATING_POINT_LOAD_INSTRUCTION_RETIRED: ARCHITECTURE_DEPENDENT_EVENT56
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            INTEGER_DIVISION_INSTRUCTIONS_RETIRED,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT56,
+
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT101,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };
+
+RUN 6:
+
+PMU:
+
+FLOATING_POINT_STORE_INSTRUCTION_RETIRED: ARCHITECTURE_DEPENDENT_EVENT57
+FLOATING_POINT_FUSED_MULTIPLY_ADD_RETIRED: ARCHITECTURE_DEPENDENT_EVENT58
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            ARCHITECTURE_DEPENDENT_EVENT57,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT58,
+
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT101,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };
+
+RUN 7:
+
+PMU:
+
+ADDRESS_GENERATION_INTERLOCK: ARCHITECTURE_DEPENDENT_EVENT48
+LONG_LATENCY_INTERLOCK: ARCHITECTURE_DEPENDENT_EVENT49
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            ARCHITECTURE_DEPENDENT_EVENT48,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT49,
+
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT101,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };
+
+RUN 8:
+
+PMU:
+
+INSTRUCTION_CACHE_ITIM_BUSY: ARCHITECTURE_DEPENDENT_EVENT51
+DATA_CACHE_DTIM_BUSY: ARCHITECTURE_DEPENDENT_EVENT52
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            ARCHITECTURE_DEPENDENT_EVENT51,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT52,
+
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT101,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };
+
+RUN 9:
+
+PMU:
+
+BRANCH_DIRECTION_MISPREDICTION: BRANCH_DIRECTION_MISPREDICTIONS
+BRANCH_JUMP_TARGET_MISPREDICTION: BRANCH_MISPREDICTIONS
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            BRANCH_DIRECTION_MISPREDICTIONS,
+                                                                            BRANCH_MISPREDICTIONS,
+
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT101,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };
+
+RUN 10:
+
+PMU:
+
+PIPELINE_FLUSH_FROM_CSR_WRITE: ARCHITECTURE_DEPENDENT_EVENT53
+FLOATING_POINT_INTERLOCK: ARCHITECTURE_DEPENDENT_EVENT59
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            ARCHITECTURE_DEPENDENT_EVENT53,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT59,
+
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT101,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };
+
+RUN 11:
+
+PMU:
+
+INSTRUCTION_CACHE_MISS: L1_INSTRUCTION_CACHE_MISSES
+DATA_CACHE_MISS_OR_MEMORY_MAPPED_IO_ACCESS: ARCHITECTURE_DEPENDENT_EVENT60
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            L1_INSTRUCTION_CACHE_MISSES,
+                                                                            ARCHITECTURE_DEPENDENT_EVENT60,
+
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT101,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };
+
+RUN 12:
+
+PMU:
+
+DATA_CACHE_WRITE_BACK: L1_DATA_CACHE_WRITEBACKS
+L1_CACHE_MISS: L1_CACHE_MISSES
+
+    static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
+                                                                            INSTRUCTIONS_RETIRED,
+
+                                                                            L1_DATA_CACHE_WRITEBACKS,
+                                                                            L1_CACHE_MISSES,
+
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT115,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
+                                                                          };

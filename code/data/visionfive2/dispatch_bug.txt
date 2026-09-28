@@ -1,0 +1,80 @@
+U-Boot SPL 2021.10-dirty (Jan 27 2026 - 14:58:07 -0300)
+LPDDR4: 8G version: g8ad50857.
+Trying to boot from SPI
+
+
+
+
+Setup(si=0x000000004000d000,sp=0x0000000047ffdda8)
+Setup:si={Boot_Map={n_cpus=1,mem_b=0x0000000040000000,mem_t=0x0000000047ffffff,m
+io_b=0x0000000000000000,mio_t=0x000000001fffffff,node_id=-1,space=(-1,-1,-1),uui
+d=0x0000000047ffddd8,img_size=55408,setup_o=0xffffffffffffffff,init_o=0xffffffff
+ffffffff,system_o=0xffffffffffffffff,application_o=0,extras_o=0xffffffffffffffff
+}
+Load_Map={,app_extra={b=0x0000000000000000,s=0}}}
+Setup::say_hi()
+System_Info={Boot_Map={n_cpus=1,mem_b=0x0000000040000000,mem_t=0x0000000047fffff
+f,mio_b=0x0000000000000000,mio_t=0x000000001fffffff,node_id=-1,space=(-1,-1,-1),
+uuid=0x0000000047ffdb98,img_size=55408,setup_o=0xffffffffffffffff,init_o=0xfffff
+fffffffffff,system_o=0xffffffffffffffff,application_o=0,extras_o=0xfffffffffffff
+fff}
+Load_Map={,app_extra={b=0x0000000000000000,s=0}}}
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    1 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130935 KB [0x0000000040000000:0x0000000047fddfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+SETUP ends here!
+Machine::pre_init()
+Init_System()
+Init:si={Boot_Map={n_cpus=1,mem_b=0x0000000040000000,mem_t=0x0000000047ffffff,mi
+o_b=0x0000000000000000,mio_t=0x000000001fffffff,node_id=-1,space=(-1,-1,-1),uuid
+=0x0000000047ffdb38,img_size=55408,setup_o=0xffffffffffffffff,init_o=0xfffffffff
+fffffff,system_o=0xffffffffffffffff,application_o=0,extras_o=0xffffffffffffffff}
+
+Load_Map={,app_extra={b=0x0000000000000000,s=0}}}
+Initializing the architecture: 
+CPU::init()
+MMU::init()
+MMU::init::dat.e=0x0000000040040008,bss.b=0x0000000040040008,bss.e=0x00000000400
+40770
+MMU::free(addr=0x0000000040060770,n=133683344)
+Initializing system's heap: 
+MMU::alloc(bytes=2097152) => 0x0000000047dde000
+Heap_Base(addr=0x0000000047dde000,bytes=2097152) => 0x0000000040040198
+Initializing the machine: 
+Machine::init()
+IC::init()
+Timer::init()
+Initializing system abstractions: 
+Alarm::init()
+Thread::init()
+Thread(task=0x0000000000000000,entry=0x0000000040001000,state=0,priority=-1,stac
+k={b=0x0000000047fbdf58,s=131072},context={b=0x0000000047fdde60,{ksp=0x000000004
+7ffd910,usp=0,pc=0x40001000,st=0x1880,lr=0x40002d70,x5=0,x6=0,x7=0,x8=0,x9=0,x10
+=0,x11=0,x12=0,x13=0,x14=0,x15=0,x16=0,x17=0,x18=0,x19=0,x20=0,x21=0,x22=0,x23=0
+,x24=0,x25=0,x26=0,x27=0,x28=0,x29=0,x30=0,x31=0}}) => 0x0000000047fddf60@0
+Criterion::handle(this=0x0000000047fddfb0,e=CREATION)
+Thread(task=0x0000000000000000,entry=0x00000000400077d8,state=1,priority=2147483
+647,stack={b=0x0000000047f9ded8,s=131072},context={b=0x0000000047fbdde0,{ksp=0x0
+000000047ffd910,usp=0,pc=0x400077d8,st=0x1880,lr=0x40002d70,x5=0,x6=0,x7=0,x8=0,
+x9=0,x10=0,x11=0,x12=0,x13=0,x14=0,x15=0,x16=0,x17=0,x18=0,x19=0,x20=0,x21=0,x22
+=0,x23=0,x24=0,x25=0,x26=0,x27=0,x28=0,x29=0,x30=0,x31=0}}) => 0x0000000047fbdee
+0@0
+Criterion::handle(this=0x0000000047fbdf30,e=CREATION)
+Randomizing the Random Numbers Generator's seed.
+Init_Application()
+Initializing application's heap: adding all free memory to the unified system's 
+heap!
+MMU::alloc(bytes=131586192) => 0x0000000040060770
+Mutex() => 0x00000000400400f0
+Init_End()
+INIT ends here!
+Dispatching the first thread: 0x0000000047fddf60

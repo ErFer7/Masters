@@ -1,0 +1,29 @@
+// EPOS PC Timer Mediator Implementation
+
+#include <machine/ic.h>
+#include <machine/timer.h>
+
+__BEGIN_SYS
+
+Timer * Timer::_channels[CHANNELS];
+
+void Timer::int_handler(Interrupt_Id i)
+{
+    if((CPU::id() == CPU::BSP) && _channels[USER] && (--_channels[USER]->_current[CPU::BSP] <= 0)) {
+        if(_channels[USER]->_retrigger)
+            _channels[USER]->_current[CPU::BSP] = _channels[USER]->_initial;
+        _channels[USER]->_handler(i);
+    }
+
+    if((CPU::id() == CPU::BSP) && _channels[ALARM] && (--_channels[ALARM]->_current[CPU::BSP] <= 0)) {
+        _channels[ALARM]->_current[CPU::BSP] = _channels[ALARM]->_initial;
+        _channels[ALARM]->_handler(i);
+    }
+
+    if(_channels[SCHEDULER] && (--_channels[SCHEDULER]->_current[CPU::id()] <= 0)) {
+        _channels[SCHEDULER]->_current[CPU::id()] = _channels[SCHEDULER]->_initial;
+        _channels[SCHEDULER]->_handler(i);
+    }
+}
+
+__END_SYS

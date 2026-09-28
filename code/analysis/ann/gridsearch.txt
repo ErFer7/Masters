@@ -1,0 +1,158 @@
+Total configurations to test: 4914
+Optimizing for: REAL_ACCURACY
+Starting parallel execution with 15 workers...
+
+[NEW BEST] real_accuracy: 0.34868 | Epochs: 1 | Off-LR: 0.01 | On-LR: 0.5 | Layers: [2]
+
+[NEW BEST] real_accuracy: 0.60116 | Epochs: 1 | Off-LR: 0.01 | On-LR: 0.5 | Layers: []
+
+[NEW BEST] real_accuracy: 0.60229 | Epochs: 1 | Off-LR: 0.01 | On-LR: 0.7 | Layers: []
+Progress: 50/4914 (1.0%) - 192.8 runs/sec
+
+[NEW BEST] real_accuracy: 0.62997 | Epochs: 1 | Off-LR: 0.01 | On-LR: 1.5 | Layers: [1]
+
+[NEW BEST] real_accuracy: 0.64373 | Epochs: 1 | Off-LR: 0.01 | On-LR: 1.5 | Layers: [2]
+
+[NEW BEST] real_accuracy: 0.66882 | Epochs: 1 | Off-LR: 0.01 | On-LR: 1.75 | Layers: [1]
+
+[NEW BEST] real_accuracy: 0.67173 | Epochs: 1 | Off-LR: 0.01 | On-LR: 1.75 | Layers: [2]
+
+[NEW BEST] real_accuracy: 0.69221 | Epochs: 1 | Off-LR: 0.01 | On-LR: 2 | Layers: [1]
+Progress: 100/4914 (2.0%) - 262.6 runs/sec
+Progress: 150/4914 (3.1%) - 307.0 runs/sec
+
+[NEW BEST] real_accuracy: 0.69443 | Epochs: 1 | Off-LR: 0.05 | On-LR: 2 | Layers: [1]
+Progress: 200/4914 (4.1%) - 336.1 runs/sec
+Progress: 250/4914 (5.1%) - 359.7 runs/sec
+Progress: 300/4914 (6.1%) - 376.3 runs/sec
+Progress: 350/4914 (7.1%) - 389.4 runs/sec
+Progress: 400/4914 (8.1%) - 397.6 runs/sec
+Progress: 450/4914 (9.2%) - 407.5 runs/sec
+Progress: 500/4914 (10.2%) - 414.2 runs/sec
+Progress: 550/4914 (11.2%) - 417.7 runs/sec
+Progress: 600/4914 (12.2%) - 420.4 runs/sec
+
+[NEW BEST] real_accuracy: 0.70081 | Epochs: 5 | Off-LR: 0.01 | On-LR: 2 | Layers: [1]
+Progress: 650/4914 (13.2%) - 424.1 runs/sec
+Progress: 700/4914 (14.2%) - 424.4 runs/sec
+
+[NEW BEST] real_accuracy: 0.71806 | Epochs: 5 | Off-LR: 0.05 | On-LR: 2 | Layers: [1]
+Progress: 750/4914 (15.3%) - 425.4 runs/sec
+Progress: 800/4914 (16.3%) - 427.3 runs/sec
+
+[NEW BEST] real_accuracy: 0.71842 | Epochs: 5 | Off-LR: 0.1 | On-LR: 2 | Layers: [1]
+Progress: 850/4914 (17.3%) - 428.4 runs/sec
+
+[NEW BEST] real_accuracy: 0.71870 | Epochs: 5 | Off-LR: 0.2 | On-LR: 2 | Layers: [1]
+Progress: 900/4914 (18.3%) - 428.7 runs/sec
+Progress: 950/4914 (19.3%) - 429.5 runs/sec
+Progress: 1000/4914 (20.4%) - 430.4 runs/sec
+Progress: 1050/4914 (21.4%) - 430.5 runs/sec
+Progress: 1100/4914 (22.4%) - 430.6 runs/sec
+Progress: 1150/4914 (23.4%) - 430.5 runs/sec
+Progress: 1200/4914 (24.4%) - 429.2 runs/sec
+
+[NEW BEST] real_accuracy: 0.73441 | Epochs: 10 | Off-LR: 0.05 | On-LR: 1.75 | Layers: [1]
+Progress: 1250/4914 (25.4%) - 427.0 runs/sec
+
+[NEW BEST] real_accuracy: 0.74119 | Epochs: 10 | Off-LR: 0.05 | On-LR: 2 | Layers: [1]
+Progress: 1300/4914 (26.5%) - 425.9 runs/sec
+Progress: 1350/4914 (27.5%) - 425.5 runs/sec
+
+[NEW BEST] real_accuracy: 0.74453 | Epochs: 10 | Off-LR: 0.1 | On-LR: 2 | Layers: [1]
+Progress: 1400/4914 (28.5%) - 424.5 runs/sec
+
+[NEW BEST] real_accuracy: 0.74520 | Epochs: 10 | Off-LR: 0.2 | On-LR: 2 | Layers: [1]
+Progress: 1450/4914 (29.5%) - 424.4 runs/sec
+Progress: 1500/4914 (30.5%) - 423.1 runs/sec
+Progress: 1550/4914 (31.5%) - 422.4 runs/sec
+Progress: 1600/4914 (32.6%) - 421.1 runs/sec
+
+[NEW BEST] real_accuracy: 0.74776 | Epochs: 10 | Off-LR: 0.5 | On-LR: 2 | Layers: [1]
+Progress: 1650/4914 (33.6%) - 414.3 runs/sec
+
+[NEW BEST] real_accuracy: 0.77799 | Epochs: 100 | Off-LR: 0.01 | On-LR: 1.5 | Layers: [1]
+
+[NEW BEST] real_accuracy: 0.79849 | Epochs: 100 | Off-LR: 0.01 | On-LR: 1.75 | Layers: [1]
+Progress: 1700/4914 (34.6%) - 393.9 runs/sec
+Progress: 1750/4914 (35.6%) - 378.6 runs/sec
+
+[NEW BEST] real_accuracy: 0.81100 | Epochs: 100 | Off-LR: 0.05 | On-LR: 1.75 | Layers: [1]
+Progress: 1800/4914 (36.6%) - 364.1 runs/sec
+
+[NEW BEST] real_accuracy: 0.81218 | Epochs: 100 | Off-LR: 0.05 | On-LR: 2 | Layers: [1]
+Progress: 1850/4914 (37.6%) - 352.0 runs/sec
+Progress: 1900/4914 (38.7%) - 340.9 runs/sec
+Progress: 1950/4914 (39.7%) - 330.8 runs/sec
+Progress: 2000/4914 (40.7%) - 322.2 runs/sec
+Progress: 2050/4914 (41.7%) - 314.1 runs/sec
+Progress: 2100/4914 (42.7%) - 306.7 runs/sec
+Progress: 2150/4914 (43.8%) - 300.7 runs/sec
+Progress: 2200/4914 (44.8%) - 264.8 runs/sec
+Progress: 2250/4914 (45.8%) - 214.1 runs/sec
+
+[NEW BEST] real_accuracy: 0.81706 | Epochs: 1000 | Off-LR: 0.01 | On-LR: 1.75 | Layers: [2, 3]
+Progress: 2300/4914 (46.8%) - 181.4 runs/sec
+Progress: 2350/4914 (47.8%) - 157.3 runs/sec
+Progress: 2400/4914 (48.8%) - 140.7 runs/sec
+Progress: 2450/4914 (49.9%) - 128.0 runs/sec
+Progress: 2500/4914 (50.9%) - 117.9 runs/sec
+Progress: 2550/4914 (51.9%) - 109.4 runs/sec
+Progress: 2600/4914 (52.9%) - 102.8 runs/sec
+Progress: 2650/4914 (53.9%) - 98.3 runs/sec
+Progress: 2700/4914 (54.9%) - 95.5 runs/sec
+Progress: 2750/4914 (56.0%) - 80.3 runs/sec
+Progress: 2800/4914 (57.0%) - 62.4 runs/sec
+Progress: 2850/4914 (58.0%) - 52.8 runs/sec
+Progress: 2900/4914 (59.0%) - 47.3 runs/sec
+Progress: 2950/4914 (60.0%) - 43.8 runs/sec
+Progress: 3000/4914 (61.1%) - 41.2 runs/sec
+Progress: 3050/4914 (62.1%) - 39.9 runs/sec
+Progress: 3100/4914 (63.1%) - 38.7 runs/sec
+Progress: 3150/4914 (64.1%) - 38.0 runs/sec
+Progress: 3200/4914 (65.1%) - 37.5 runs/sec
+Progress: 3250/4914 (66.1%) - 37.5 runs/sec
+Progress: 3300/4914 (67.2%) - 33.3 runs/sec
+Progress: 3350/4914 (68.2%) - 28.1 runs/sec
+Progress: 3400/4914 (69.2%) - 25.8 runs/sec
+Progress: 3450/4914 (70.2%) - 24.1 runs/sec
+Progress: 3500/4914 (71.2%) - 23.4 runs/sec
+Progress: 3550/4914 (72.2%) - 22.9 runs/sec
+Progress: 3600/4914 (73.3%) - 22.7 runs/sec
+Progress: 3650/4914 (74.3%) - 22.5 runs/sec
+Progress: 3700/4914 (75.3%) - 22.4 runs/sec
+Progress: 3750/4914 (76.3%) - 22.4 runs/sec
+Progress: 3800/4914 (77.3%) - 22.5 runs/sec
+Progress: 3850/4914 (78.3%) - 20.7 runs/sec
+
+[NEW BEST] real_accuracy: 0.81727 | Epochs: 15000 | Off-LR: 0.01 | On-LR: 1.5 | Layers: [2, 3]
+Progress: 3900/4914 (79.4%) - 18.4 runs/sec
+Progress: 3950/4914 (80.4%) - 17.5 runs/sec
+Progress: 4000/4914 (81.4%) - 16.8 runs/sec
+Progress: 4050/4914 (82.4%) - 16.6 runs/sec
+Progress: 4100/4914 (83.4%) - 16.5 runs/sec
+Progress: 4150/4914 (84.5%) - 16.4 runs/sec
+Progress: 4200/4914 (85.5%) - 16.4 runs/sec
+Progress: 4250/4914 (86.5%) - 16.4 runs/sec
+Progress: 4300/4914 (87.5%) - 16.5 runs/sec
+Progress: 4350/4914 (88.5%) - 16.6 runs/sec
+Progress: 4400/4914 (89.5%) - 15.4 runs/sec
+Progress: 4450/4914 (90.6%) - 14.2 runs/sec
+Progress: 4500/4914 (91.6%) - 13.8 runs/sec
+Progress: 4550/4914 (92.6%) - 13.5 runs/sec
+Progress: 4600/4914 (93.6%) - 13.4 runs/sec
+Progress: 4650/4914 (94.6%) - 13.3 runs/sec
+Progress: 4700/4914 (95.6%) - 13.3 runs/sec
+Progress: 4750/4914 (96.7%) - 13.3 runs/sec
+Progress: 4800/4914 (97.7%) - 13.4 runs/sec
+Progress: 4850/4914 (98.7%) - 13.4 runs/sec
+Progress: 4900/4914 (99.7%) - 13.5 runs/sec
+
+========================================
+GRID SEARCH COMPLETE
+========================================
+Best real_accuracy : 0.81727
+Best Epochs        : 15000
+Best Offline LR    : 0.01
+Best Online LR     : 1.5
+Best Layer Topology: [2, 3]
