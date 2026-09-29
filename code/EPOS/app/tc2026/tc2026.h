@@ -22,11 +22,11 @@ class BenchmarkRunner {
 
    private:
     static const unsigned int TEST_DURATION = Traits<Build>::EXPECTED_SIMULATION_TIME - 15;  // in seconds
-    static const unsigned int SELECTED_TASKSET = 1;
+    static const unsigned int SELECTED_TASKSET = 0;
     static const unsigned int SEED = 20260610;
     static const unsigned int EPOS_MONITOR_ENABLED = true;
 
-    inline static constexpr Taskset taskset = TASKSETS[SELECTED_TASKSET - 1];
+    inline static constexpr Taskset taskset = TASKSETS[SELECTED_TASKSET];
     inline static constexpr unsigned int task_count = taskset.size;
 
    public:
@@ -35,7 +35,7 @@ class BenchmarkRunner {
              << "Running experiments with the following configurations:\n"
              << ">  Test duration: " << TEST_DURATION << '\n'
              << ">  RNG Seed: " << SEED << '\n'
-             << ">  Selected taskset: " << SELECTED_TASKSET << '\n'
+             << ">  Selected taskset: " << '[' << SELECTED_TASKSET << "] " << taskset.name << '\n'
              << ">  CPU Clock: " << CPU::clock() / 1000000 << "MHz" << '\n'
 #ifdef __visionfive2__
              << ">  CPU voltage: " << PMIC::cpu_voltage() << "mV" << '\n'
@@ -55,7 +55,6 @@ class BenchmarkRunner {
         cout << "Done." << endl;
     }
 
-    // TODO: Remember the resume on RT!
     inline static void run() {
         Time_Stamp tsc0 = _get_time() + Convert::us2count<Time_Stamp, Time_Base>(TSC::frequency(), 10000);
 

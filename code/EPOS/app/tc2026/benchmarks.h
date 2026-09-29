@@ -47,6 +47,7 @@ enum BenchmarkType {
     // IsolBench like
     BANDWIDTH_L1,
     BANDWIDTH_L2,
+    BANDWIDTH_RANDOM,
     POINTER_CHASE_L1,
     POINTER_CHASE_L2,
 
@@ -90,7 +91,7 @@ enum BenchmarkType {
     DISPARITY,
 
     // Custom
-    KALMAN,
+    KALMAN,  // TODO: Check this one
     CPU_HUNGRY
 };
 
@@ -100,6 +101,8 @@ static const char *benchmark_name(BenchmarkType benchmark_type) {
             return "BANDWIDTH_L1";
         case BANDWIDTH_L2:
             return "BANDWIDTH_L2";
+        case BANDWIDTH_RANDOM:
+            return "BANDWIDTH_RANDOM";
         case POINTER_CHASE_L1:
             return "POINTER_CHASE_L1";
         case POINTER_CHASE_L2:
@@ -208,6 +211,12 @@ template <>
 struct BenchmarkTraits<BANDWIDTH_L2> {
     using Type = Bandwidth::Bandwidth;
     static Type *create() { return new Type(Bandwidth::Bandwidth::L2_CACHE_SIZE); }
+};
+
+template <>
+struct BenchmarkTraits<BANDWIDTH_RANDOM> {
+    using Type = Bandwidth::Bandwidth;
+    static Type *create() { return new Type(Bandwidth::Bandwidth::NOT_USED, true); }
 };
 
 template <>

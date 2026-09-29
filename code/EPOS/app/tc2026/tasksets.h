@@ -14,6 +14,7 @@ struct StressTask {
 struct Taskset {
     const StressTask *tasks;
     const unsigned int size;
+    const char *name;
 };
 
 static constexpr float SINGLE = 200000.0f;
@@ -31,6 +32,17 @@ static constexpr float CPU_IT_DURATION = 30.0f;            // in microseconds
 #endif
 
 // Old tasksets
+static constexpr StressTask SBESC_TASKSET_0[] = {
+    {1000000, 1000000, 200000, 1, BANDWIDTH_RANDOM, BANDWIDTH_IT_DURATION},  // 20 - band
+    {1000000, 1000000, 200000, 1, DISPARITY, DISPARITY_IT_DURATION},         // 20 - disp
+
+    {1000000, 1000000, 200000, 2, DISPARITY, DISPARITY_IT_DURATION},  // 20 - disp
+    {1000000, 1000000, 200000, 2, CPU_HUNGRY, CPU_IT_DURATION},       // 20 - cpu
+
+    {1000000, 1000000, 200000, 3, CPU_HUNGRY, CPU_IT_DURATION},       // 20 - cpu
+    {1000000, 1000000, 200000, 3, DISPARITY, DISPARITY_IT_DURATION},  // 20 - disp
+};  // HP = 1
+
 static constexpr StressTask SBESC_TASKSET_1[] = {
     {1000000, 1000000, 200000, 1, BANDWIDTH_L2, BANDWIDTH_IT_DURATION},  // 20 - band
     {1000000, 1000000, 200000, 1, DISPARITY, DISPARITY_IT_DURATION},     // 20 - disp
@@ -169,15 +181,16 @@ static constexpr StressTask TASKSET_5[] = {
 };  // HP = 1
 
 static constexpr Taskset TASKSETS[] = {
-    {SBESC_TASKSET_1, sizeof(SBESC_TASKSET_1) / sizeof(StressTask)},
-    {SBESC_TASKSET_2, sizeof(SBESC_TASKSET_2) / sizeof(StressTask)},
-    {SBESC_TASKSET_3, sizeof(SBESC_TASKSET_3) / sizeof(StressTask)},
-    {SBESC_TASKSET_1_LOW, sizeof(SBESC_TASKSET_1_LOW) / sizeof(StressTask)},
-    {SBESC_TASKSET_2_LOW, sizeof(SBESC_TASKSET_2_LOW) / sizeof(StressTask)},
-    {SBESC_TASKSET_OVERHEAD, sizeof(SBESC_TASKSET_OVERHEAD) / sizeof(StressTask)},
-    {TASKSET_1, sizeof(TASKSET_1) / sizeof(StressTask)},
-    {TASKSET_2, sizeof(TASKSET_2) / sizeof(StressTask)},
-    {TASKSET_3, sizeof(TASKSET_3) / sizeof(StressTask)},
-    {TASKSET_4, sizeof(TASKSET_4) / sizeof(StressTask)},
-    {TASKSET_5, sizeof(TASKSET_5) / sizeof(StressTask)},
+    {SBESC_TASKSET_0, sizeof(SBESC_TASKSET_0) / sizeof(StressTask), "SBESC_TASKSET_0"},
+    {SBESC_TASKSET_1, sizeof(SBESC_TASKSET_1) / sizeof(StressTask), "SBESC_TASKSET_1"},
+    {SBESC_TASKSET_2, sizeof(SBESC_TASKSET_2) / sizeof(StressTask), "SBESC_TASKSET_2"},
+    {SBESC_TASKSET_3, sizeof(SBESC_TASKSET_3) / sizeof(StressTask), "SBESC_TASKSET_3"},
+    {SBESC_TASKSET_1_LOW, sizeof(SBESC_TASKSET_1_LOW) / sizeof(StressTask), "SBESC_TASKSET_1_LOW"},
+    {SBESC_TASKSET_2_LOW, sizeof(SBESC_TASKSET_2_LOW) / sizeof(StressTask), "SBESC_TASKSET_2_LOW"},
+    {SBESC_TASKSET_OVERHEAD, sizeof(SBESC_TASKSET_OVERHEAD) / sizeof(StressTask), "SBESC_TASKSET_OVERHEAD"},
+    {TASKSET_1, sizeof(TASKSET_1) / sizeof(StressTask), "TASKSET_1"},
+    {TASKSET_2, sizeof(TASKSET_2) / sizeof(StressTask), "TASKSET_2"},
+    {TASKSET_3, sizeof(TASKSET_3) / sizeof(StressTask), "TASKSET_3"},
+    {TASKSET_4, sizeof(TASKSET_4) / sizeof(StressTask), "TASKSET_4"},
+    {TASKSET_5, sizeof(TASKSET_5) / sizeof(StressTask), "TASKSET_5"},
 };
