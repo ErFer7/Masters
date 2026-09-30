@@ -1,3 +1,0 @@
-[submodule "ann/fann"]
-	path = ann/fann
-	url = git@github.com:libfann/fann.git
