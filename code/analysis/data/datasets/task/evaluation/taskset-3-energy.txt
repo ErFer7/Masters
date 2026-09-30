@@ -1,9 +1,0 @@
-Taskset 3
-
-Regular:
-Voltage: 4.95 V
-Consumption: 61 mAh
-
-Optimized:
-Voltage: 4.95 V
-Consumption: 60 mAh

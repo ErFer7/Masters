@@ -1,9 +1,0 @@
-Taskset 1
-
-Regular:
-Voltage: 5.03 V
-Consumption: 41 mAh
-
-Optimized:
-Voltage: 5.03 V
-Consumption: 17 mAh
