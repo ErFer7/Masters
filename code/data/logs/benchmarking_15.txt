@@ -1,0 +1,852 @@
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8088779
+>  Iteration [0]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xfffffffe491557ec} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [1]...
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+>  Iteration [5]...
+>  Iteration [6]...
+>  Iteration [7]...
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8089419
+>  Iteration [0]...
+>  Iteration [1]...
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xfffffffe4ff68c08} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [5]...
+>  Iteration [6]...
+>  Iteration [7]...
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8088597
+>  Iteration [0]...
+>  Iteration [1]...
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xfffffffe4f1a6578} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [5]...
+>  Iteration [6]...
+>  Iteration [7]...
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8088729
+>  Iteration [0]...
+>  Iteration [1]...
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xffffffff547a55e8} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [5]...
+>  Iteration [6]...
+>  Iteration [7]...
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8088828
+>  Iteration [0]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xfffffffe4ff68bf8} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [1]...
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+>  Iteration [5]...
+>  Iteration [6]...
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8088664
+>  Iteration [0]...
+>  Iteration [1]...
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+>  Iteration [5]...
+>  Iteration [6]...
+>  Iteration [7]...
+>  Iteration [8]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xfffffffe45a4be20} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [9]...
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8088646
+>  Iteration [0]...
+>  Iteration [1]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xffffffff547a55dc} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+>  Iteration [5]...
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8088884
+>  Iteration [0]...
+>  Iteration [1]...
+>  Iteration [2]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xfffffffe44c897a0} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [3]...
+>  Iteration [4]...
+>  Iteration [5]...
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8088694
+>  Iteration [0]...
+>  Iteration [1]...
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xffffffff539e2f80} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [5]...
+>  Iteration [6]...
+>  Iteration [7]...
+>  Iteration [8]...
+>  Iteration [9]...
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8088491
+>  Iteration [0]...
+>  Iteration [1]...
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xfffffffe491557ec} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [5]...
+>  Iteration [6]...
+>  Iteration [7]...
+>  Iteration [8]...
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 10
+>  Selected taskset: 1
+CPU Clock: clk_mux_sel: 1
+pll0_fbdiv: 125
+saif_syscfg_32: 1163220309
+pll0_frac: 5592405
+pll0_postdiv1_shift: 0
+pll0_prediv: 2
+clk_cpu_div: 1
+1503999999Hz
+PMIC Voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 20, cpu = 3
+Done
+Current time: 8088253
+>  Iteration [0]...
+>  Iteration [1]...
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+<1>: IC::Exception(7) => {thread=0x0000000047c51890,atp=0x0000000000000000,usp=0
+x0000000000000000,ksp=0x0000000047c514f8,status=0x8000000a00007880,cause=7,epc=0
+x0000000040001da4,tval=0xfffffffe50d2b26c} => data protection violation (write) 
+:<1>
+
+PANIC: unexpected error!
+Rebooting the machine!
+>  Iteration [5]...
+>  Iteration [6]...
+>  Iteration [7]...
+>  Iteration [8]...
+>  Iteration [9]...
+
+(C)StarFive
+CCCCCCCCCCCCCCCCCCCCCCCCCC

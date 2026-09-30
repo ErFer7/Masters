@@ -1,0 +1,248 @@
+
+U-Boot SPL 2026.04-rc3-ga5b4b4200b64 (Mar 10 2026 - 16:29:27 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+
+*** This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 1503 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive 2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 80
+>  Selected taskset: 1
+>  Size of image 1: 98472
+>  Size of image 2: 98472
+>  Size of the bandwidth allocation: 2097152
+>  CPU Clock: 1503MHz
+>  CPU voltage: 1040mV
+>  DDR Clock: 533MHz
+Monitored events:
+   > Core 0:
+   > System events:
+        > System::CPU_CLOCK (8) at 34Hz
+        > System::CPU_VOLTAGE (9) at 34Hz
+   > PMU events:
+       > PMU::CPU_CYCLES (0) -> (0) at 34Hz
+       > PMU::INSTRUCTIONS_RETIRED (2) -> (2) at 34Hz
+       > PMU::DATA_CACHE_WRITE_BACK (22) -> (1026) at 34Hz
+       > PMU::DATA_CACHE_MISS_OR_MEMORY_MAPPED_IO_ACCESS (60) -> (514) at 34Hz
+       > L2_PMU::L2_INNER_RELEASEDATA_HIT_L2 (89) -> (65538) at 34Hz
+       > L2_PMU::L2_INNER_PROBEBLOCK_TON_STORE_MISS (113) -> (2097155) at 34Hz
+       > L2_PMU::L2_DEMAND_MISS_HIT_MSHR_ALLOC_HINT (114) -> (260) at 34Hz
+       > L2_PMU::L2_OUTER_RELEASE_TON_EVICTION (106) -> (16387) at 34Hz
+       > L2_PMU::L2_OUTER_RELEASEDATA_TTON_DIRTY_EVICTION (109) -> (131075) at 3
+4Hz
+       > L2_PMU::L2_INNER_PROBEBLOCK_TOB_LOAD_MISS (112) -> (1048579) at 34Hz
+   > Core 1:
+   > System events:
+        > System::RUNNING_THREAD (5) at 34Hz
+        > System::JOB_UTILIZATION (6) at 34Hz
+   > PMU events:
+       > PMU::CPU_CYCLES (0) -> (0) at 34Hz
+       > PMU::INSTRUCTIONS_RETIRED (2) -> (2) at 34Hz
+       > PMU::DATA_CACHE_WRITE_BACK (22) -> (1026) at 34Hz
+       > PMU::DATA_CACHE_MISS_OR_MEMORY_MAPPED_IO_ACCESS (60) -> (514) at 34Hz
+   > Core 2:
+   > System events:
+        > System::RUNNING_THREAD (5) at 34Hz
+        > System::JOB_UTILIZATION (6) at 34Hz
+   > PMU events:
+       > PMU::CPU_CYCLES (0) -> (0) at 34Hz
+       > PMU::INSTRUCTIONS_RETIRED (2) -> (2) at 34Hz
+       > PMU::DATA_CACHE_WRITE_BACK (22) -> (1026) at 34Hz
+       > PMU::DATA_CACHE_MISS_OR_MEMORY_MAPPED_IO_ACCESS (60) -> (514) at 34Hz
+   > Core 3:
+   > System events:
+        > System::RUNNING_THREAD (5) at 34Hz
+        > System::JOB_UTILIZATION (6) at 34Hz
+   > PMU events:
+       > PMU::CPU_CYCLES (0) -> (0) at 34Hz
+       > PMU::INSTRUCTIONS_RETIRED (2) -> (2) at 34Hz
+       > PMU::DATA_CACHE_WRITE_BACK (22) -> (1026) at 34Hz
+       > PMU::DATA_CACHE_MISS_OR_MEMORY_MAPPED_IO_ACCESS (60) -> (514) at 34Hz
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 160, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 160, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 160, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 160, cpu = 2
+>  Thread[4]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 160, cpu = 3
+>  Thread[5]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 160, cpu = 3
+Done
+Current time: 4122653
+>  Iteration [0], Temperature: 45.4810C
+>  Iteration [1], Temperature: 46.2930C
+>  Iteration [2], Temperature: 46.6990C
+>  Iteration [3], Temperature: 46.9890C
+>  Iteration [4], Temperature: 47.2210C
+>  Iteration [5], Temperature: 47.3950C
+>  Iteration [6], Temperature: 47.5700C
+>  Iteration [7], Temperature: 47.6860C
+>  Iteration [8], Temperature: 47.8020C
+>  Iteration [9], Temperature: 47.9180C
+>  Iteration [10], Temperature: 48.0340C
+>  Iteration [11], Temperature: 48.0920C
+>  Iteration [12], Temperature: 48.2080C
+>  Iteration [13], Temperature: 48.2660C
+>  Iteration [14], Temperature: 48.3820C
+>  Iteration [15], Temperature: 48.4400C
+>  Iteration [16], Temperature: 48.4980C
+>  Iteration [17], Temperature: 48.5560C
+>  Iteration [18], Temperature: 48.6140C
+>  Iteration [19], Temperature: 48.7300C
+>  Iteration [20], Temperature: 48.7880C
+>  Iteration [21], Temperature: 48.8460C
+>  Iteration [22], Temperature: 48.8460C
+>  Iteration [23], Temperature: 48.9620C
+>  Iteration [24], Temperature: 48.9620C
+>  Iteration [25], Temperature: 49.0780C
+>  Iteration [26], Temperature: 49.1360C
+>  Iteration [27], Temperature: 49.1360C
+>  Iteration [28], Temperature: 49.1940C
+>  Iteration [29], Temperature: 49.2520C
+>  Iteration [30], Temperature: 49.2520C
+>  Iteration [31], Temperature: 49.3100C
+>  Iteration [32], Temperature: 49.3680C
+>  Iteration [33], Temperature: 49.3680C
+>  Iteration [34], Temperature: 49.4260C
+>  Iteration [35], Temperature: 49.4260C
+>  Iteration [36], Temperature: 49.4840C
+>  Iteration [37], Temperature: 49.5420C
+>  Iteration [38], Temperature: 49.6000C
+>  Iteration [39], Temperature: 49.6000C
+>  Iteration [40], Temperature: 49.6580C
+>  Iteration [41], Temperature: 49.7160C
+>  Iteration [42], Temperature: 49.7160C
+>  Iteration [43], Temperature: 49.7740C
+>  Iteration [44], Temperature: 49.7740C
+>  Iteration [45], Temperature: 49.8320C
+>  Iteration [46], Temperature: 49.8900C
+>  Iteration [47], Temperature: 49.8900C
+>  Iteration [48], Temperature: 49.9480C
+>  Iteration [49], Temperature: 49.9480C
+>  Iteration [50], Temperature: 50.0060C
+>  Iteration [51], Temperature: 50.0060C
+>  Iteration [52], Temperature: 50.0640C
+>  Iteration [53], Temperature: 50.0640C
+>  Iteration [54], Temperature: 50.1220C
+>  Iteration [55], Temperature: 50.1220C
+>  Iteration [56], Temperature: 50.1220C
+>  Iteration [57], Temperature: 50.1800C
+>  Iteration [58], Temperature: 50.2380C
+>  Iteration [59], Temperature: 50.2380C
+>  Iteration [60], Temperature: 50.2380C
+>  Iteration [61], Temperature: 50.2960C
+>  Iteration [62], Temperature: 50.3540C
+>  Iteration [63], Temperature: 50.3540C
+>  Iteration [64], Temperature: 50.4120C
+>  Iteration [65], Temperature: 50.4120C
+>  Iteration [66], Temperature: 50.4700C
+>  Iteration [67], Temperature: 50.4700C
+>  Iteration [68], Temperature: 50.4700C
+>  Iteration [69], Temperature: 50.5280C
+>  Iteration [70], Temperature: 50.5280C
+>  Iteration [71], Temperature: 50.5280C
+>  Iteration [72], Temperature: 50.5860C
+>  Iteration [73], Temperature: 50.5860C
+>  Iteration [74], Temperature: 50.5860C
+>  Iteration [75], Temperature: 50.6440C
+>  Iteration [76], Temperature: 50.6440C
+>  Iteration [77], Temperature: 50.7020C
+>  Iteration [78], Temperature: 50.7020C
+>  Iteration [79], Temperature: 50.7020C
+Returned to application main!
+Elapsed: 81107437
+Threads: 6
+-----------------------------------------------------
+...............Threads Timing Behavior...............
+-----------------------------------------------------
+Task [0]: 0x0000000047c4d5e8
+>   Counted iterations: 160
+>   Execution time: 44759941 us
+>   Job WCET: 532321 us
+>   Iteration WCET: 8585 us
+>   Average job runtime: 279749 us
+>   Average iteration runtime: 4512 us
+>   Iterations per job: 62
+Task [1]: 0x0000000047c2d488
+>   Counted iterations: 98
+>   Execution time: 80064692 us
+>   Job WCET: 962336 us
+>   Iteration WCET: 962336 us
+>   Average job runtime: 500404 us
+>   Average iteration runtime: 500404 us
+>   Iterations per job: 1
+Task [2]: 0x0000000047c0d328
+>   Counted iterations: 136
+>   Execution time: 80280817 us
+>   Job WCET: 689721 us
+>   Iteration WCET: 689721 us
+>   Average job runtime: 501755 us
+>   Average iteration runtime: 501755 us
+>   Iterations per job: 1
+Task [3]: 0x0000000047bed1c8
+>   Counted iterations: 160
+>   Execution time: 14472999 us
+>   Job WCET: 90594 us
+>   Iteration WCET: 0 us
+>   Average job runtime: 90456 us
+>   Average iteration runtime: 0 us
+>   Iterations per job: 26666668
+Task [4]: 0x0000000047bcd068
+>   Counted iterations: 160
+>   Execution time: 14452679 us
+>   Job WCET: 90458 us
+>   Iteration WCET: 0 us
+>   Average job runtime: 90329 us
+>   Average iteration runtime: 0 us
+>   Iterations per job: 26666668
+Task [5]: 0x0000000047bacf08
+>   Counted iterations: 136
+>   Execution time: 80386679 us
+>   Job WCET: 688709 us
+>   Iteration WCET: 688709 us
+>   Average job runtime: 502416 us
+>   Average iteration runtime: 502416 us
+>   Iterations per job: 1
+Taskset deallocation...
+>  Deleting thread 0x0000000047c4d5e8
+>  Deleting thread 0x0000000047c2d488
+>  Deleting thread 0x0000000047c0d328
+>  Deleting thread 0x0000000047bed1c8
+>  Deleting thread 0x0000000047bcd068
+>  Deleting thread 0x0000000047bacf08
+Done.
+
+
+*** The last thread under control of EPOS has finished.
+*** EPOS is shutting down!
+
+(C)StarFive
+CCCCCCCCCCCCCCCC

@@ -1,0 +1,51 @@
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+(C)StarFive
+CCCCCCCCCCCCCCCCCCCCC............................................................
+................................................................
+................................................................
+................................................................
+................................................................
+................................................................
+................................................................
+................................................................
+......................updata success
+
+*********************************************************
+****************** JH7110 program tool ******************
+*********************************************************
+0: update 2ndboot/SPL in flash
+1: update 2ndboot/SPL in emmc
+2: update fw_verif/uboot in flash
+3: update fw_verif/uboot in emmc
+4: update otp, caution!!!!
+5: exit
+NOTE: current xmodem receive buff = 0x40000000, 'load 0x********' to change.
+select the function to test: 5
+
+END OF SECONDBOOT
+
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+(C)StarFive
+CCCCCCCCCCCCCCCCC

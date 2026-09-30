@@ -1,0 +1,49 @@
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 5 at 33 Hz created :<0><2
+>: Monitor::init: system event 5 at 33 Hz created :<2><0
+>: Monitor::init: system event 4 at 33 Hz created :<0><
+3P>M: U:Mo:cnointofri:g:(icn=0i,t:e= 0s,ysetee=0m, fe=ve0n)t  :5< 0>a<t
+ 2>P3M3: U MH:z:on ccoitrnefoiratg:(:edci=n i:2<,t:3e>= s2<,1
+yse>:tee= mM2 o,fenvi=0etno)tr :: <:40i na>it<
+3 t>:P3M3 :  UsH:Mysz:ontc oceirtnmo efeiragtv:e:(eindct=n  i3:<t,52:e a>= 1tsy
+ 73,s3teee Hm= 2z5 ev6c,renfe=att 04)e da
+
+tPM <U13:>3: :c HzMon ocnfiiretgo(atrc:=ed4:,i :en=i<33t,:> ees
+=ys5t1e2m, fe=v0)en
+t P4M U:at: c3on3f iHgz( cc=re5,ate=e5d7,
+ee=1048577,f=0)
+PMU::config(c=6,e=58,ee=2097153,f=0)
+PMU::config(c=7,e=59,ee=4194305,f=0)
+<0>: Monitor::init: not enough memory to allocate Clerk (requested size=52816, H
+eap::grouped_size()=12016) :<0>
+
+PANIC: unexpected error!
+Rebooting the machine!
+
+(C)StarFive
+CCCCCCCCCCCCCCCC

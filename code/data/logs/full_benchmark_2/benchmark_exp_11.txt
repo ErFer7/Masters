@@ -1,0 +1,155 @@
+
+U-Boot SPL 2026.04-rc3-ga5b4b4200b64 (Mar 10 2026 - 16:29:27 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+
+
+
+*** This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 1503 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive 2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 30
+>  Selected taskset: 1
+>  Size of image 1: 98472
+>  Size of image 2: 98472
+>  Size of the bandwidth allocation: 2097152
+>  CPU Clock: 1503MHz
+>  CPU voltage: 1040mV
+>  DDR Clock: 533MHz
+The monitor is disabled
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 1000000, deadline = 1000000, wcet = 200000, activation = 
+10000, times = 30, cpu = 1
+>  Thread[1]: period = 1000000, deadline = 1000000, wcet = 200000, activation = 
+10000, times = 30, cpu = 1
+>  Thread[2]: period = 1000000, deadline = 1000000, wcet = 200000, activation = 
+10000, times = 30, cpu = 2
+>  Thread[3]: period = 1000000, deadline = 1000000, wcet = 200000, activation = 
+10000, times = 30, cpu = 2
+>  Thread[4]: period = 1000000, deadline = 1000000, wcet = 200000, activation = 
+10000, times = 30, cpu = 3
+>  Thread[5]: period = 1000000, deadline = 1000000, wcet = 200000, activation = 
+10000, times = 30, cpu = 3
+Done
+Current time: 3562441
+>  Iteration [0], Temperature: 44.6690C
+>  Iteration [1], Temperature: 45.1910C
+>  Iteration [2], Temperature: 45.6550C
+>  Iteration [3], Temperature: 45.9450C
+>  Iteration [4], Temperature: 46.1770C
+>  Iteration [5], Temperature: 46.4090C
+>  Iteration [6], Temperature: 46.5250C
+>  Iteration [7], Temperature: 46.6990C
+>  Iteration [8], Temperature: 46.8150C
+>  Iteration [9], Temperature: 46.9310C
+>  Iteration [10], Temperature: 47.0470C
+>  Iteration [11], Temperature: 47.1050C
+>  Iteration [12], Temperature: 47.2210C
+>  Iteration [13], Temperature: 47.2790C
+>  Iteration [14], Temperature: 47.3950C
+>  Iteration [15], Temperature: 47.4530C
+>  Iteration [16], Temperature: 47.5110C
+>  Iteration [17], Temperature: 47.6280C
+>  Iteration [18], Temperature: 47.6860C
+>  Iteration [19], Temperature: 47.7440C
+>  Iteration [20], Temperature: 47.8020C
+>  Iteration [21], Temperature: 47.8600C
+>  Iteration [22], Temperature: 47.9180C
+>  Iteration [23], Temperature: 47.9760C
+>  Iteration [24], Temperature: 48.0340C
+>  Iteration [25], Temperature: 48.0920C
+>  Iteration [26], Temperature: 48.1500C
+>  Iteration [27], Temperature: 48.2080C
+>  Iteration [28], Temperature: 48.2080C
+>  Iteration [29], Temperature: 48.2660C
+Returned to application main!
+Elapsed: 31410242
+Threads: 6
+-----------------------------------------------------
+...............Threads Timing Behavior...............
+-----------------------------------------------------
+Task [0]: 0x0000000047c4d5e8
+>   Counted iterations: 30
+>   Execution time: 7491545 us
+>   Job WCET: 301410 us
+>   Iteration WCET: 2122 us
+>   Average job runtime: 249718 us
+>   Average iteration runtime: 1758 us
+>   Iterations per job: 142
+Task [1]: 0x0000000047c2d488
+>   Counted iterations: 30
+>   Execution time: 9899606 us
+>   Job WCET: 330595 us
+>   Iteration WCET: 165297 us
+>   Average job runtime: 329986 us
+>   Average iteration runtime: 164993 us
+>   Iterations per job: 2
+Task [2]: 0x0000000047c0d328
+>   Counted iterations: 30
+>   Execution time: 11237161 us
+>   Job WCET: 388337 us
+>   Iteration WCET: 194168 us
+>   Average job runtime: 374572 us
+>   Average iteration runtime: 187286 us
+>   Iterations per job: 2
+Task [3]: 0x0000000047bed1c8
+>   Counted iterations: 30
+>   Execution time: 5338635 us
+>   Job WCET: 177959 us
+>   Iteration WCET: 0 us
+>   Average job runtime: 177954 us
+>   Average iteration runtime: 0 us
+>   Iterations per job: 53333336
+Task [4]: 0x0000000047bcd068
+>   Counted iterations: 30
+>   Execution time: 5340219 us
+>   Job WCET: 178014 us
+>   Iteration WCET: 0 us
+>   Average job runtime: 178007 us
+>   Average iteration runtime: 0 us
+>   Iterations per job: 53333336
+Task [5]: 0x0000000047bacf08
+>   Counted iterations: 30
+>   Execution time: 10203620 us
+>   Job WCET: 353884 us
+>   Iteration WCET: 176942 us
+>   Average job runtime: 340120 us
+>   Average iteration runtime: 170060 us
+>   Iterations per job: 2
+Taskset deallocation...
+>  Deleting thread 0x0000000047c4d5e8
+>  Deleting thread 0x0000000047c2d488
+>  Deleting thread 0x0000000047c0d328
+>  Deleting thread 0x0000000047bed1c8
+>  Deleting thread 0x0000000047bcd068
+>  Deleting thread 0x0000000047bacf08
+Done.
+
+
+*** The last thread under control of EPOS has finished.
+*** EPOS is shutting down!
+
+(C)StarFive
+CCCCCCCCCCCCCCCCCC

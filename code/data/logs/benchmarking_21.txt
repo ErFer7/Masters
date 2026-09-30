@@ -1,0 +1,73 @@
+
+U-Boot SPL 2026.04-rc3-dirty (Feb 24 2026 - 23:57:14 -0300)
+DDR version: dc2e84f0.
+Trying to boot from SPI
+
+
+
+
+
+
+
+
+Changed voltage
+Changed clock
+
+
+This is EPOS!
+
+Setting up this machine as follows: 
+  Mode:         library
+  Processor:    4 x RV64 at 600 MHz (BUS clock = 33 MHz)
+  Machine:      VisionFive2
+  Memory:       131072 KB [0x0000000040000000:0x0000000047ffffff]
+  User memory:  130551 KB [0x0000000040000000:0x0000000047f7dfff]
+  I/O space:    524288 KB [0x0000000000000000:0x000000001fffffff]
+  Node Id:      will get from the network!
+  Position:     will get from the network!
+
+<0>: Monitor::init: system event 0 at 10 Hz created :<0>
+<0>: Monitor::init: system event 1 at 10 Hz created :<0>
+<0>: Monitor::init: system event 2 at 10 Hz created :<0>
+<0>: Monitor::init: system event 3 at 10 Hz created :<0>
+<0>: Monitor::init: system event 4 at 10 Hz created :<0>
+Stress feature test
+Running experiments with the following configurations:
+>  Measure time: true
+>  Test duration: 30
+>  Selected taskset: 1
+>  Size of image 1: 49160
+>  Size of image 2: 49160
+>  Size of the bandwidth allocation: 2097152
+>  CPU Clock: 1503MHz
+>  CPU voltage: 1040mV
+Taskset initialization...
+Done.
+Creating threads...
+>  Thread[0]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 60, cpu = 1
+>  Thread[1]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 60, cpu = 1
+>  Thread[2]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 60, cpu = 2
+>  Thread[3]: period = 500000, deadline = 500000, wcet = 100000, activation = 10
+000, times = 60, cpu = 3
+Done
+Current time: 3924132
+>  Iteration [0]...
+>  Iteration [1]...
+>  Iteration [2]...
+>  Iteration [3]...
+>  Iteration [4]...
+>  Iteration [5]...
+Changed voltage
+>  New clock: 751999999Hz
+>  New voltage: 800mV
+>  Iteration [6]...
+>  Iteration [7]...
+>  Iteration [8]...
+>  Iteration [9]...
+>  Iteration [10]...
+
+(C)StarFive
+CCCCCCCCCCCCCCC

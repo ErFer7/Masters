@@ -245,38 +245,38 @@ template<> struct Traits<Monitor>: public Traits<Build>
     static constexpr PMU_Event          PMU_EVENTS[]                    = { CPU_CYCLES,
                                                                             INSTRUCTIONS_RETIRED,
 
-                                                                            STORE_INSTRUCTIONS_RETIRED,
-                                                                            ATOMIC_MEMORY_INSTRUCTIONS_RETIRED,
+                                                                            L1_DATA_CACHE_WRITEBACKS,
+                                                                            L1_CACHE_MISSES,
 
-                                                                            ARCHITECTURE_DEPENDENT_EVENT74,
-                                                                            ARCHITECTURE_DEPENDENT_EVENT76,
-                                                                            ARCHITECTURE_DEPENDENT_EVENT84,
-                                                                            ARCHITECTURE_DEPENDENT_EVENT85,
-                                                                            ARCHITECTURE_DEPENDENT_EVENT86,
-                                                                            ARCHITECTURE_DEPENDENT_EVENT88
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT113,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT114,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT115,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT106,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT109,
+                                                                            // ARCHITECTURE_DEPENDENT_EVENT112
                                                                           };
     static constexpr Hertz              PMU_EVENTS_FREQUENCIES[]        = { 50,
                                                                             50,
                                                                             50,
                                                                             50,
-                                                                            50,
-                                                                            50,
-                                                                            50,
-                                                                            50,
-                                                                            50,
-                                                                            50
+                                                                            // 50,
+                                                                            // 50,
+                                                                            // 50,
+                                                                            // 50,
+                                                                            // 50,
+                                                                            // 50
                                                                           }; // in Hz
     // FIX: Temporary solution
     static constexpr unsigned long long PMU_EVENTS_CORES[]              = { 0b1111,
                                                                             0b1111,
                                                                             0b1111,
                                                                             0b1111,
-                                                                            0b0001,
-                                                                            0b0001,
-                                                                            0b0001,
-                                                                            0b0001,
-                                                                            0b0001,
-                                                                            0b0001,
+                                                                            // 0b0001,
+                                                                            // 0b0001,
+                                                                            // 0b0001,
+                                                                            // 0b0001,
+                                                                            // 0b0001,
+                                                                            // 0b0001,
                                                                           };
 
     static constexpr Transducer_Event   TRANSDUCER_EVENTS[]             = { };
