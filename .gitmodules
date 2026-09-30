@@ -4,3 +4,6 @@
 [submodule "masters-dataset"]
 	path = masters-dataset
 	url = git@hf.co:datasets/ErFer7/masters-dataset
+[submodule "code/EPOS"]
+	path = code/EPOS
+	url = git@github.com:ErFer7/EPOS.git
