@@ -112,7 +112,7 @@ static constexpr StressTask SBESC_TASKSET_OVERHEAD[] = {
 
 // Taskset 7
 // New tasksets
-static constexpr StressTask TASKSET_1[] = {
+static constexpr StressTask TC_TASKSET_1[] = {
     {1000000, 1000000, 150000, 1, H264_DEC, 20.0f},     // Memory bound  // 15%
     {1000000, 1000000, 150000, 1, DIJKSTRA, 18775.0f},  // Mixed         // 15%
 
@@ -124,7 +124,7 @@ static constexpr StressTask TASKSET_1[] = {
 };  // HP = 1
 
 // Taskset 8
-static constexpr StressTask TASKSET_2[] = {
+static constexpr StressTask TC_TASKSET_2[] = {
     {1000000, 1000000, 150000, 1, BANDWIDTH_L2, SINGLE},  // 15%
     {1000000, 1000000, 150000, 1, GSM_ENC, SINGLE},       // 15%
 
@@ -136,7 +136,7 @@ static constexpr StressTask TASKSET_2[] = {
 };  // HP = 1
 
 // Taskset 9
-static constexpr StressTask TASKSET_3[] = {
+static constexpr StressTask TC_TASKSET_3[] = {
     {1000000, 1000000, 150000, 1, MPEG2, SINGLE},      // 15%
     {1000000, 1000000, 150000, 1, STATEMATE, SINGLE},  // 15%
 
@@ -148,7 +148,7 @@ static constexpr StressTask TASKSET_3[] = {
 };  // HP = 1
 
 // Taskset 10
-static constexpr StressTask TASKSET_4[] = {
+static constexpr StressTask TC_TASKSET_4[] = {
     {1000000, 1000000, 150000, 1, SUSAN, SINGLE},  // 15%
     {1000000, 1000000, 150000, 1, FMREF, SINGLE},  // 15%
 
@@ -160,7 +160,7 @@ static constexpr StressTask TASKSET_4[] = {
 };  // HP = 1
 
 // Taskset 11
-static constexpr StressTask TASKSET_5[] = {
+static constexpr StressTask TC_TASKSET_5[] = {
     {2000000, 2000000, 160000, 1, BANDWIDTH_L2, SINGLE},
     {2000000, 2000000, 160000, 1, PRIME, SINGLE},
     {2000000, 2000000, 160000, 1, HUFF_ENC, SINGLE},
@@ -188,9 +188,9 @@ static constexpr Taskset TASKSETS[] = {
     {SBESC_TASKSET_1_LOW, sizeof(SBESC_TASKSET_1_LOW) / sizeof(StressTask), "SBESC_TASKSET_1_LOW"},
     {SBESC_TASKSET_2_LOW, sizeof(SBESC_TASKSET_2_LOW) / sizeof(StressTask), "SBESC_TASKSET_2_LOW"},
     {SBESC_TASKSET_OVERHEAD, sizeof(SBESC_TASKSET_OVERHEAD) / sizeof(StressTask), "SBESC_TASKSET_OVERHEAD"},
-    {TASKSET_1, sizeof(TASKSET_1) / sizeof(StressTask), "TASKSET_1"},
-    {TASKSET_2, sizeof(TASKSET_2) / sizeof(StressTask), "TASKSET_2"},
-    {TASKSET_3, sizeof(TASKSET_3) / sizeof(StressTask), "TASKSET_3"},
-    {TASKSET_4, sizeof(TASKSET_4) / sizeof(StressTask), "TASKSET_4"},
-    {TASKSET_5, sizeof(TASKSET_5) / sizeof(StressTask), "TASKSET_5"},
+    {TC_TASKSET_1, sizeof(TC_TASKSET_1) / sizeof(StressTask), "TC_TASKSET_1"},
+    {TC_TASKSET_2, sizeof(TC_TASKSET_2) / sizeof(StressTask), "TC_TASKSET_2"},
+    {TC_TASKSET_3, sizeof(TC_TASKSET_3) / sizeof(StressTask), "TC_TASKSET_3"},
+    {TC_TASKSET_4, sizeof(TC_TASKSET_4) / sizeof(StressTask), "TC_TASKSET_4"},
+    {TC_TASKSET_5, sizeof(TC_TASKSET_5) / sizeof(StressTask), "TC_TASKSET_5"},
 };

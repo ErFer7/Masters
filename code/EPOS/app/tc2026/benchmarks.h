@@ -110,7 +110,7 @@ static const char *benchmark_name(BenchmarkType benchmark_type) {
         case RIJNDAEL_ENC:
             return "RIJNDAEL_ENC";
         case H264_DEC:
-            return "H264DEC";
+            return "H264_DEC";
         case MPEG2:
             return "MPEG2";
         case SUSAN:
