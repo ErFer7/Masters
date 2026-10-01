@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 from definitions.benchmarks import Benchmark
 from definitions.events import L2CachePMUEvent, L2CachePMUEventVariance, PMUEvent, PMUEventVariance, SystemEvent
+from definitions.data_origins import DataOrigin
 
 
 class TaskTiming(BaseModel):
@@ -22,7 +23,7 @@ class Task(BaseModel):
     cpu: int = -1
     job_executions: int = -1
     benchmark: Benchmark | None = None
-    task_timing: TaskTiming = TaskTiming()
+    task_timing: TaskTiming | None = TaskTiming()
 
 
 class Taskset(BaseModel):
@@ -43,6 +44,18 @@ class RunData(BaseModel):
     taskset: Taskset = Taskset()
     data: dict[
         int,
+        list[MonitorData]
+        | dict[SystemEvent | PMUEvent | L2CachePMUEvent | PMUEventVariance | L2CachePMUEventVariance, MonitorData],
+    ] = {}
+
+
+class PeriodicDataset(BaseModel):
+    test_duration: int = -1
+    rng_seed: int = -1
+    collection_duration: int = -1
+    taskset: Taskset = Taskset()
+    data: dict[
+        DataOrigin,
         list[MonitorData]
         | dict[SystemEvent | PMUEvent | L2CachePMUEvent | PMUEventVariance | L2CachePMUEventVariance, MonitorData],
     ] = {}

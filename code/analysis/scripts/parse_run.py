@@ -157,27 +157,6 @@ def parse_line(parsing_context: ParsingContext, line: str) -> None:
                 parsing_context.current_cpu = cpu
                 parsing_context.current_event_index = -1
             elif line.startswith('TS,'):
-                # if (
-                #     parsing_context.current_event_index is not None
-                #     and parsing_context.current_event_index != -1
-                #     and parsing_context.current_event_index + 1 >= len(parsing_context['events'][current_cpu])
-                # ):
-                #     parsing_context['current_event_index'] = -1
-                #     return
-
-                # if parsing_context.current_event_index is None:
-                #     parsing_context.current_event_index = 0
-                # else:
-                #     parsing_context['current_event_index'] += 1
-
-                # event = parsing_context.event_index_map[parsing_context.current_cpu][  # type: ignore
-                #     parsing_context.current_event_index
-                # ]
-                #
-                # parsing_context.run_data.data[parsing_context.current_cpu][event].data.append(())
-                #
-                # parsed_data['data'][current_cpu].append({'event': event, 'data': []})
-
                 parsing_context.current_event_index += 1  # type: ignore
             elif line.startswith('end_data'):
                 parsing_context.state = ParsingState.END
