@@ -49,8 +49,6 @@ def compute_run_ids(thread_values: tuple) -> list[int]:
 
 
 def find_run_boundaries(run_ids: list[int]) -> list[tuple[int, int]]:
-    """Returns (start_index, end_index) pairs, end exclusive, one per contiguous run."""
-
     boundaries = []
     run_start = 0
 
@@ -63,14 +61,6 @@ def find_run_boundaries(run_ids: list[int]) -> list[tuple[int, int]]:
 
 
 def sum_range(values: tuple, start: int, end: int, skip_first: bool) -> int | float | None:
-    """Sums values[start:end]. If skip_first, the sample at `start` is excluded -- this is
-    the boundary sample of a run, whose delta is None/unattributable and must not enter
-    the sum. Returns None if no valid samples remain in range.
-
-    `end` is clamped to len(values): different DataOrigins can end up with slightly
-    different sample counts (see the length-mismatch check in generate_job_dataset),
-    so a run's index range computed from one origin's length may overrun another's."""
-
     end = min(end, len(values))
     start = min(start, end)
 
@@ -110,42 +100,36 @@ def aggregate_core_jobs(
             'start_index': start,
             'end_index': end,
             'n_samples': end - start,
-            # The first sample of every run is a boundary sample (delta spans the
-            # previous thread/idle -> this one and can't be attributed). It's excluded
-            # from every sum below, so n_valid_samples is usually n_samples - 1.
             'n_valid_samples': max(0, (end - start) - 1),
-            # JOB_UTILIZATION is a point value replicated across the whole run, not a
-            # delta -- take it as-is rather than summing it.
-            'utilization': utilization.data[start],
         }
 
-        for stream in cumulative_streams:
-            row[str(stream.event)] = sum_range(stream.data, start, end, skip_first=True)
+        util_values = utilization.data[start:end]
+        util_distinct = set(util_values)
 
-        # Global/shared counters have no run concept of their own -- sum over the same
-        # positional window as this core's run. This is still an approximation: if other
-        # cores were active during this window, their activity is mixed into this sum
-        # (see contention discussion). start is included here (not skipped) since it is
-        # a valid GLOBAL sample, just not a valid sample for *this core's* run.
+        row['utilization'] = util_values[0] if util_values else None
+        row['utilization_consistent'] = len(util_distinct) <= 1
+        if len(util_distinct) > 1:
+            row['utilization_values_seen'] = sorted(util_distinct)  # type: ignore
+
+        for stream in cumulative_streams:
+            row[stream.event.value] = sum_range(stream.data, start, end, skip_first=True)
+
         for stream in global_streams:
-            row[f'GLOBAL_{stream.event}'] = sum_range(stream.data, start, end, skip_first=False)
+            row[f'GLOBAL_{stream.event.value}'] = sum_range(stream.data, start, end, skip_first=False)
 
         rows.append(row)
+
+    if rows:
+        rows.pop()
 
     return rows
 
 
 def check_stream_lengths(dataset: SimplePeriodicDataset) -> None:
-    """Different DataOrigins can end up with slightly different sample counts (collection
-    start/stop jitter). A difference of a sample or two is expected and handled by the
-    clamping in sum_range; a larger gap suggests something is actually wrong upstream
-    (dropped samples, a stalled collector, etc.) and is worth investigating before trusting
-    the aggregated output."""
-
     lengths = {}
 
     for data_origin, streams in dataset.data.items():
-        stream_lengths = {str(s.event): len(s.data) for s in streams}
+        stream_lengths = {s.event.value: len(s.data) for s in streams}
         lengths[str(data_origin)] = stream_lengths
 
         unique_lengths = set(stream_lengths.values())

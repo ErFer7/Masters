@@ -1,0 +1,18 @@
+Feature ranking -- mrmr
+Score = selection order under mRMR (1 = most relevant & least redundant given prior picks). Redundancy-aware.
+======================================================================
+  1. GLOBAL_L2_DEMAND_MISS_HIT_MSHR_ALLOC_HINT     1
+  2. LOAD_STORE_RATIO                              2
+  3. GLOBAL_L2_OUTER_ACQUIREBLOCK_NTOB_L2_MISS     3
+  4. CPU_CYCLES                                    4
+  5. INSTRUCTIONS_RETIRED                          5
+  6. L2_MPKI                                       6
+  7. INTEGER_ARITHMETIC_INSTRUCTIONS_RETIRED       7
+  8. INTEGER_LOAD_INSTRUCTIONS_RETIRED             8
+  9. SYSTEM_INSTRUCTIONS_RETIRED                   9
+ 10. L1_CMPI                                       10
+ 11. ADDRESS_GENERATION_INTERLOCK                  11
+ 12. FLOATING_POINT_STORE_INSTRUCTION_RETIRED      12
+ 13. EXCEPTIONS_TAKEN                              13
+ 14. FLOATING_POINT_LOAD_INSTRUCTION_RETIRED       14
+ 15. GLOBAL_L2_CACHE_MISS                          15

@@ -1,0 +1,18 @@
+Feature ranking -- mrmr
+Score = selection order under mRMR (1 = most relevant & least redundant given prior picks). Redundancy-aware.
+======================================================================
+  1. GLOBAL_L2_INNER_GET_HIT_L2                    1
+  2. L2_MPKI                                       2
+  3. GLOBAL_L2_INNER_GET                           3
+  4. DCACHE_BUSY_RATIO                             4
+  5. CPU_CYCLES                                    5
+  6. BRANCH_MISS_RATE                              6
+  7. L1_CMPI                                       7
+  8. INSTRUCTIONS_RETIRED                          8
+  9. DCACHE_MPKI                                   9
+ 10. INSTRUCTION_CACHE_ITIM_BUSY                   10
+ 11. MEM_INSTR_FRACTION                            11
+ 12. JAL_INSTRUCTIONS_RETIRED                      12
+ 13. CPI                                           13
+ 14. BRANCH_DIRECTION_MISPREDICTION                14
+ 15. IPC                                           15
