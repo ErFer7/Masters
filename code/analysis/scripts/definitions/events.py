@@ -81,6 +81,12 @@ class PMUEvent(Enum):
     L1_CACHE_MISS = 'L1_CACHE_MISS'
 
 
+class PMUVirtualEvent(Enum):
+    IPC = 'IPC'  # Instructions per cycle
+    CPI = 'CPI'  # Cycles per Instruction
+    L1_CMPI = 'L1_CMPI'  # L1 cache misses per instruction
+
+
 class L2CachePMUEvent(Enum):
     # L2 Programmable counters (6 simultaneous channels)
     L2_INNER_PUTFULLDATA = 'L2_INNER_PUTFULLDATA'
@@ -146,7 +152,11 @@ class L2CachePMUEvent(Enum):
     L2_INNER_PROBEBLOCK_TON_STORE_MISS = 'L2_INNER_PROBEBLOCK_TON_STORE_MISS'
     L2_DEMAND_MISS_HIT_MSHR_ALLOC_HINT = 'L2_DEMAND_MISS_HIT_MSHR_ALLOC_HINT'
     L2_CACHE_MISS = 'L2_CACHE_MISS'
+
+
+class L2CachePMUVirtualEvent(Enum):
     L1_BY_L2 = 'L1_BY_L2'
+    L2_CMPI = 'L2_CMPI'  # L2 cache misses per instruction
 
 
 class PMUEventVariance(Enum):

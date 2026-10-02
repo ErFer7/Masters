@@ -1,7 +1,15 @@
 from pydantic import BaseModel
 
 from definitions.benchmarks import Benchmark
-from definitions.events import L2CachePMUEvent, L2CachePMUEventVariance, PMUEvent, PMUEventVariance, SystemEvent
+from definitions.events import (
+    L2CachePMUEvent,
+    L2CachePMUEventVariance,
+    L2CachePMUVirtualEvent,
+    PMUEvent,
+    PMUEventVariance,
+    PMUVirtualEvent,
+    SystemEvent,
+)
 from definitions.data_origins import DataOrigin
 
 
@@ -33,7 +41,15 @@ class Taskset(BaseModel):
 
 
 class MonitorData(BaseModel):
-    event: SystemEvent | PMUEvent | L2CachePMUEvent | PMUEventVariance | L2CachePMUEventVariance
+    event: (
+        SystemEvent
+        | PMUEvent
+        | PMUVirtualEvent
+        | L2CachePMUEvent
+        | L2CachePMUVirtualEvent
+        | PMUEventVariance
+        | L2CachePMUEventVariance
+    )
     data: list[tuple[int, int | float]] = []
 
 
@@ -59,3 +75,25 @@ class PeriodicDataset(BaseModel):
         list[MonitorData]
         | dict[SystemEvent | PMUEvent | L2CachePMUEvent | PMUEventVariance | L2CachePMUEventVariance, MonitorData],
     ] = {}
+
+
+class DataStream(BaseModel):
+    event: (
+        SystemEvent
+        | PMUEvent
+        | PMUVirtualEvent
+        | L2CachePMUEvent
+        | L2CachePMUVirtualEvent
+        | PMUEventVariance
+        | L2CachePMUEventVariance
+    )
+    data: list[int | float] = []
+
+
+class SimplePeriodicDataset(BaseModel):
+    test_duration: int = -1
+    rng_seed: int = -1
+    collection_duration: int = -1
+    cpu_clock: int = -1
+    taskset: Taskset = Taskset()
+    data: dict[DataOrigin, list[DataStream]] = {}

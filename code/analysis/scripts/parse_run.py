@@ -1,7 +1,6 @@
 from argparse import ArgumentParser
 from enum import Enum
 from re import search
-from sys import argv
 from os.path import join
 from os import sep
 
@@ -214,4 +213,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    main(argv[1], argv[2])
+    main(args.input_path, args.output_directory)

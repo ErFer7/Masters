@@ -3,7 +3,6 @@ from datetime import datetime
 from json import load
 from pathlib import Path
 from re import search
-from sys import argv
 from os import sep
 from os.path import join
 
@@ -180,17 +179,16 @@ def fix_utilization(periodic_dataset: PeriodicDataset) -> PeriodicDataset:
 
         idle = running_thread.data[0][1]  # type: ignore
 
-        # TODO: Check everything from this point on
         threads_indices = {idle: [0, 0]}
-
         current_thread = idle
-        last_thread = idle
 
         for i, (_, thread) in enumerate(running_thread.data):  # type: ignore
             if thread != current_thread:
-                threads_indices[last_thread][1] = i - 1
+                threads_indices[current_thread][1] = i - 1  # close the window we're LEAVING
 
-                if thread not in threads_indices:
+                if thread == idle:
+                    pass
+                elif thread not in threads_indices:
                     threads_indices[thread] = [i, i]
                 else:
                     utilization = job_utilization.data[i][1]  # type: ignore
@@ -203,7 +201,6 @@ def fix_utilization(periodic_dataset: PeriodicDataset) -> PeriodicDataset:
 
                 threads_indices[thread][0] = i
                 current_thread = thread
-                last_thread = running_thread.data[i - 1][1]  # type: ignore
 
     return periodic_dataset
 
@@ -248,4 +245,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    main(argv[1], argv[2])
+    main(args.input_directory, args.output_directory)
