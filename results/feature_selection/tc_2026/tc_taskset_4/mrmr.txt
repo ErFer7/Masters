@@ -1,0 +1,18 @@
+Feature ranking -- mrmr
+Score = selection order under mRMR (1 = most relevant & least redundant given prior picks). Redundancy-aware.
+======================================================================
+  1. L1_CMPI                                       1
+  2. GLOBAL_L2_INNER_GET                           2
+  3. DCACHE_MPKI                                   3
+  4. BRANCH_MISS_RATE                              4
+  5. GLOBAL_L2_OUTER_ACQUIREBLOCK_NTOB_L2_MISS     5
+  6. DCACHE_BUSY_RATIO                             6
+  7. L1_BY_L2                                      7
+  8. ICACHE_MPKI                                   8
+  9. GLOBAL_L2_CACHE_MISS                          9
+ 10. LOAD_STORE_RATIO                              10
+ 11. GLOBAL_L2_OUTER_RELEASE_TON_EVICTION          11
+ 12. BRANCH_JUMP_TARGET_MISPREDICTION              12
+ 13. ADDR_GEN_STALL_RATIO                          13
+ 14. DATA_CACHE_WRITE_BACK                         14
+ 15. ADDRESS_GENERATION_INTERLOCK                  15
