@@ -11,8 +11,8 @@ Score = selection order under mRMR (1 = most relevant & least redundant given pr
   8. INTEGER_LOAD_INSTRUCTIONS_RETIRED             8
   9. SYSTEM_INSTRUCTIONS_RETIRED                   9
  10. L1_CMPI                                       10
- 11. ADDRESS_GENERATION_INTERLOCK                  11
- 12. FLOATING_POINT_STORE_INSTRUCTION_RETIRED      12
+ 11. FLOATING_POINT_STORE_INSTRUCTION_RETIRED      11
+ 12. ADDRESS_GENERATION_INTERLOCK                  12
  13. EXCEPTIONS_TAKEN                              13
  14. FLOATING_POINT_LOAD_INSTRUCTION_RETIRED       14
  15. GLOBAL_L2_CACHE_MISS                          15

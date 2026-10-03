@@ -10,8 +10,8 @@ Score = selection order under mRMR (1 = most relevant & least redundant given pr
   7. L1_CMPI                                       7
   8. INSTRUCTIONS_RETIRED                          8
   9. DCACHE_MPKI                                   9
- 10. INSTRUCTION_CACHE_ITIM_BUSY                   10
- 11. MEM_INSTR_FRACTION                            11
+ 10. MEM_INSTR_FRACTION                            10
+ 11. INSTRUCTION_CACHE_ITIM_BUSY                   11
  12. JAL_INSTRUCTIONS_RETIRED                      12
  13. CPI                                           13
  14. BRANCH_DIRECTION_MISPREDICTION                14

@@ -1,0 +1,18 @@
+Feature ranking -- mrmr
+Score = selection order under mRMR (1 = most relevant & least redundant given prior picks). Redundancy-aware.
+======================================================================
+  1. CPU_CYCLES                                    1
+  2. L2_MPKI                                       2
+  3. INSTRUCTIONS_RETIRED                          3
+  4. GLOBAL_L2_INNER_PROBEBLOCK_TON_STORE_MISS     4
+  5. ADDR_GEN_STALL_RATIO                          5
+  6. INTEGER_ARITHMETIC_INSTRUCTIONS_RETIRED       6
+  7. DATA_CACHE_DTIM_BUSY                          7
+  8. FP_STALL_RATIO                                8
+  9. EXCEPTIONS_TAKEN                              9
+ 10. SYSTEM_INSTRUCTIONS_RETIRED                   10
+ 11. INTEGER_DIVISION_INSTRUCTIONS_RETIRED         11
+ 12. ICACHE_MPKI                                   12
+ 13. LONG_LATENCY_INTERLOCK                        13
+ 14. BRANCH_DIRECTION_MISPREDICTION                14
+ 15. INSTRUCTION_CACHE_ITIM_BUSY                   15

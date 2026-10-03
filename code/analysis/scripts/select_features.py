@@ -18,6 +18,7 @@ DEFAULT_EXCLUDE_COLUMNS = [
     'n_valid_samples',
     'utilization_consistent',
     'utilization_values_seen',
+    'utilization',
 ]
 
 
@@ -100,9 +101,10 @@ def select_lasso_cv(X: pd.DataFrame, y: pd.Series, k: int) -> RankingResult:
     from sklearn.preprocessing import StandardScaler
 
     X_scaled = StandardScaler().fit_transform(X.values)
+    y_scaled = StandardScaler().fit_transform(y.values.reshape(-1, 1)).ravel()
 
-    lasso = LassoCV(cv=5, max_iter=100000, random_state=42)
-    lasso.fit(X_scaled, y.values)
+    lasso = LassoCV(cv=5, max_iter=200000, random_state=42)
+    lasso.fit(X_scaled, y_scaled)
 
     ranked = sorted(zip(X.columns, np.abs(lasso.coef_)), key=lambda item: item[1], reverse=True)
 
@@ -318,10 +320,16 @@ def select_features(
         save_ranking(output_dir, method_name, ranking, notes)
 
 
-def main(dataset_path: str, output_directory: str, target_column: str, top_k: int) -> None:
+def main(
+    dataset_path: str, output_directory: str, target_column: str, top_k: int, include_own_utilization: bool
+) -> None:
     df = pd.read_csv(dataset_path)
 
-    select_features(df, target_column, output_directory, top_k)
+    exclude_columns = list(DEFAULT_EXCLUDE_COLUMNS)
+    if include_own_utilization:
+        exclude_columns.remove('utilization')
+
+    select_features(df, target_column, output_directory, top_k, exclude_columns)
 
 
 if __name__ == '__main__':
@@ -337,7 +345,12 @@ if __name__ == '__main__':
         default=15,
         help='Feature budget for methods that select a fixed-size subset (mRMR, HSIC-Lasso, ReliefF)',
     )
+    parser.add_argument(
+        '--include-own-utilization',
+        action='store_true',
+        help="Include the current job's own 'utilization' as a candidate feature, for a baseline-comparison run.",
+    )
 
     args = parser.parse_args()
 
-    main(args.dataset_path, args.output_directory, args.target_column, args.top_k)
+    main(args.dataset_path, args.output_directory, args.target_column, args.top_k, args.include_own_utilization)
