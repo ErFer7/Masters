@@ -5,4 +5,5 @@ all:
 .PHONY: clean
 clean:
 	latexmk -c
-	rm -f *.bbl *.run.xml *.bcf *.blg *.aux *.log *.out *.toc *.lof *.lot *.fls *.fdb_latexmk *.synctex.gz
+	rm -rf cache
+	rm -f main.bbl main.loq main.synctex.gz
