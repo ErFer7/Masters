@@ -14,8 +14,8 @@
 #include <iostream>
 #include <thread>
 
-#include "cpu_hungry.h"
-#include "disparity.h"
+#include "cpu_hungry.hpp"
+#include "disparity.hpp"
 
 using std::cout;
 using std::endl;
