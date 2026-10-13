@@ -1,4 +1,4 @@
-% TODO: Polish
+% TODO: Rework pretty much everything. We need to tackle specific problems, like DVFS optmizations
 \chapter{Introduction}
 
 Currently, several areas of technology require software that must execute in real time. This often includes autonomous vehicles, aviation, robotics, industrial systems, and other critical systems where the software is directly responsible for system safety and control. In these domains, a failure to meet timing constraints during execution can lead to severe consequences. Thus, to ensure predictable execution and meet these timing requirements, \gls{rtos} are utilized. These systems are commonly employed in embedded scenarios, where other variables must also be considered, such as energy consumption \cite{rahim2025survey}. When timing and energy consumption constraints are combined with the current widespread adoption of multicore systems, the algorithms responsible for scheduling and load balancing face a considerable challenge \cite{ul2018task, hoffmann2021online}. This scenario motivates the need for predictive algorithms that can capture the state of the system and estimate relevant characteristics of each task in order to schedule and balance them accordingly.
@@ -18,12 +18,18 @@ Considering this scenario, this dissertation addresses the main problems associa
 % TODO: Write and check the section names
 \section{Objectives}
 
-...
+The sections below present the general and specific objectives.
 
+% TODO: The overal objective might change a little bit, since it's probably way better to focus on DVFS and other problems other than just "scheduling", the scope really needs to be refined here
 \subsection{General Objectives}
 
-...
+The objective of this work is to develop an architecture independent framework for adaptive multicore scheduling with the usage of \gls{ml} models informed by hardware and system metrics.
 
 \subsection{Specific Objectives}
 
-...
+\begin{itemize}
+    \item Provide an evaluation of common problems in statistical approaches to utilization prediction in RISC-V platforms;
+    \item Provide an implementation of a \gls{ml} guided architecture independent framework for adaptive multicore scheduling with the usage of hardware and system metrics;
+    \item Perform an evaluation of the implementation in a RISC-V platform;
+    \item Perform an evaluation of the implementation in an ARM platform;
+\end{itemize}
