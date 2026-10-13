@@ -9,28 +9,12 @@ import pandas as pd
 
 
 def safe_ratio(numerator: pd.Series, denominator: pd.Series) -> pd.Series:
-    """Elementwise division that turns divide-by-zero and 0/0 into NaN instead of inf/error.
-    NaN (rather than 0) is the right default here: a 0/0 row usually means "no activity in
-    this job iteration for this event", which is a missing signal, not a zero rate."""
-
     with np.errstate(divide='ignore', invalid='ignore'):
         result = numerator / denominator
 
     return result.replace([np.inf, -np.inf], np.nan)
 
 
-# Each entry: name of the output column, the input columns it needs (checked before
-# computing, so a missing/renamed event just skips this one metric with a warning instead
-# of crashing the whole script), and the function that computes it from the dataframe.
-#
-# Ratios are computed on the per-job SUMMED raw counts (already summed across all samples
-# of the job by generate_job_dataset.py) -- i.e. ratio of sums, not an average of per-sample
-# ratios. This avoids biasing toward samples with small denominators, which a naive
-# per-sample-then-average approach would do.
-#
-# NOTE: several event names below (the *_INTERLOCK and *_BUSY ones) are inferred from the
-# sanitized data sample and may not match your actual events.py exactly -- verify the
-# column names in your CSV and adjust REQUIRES/the lambda if a metric gets skipped.
 METRIC_DEFINITIONS: list[dict] = [
     # --- Core efficiency / utilization proxies ---
     {
